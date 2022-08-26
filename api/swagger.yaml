@@ -1,0 +1,207 @@
+openapi: 3.0.2
+info:
+  title: Funless Platfom API
+  description: The API for the Funless Platform
+  version: "1.0"
+servers:
+- url: http://localhost:4001
+  description: The dev server for the funless core launched locally
+paths:
+  /invoke:
+    post:
+      summary: Invoke a function
+      description: Invokes the specified function from the given namespace with optional
+        parameters from the POST body
+      requestBody:
+        description: "Object containing the function to invoke, the namespace and\
+          \ optional parameters"
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/function_invocation'
+        required: true
+      responses:
+        "200":
+          description: The function invocation was successfully sent to a worker
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/function_invocation_success'
+              examples:
+                Invocation of hello world:
+                  value: "{\"result\": {\"payload\": \"Hello, World!\"}}"
+        "400":
+          description: The invocation request was invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/function_invocation_error'
+        "404":
+          description: The required function was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/function_invocation_error'
+        "500":
+          description: The function invocation failed for some unspecified internal
+            error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/function_invocation_error'
+              examples:
+                Invocation with internal error:
+                  value: "{\"error\": \"Failed to invoke function: internal worker\
+                    \ error\"}"
+        "503":
+          description: The function invocation failed because no worker was available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/function_invocation_error'
+              examples:
+                Invocation with no workers:
+                  value: "{\"error\": \"Failed to invoke function: no worker available\"\
+                    }"
+  /create:
+    post:
+      summary: Create a new function
+      description: "Creates the given function, extracting the parameters from the\
+        \ POST body"
+      requestBody:
+        description: "Object containing the function to create, with name, optional\
+          \ namespace, code and runtime image identifier"
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/function_creation'
+        required: true
+      responses:
+        "200":
+          description: The function was created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/function_creation_success'
+              examples:
+                Creation of the "hellojs" function:
+                  value: "{\"result\": \"hellojs\"}"
+        "400":
+          description: The function creation request was invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/function_creation_error'
+        "500":
+          description: The function creation request failed because the database transaction
+            was aborted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/function_creation_error'
+  /delete:
+    post:
+      summary: Delete a function
+      description: "Deletes the function with the given name and namespace, extracted\
+        \ from the POST body"
+      requestBody:
+        description: Object containing the name and namespace of the function to delete
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/function_deletion'
+        required: true
+      responses:
+        "200":
+          description: The function was deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/function_deletion_success'
+              examples:
+                Deletion of the "hellojs" function:
+                  value: "{\"result\": \"hellojs\"}"
+        "400":
+          description: The function deletion request was invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/function_deletion_error'
+        "500":
+          description: The function deletion request failed because the database transaction
+            was aborted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/function_deletion_error'
+components:
+  schemas:
+    function_invocation:
+      type: object
+      properties:
+        namespace:
+          type: string
+        function:
+          type: string
+        args:
+          type: object
+    function_invocation_success:
+      type: object
+      properties:
+        result:
+          type: object
+          description: The function invocation result
+      example:
+        result: {}
+    function_invocation_error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: The error message
+    function_creation:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        code:
+          type: string
+        image:
+          type: string
+    function_creation_success:
+      type: object
+      properties:
+        result:
+          type: string
+          description: The name of the function
+      example:
+        result: result
+    function_creation_error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: The error message
+    function_deletion:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+    function_deletion_success:
+      type: object
+      properties:
+        result:
+          type: string
+          description: The name of the function
+      example:
+        result: result
+    function_deletion_error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: The error message
