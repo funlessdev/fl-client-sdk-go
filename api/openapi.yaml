@@ -5,9 +5,9 @@ info:
   version: "1.0"
 servers:
 - description: The dev server for the funless core launched locally
-  url: http://localhost:4001
+  url: http://localhost:4000
 paths:
-  /invoke:
+  /fn/invoke:
     post:
       description: Invokes the specified function from the given namespace with optional
         parameters from the POST body
@@ -63,7 +63,7 @@ paths:
                 $ref: '#/components/schemas/function_invocation_error'
           description: The function invocation failed because no worker was available
       summary: Invoke a function
-  /create:
+  /fn/create:
     post:
       description: "Creates the given function, extracting the parameters from the\
         \ POST body"
@@ -99,16 +99,16 @@ paths:
           description: The function creation request failed because the database transaction
             was aborted
       summary: Create a new function
-  /delete:
-    post:
-      description: "Deletes the function with the given name and namespace, extracted\
-        \ from the POST body"
+  /fn/delete:
+    delete:
+      description: Deletes the function with the given name and namespace in the request
+        body
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/function_deletion'
-        description: Object containing the name and namespace of the function to delete
+        description: Object containing the function's name and namespace to delete
         required: true
       responses:
         "200":

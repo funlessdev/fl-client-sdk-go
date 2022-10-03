@@ -105,7 +105,7 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "http://localhost:4001",
+				URL: "http://localhost:4000",
 				Description: "The dev server for the funless core launched locally",
 			},
 		},

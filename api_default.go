@@ -22,32 +22,32 @@ import (
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiCreatePostRequest struct {
+type ApiFnCreatePostRequest struct {
 	ctx context.Context
 	ApiService *DefaultApiService
 	functionCreation *FunctionCreation
 }
 
 // Object containing the function to create, with name, optional namespace, code and runtime image identifier
-func (r ApiCreatePostRequest) FunctionCreation(functionCreation FunctionCreation) ApiCreatePostRequest {
+func (r ApiFnCreatePostRequest) FunctionCreation(functionCreation FunctionCreation) ApiFnCreatePostRequest {
 	r.functionCreation = &functionCreation
 	return r
 }
 
-func (r ApiCreatePostRequest) Execute() (*FunctionCreationSuccess, *http.Response, error) {
-	return r.ApiService.CreatePostExecute(r)
+func (r ApiFnCreatePostRequest) Execute() (*FunctionCreationSuccess, *http.Response, error) {
+	return r.ApiService.FnCreatePostExecute(r)
 }
 
 /*
-CreatePost Create a new function
+FnCreatePost Create a new function
 
 Creates the given function, extracting the parameters from the POST body
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreatePostRequest
+ @return ApiFnCreatePostRequest
 */
-func (a *DefaultApiService) CreatePost(ctx context.Context) ApiCreatePostRequest {
-	return ApiCreatePostRequest{
+func (a *DefaultApiService) FnCreatePost(ctx context.Context) ApiFnCreatePostRequest {
+	return ApiFnCreatePostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -55,7 +55,7 @@ func (a *DefaultApiService) CreatePost(ctx context.Context) ApiCreatePostRequest
 
 // Execute executes the request
 //  @return FunctionCreationSuccess
-func (a *DefaultApiService) CreatePostExecute(r ApiCreatePostRequest) (*FunctionCreationSuccess, *http.Response, error) {
+func (a *DefaultApiService) FnCreatePostExecute(r ApiFnCreatePostRequest) (*FunctionCreationSuccess, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -63,12 +63,12 @@ func (a *DefaultApiService) CreatePostExecute(r ApiCreatePostRequest) (*Function
 		localVarReturnValue  *FunctionCreationSuccess
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreatePost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.FnCreatePost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/create"
+	localVarPath := localBasePath + "/fn/create"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -152,32 +152,32 @@ func (a *DefaultApiService) CreatePostExecute(r ApiCreatePostRequest) (*Function
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeletePostRequest struct {
+type ApiFnDeleteDeleteRequest struct {
 	ctx context.Context
 	ApiService *DefaultApiService
 	functionDeletion *FunctionDeletion
 }
 
-// Object containing the name and namespace of the function to delete
-func (r ApiDeletePostRequest) FunctionDeletion(functionDeletion FunctionDeletion) ApiDeletePostRequest {
+// Object containing the function&#39;s name and namespace to delete
+func (r ApiFnDeleteDeleteRequest) FunctionDeletion(functionDeletion FunctionDeletion) ApiFnDeleteDeleteRequest {
 	r.functionDeletion = &functionDeletion
 	return r
 }
 
-func (r ApiDeletePostRequest) Execute() (*FunctionDeletionSuccess, *http.Response, error) {
-	return r.ApiService.DeletePostExecute(r)
+func (r ApiFnDeleteDeleteRequest) Execute() (*FunctionDeletionSuccess, *http.Response, error) {
+	return r.ApiService.FnDeleteDeleteExecute(r)
 }
 
 /*
-DeletePost Delete a function
+FnDeleteDelete Delete a function
 
-Deletes the function with the given name and namespace, extracted from the POST body
+Deletes the function with the given name and namespace in the request body
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDeletePostRequest
+ @return ApiFnDeleteDeleteRequest
 */
-func (a *DefaultApiService) DeletePost(ctx context.Context) ApiDeletePostRequest {
-	return ApiDeletePostRequest{
+func (a *DefaultApiService) FnDeleteDelete(ctx context.Context) ApiFnDeleteDeleteRequest {
+	return ApiFnDeleteDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -185,20 +185,20 @@ func (a *DefaultApiService) DeletePost(ctx context.Context) ApiDeletePostRequest
 
 // Execute executes the request
 //  @return FunctionDeletionSuccess
-func (a *DefaultApiService) DeletePostExecute(r ApiDeletePostRequest) (*FunctionDeletionSuccess, *http.Response, error) {
+func (a *DefaultApiService) FnDeleteDeleteExecute(r ApiFnDeleteDeleteRequest) (*FunctionDeletionSuccess, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  *FunctionDeletionSuccess
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeletePost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.FnDeleteDelete")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/delete"
+	localVarPath := localBasePath + "/fn/delete"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -282,32 +282,32 @@ func (a *DefaultApiService) DeletePostExecute(r ApiDeletePostRequest) (*Function
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiInvokePostRequest struct {
+type ApiFnInvokePostRequest struct {
 	ctx context.Context
 	ApiService *DefaultApiService
 	functionInvocation *FunctionInvocation
 }
 
 // Object containing the function to invoke, the namespace and optional parameters
-func (r ApiInvokePostRequest) FunctionInvocation(functionInvocation FunctionInvocation) ApiInvokePostRequest {
+func (r ApiFnInvokePostRequest) FunctionInvocation(functionInvocation FunctionInvocation) ApiFnInvokePostRequest {
 	r.functionInvocation = &functionInvocation
 	return r
 }
 
-func (r ApiInvokePostRequest) Execute() (*FunctionInvocationSuccess, *http.Response, error) {
-	return r.ApiService.InvokePostExecute(r)
+func (r ApiFnInvokePostRequest) Execute() (*FunctionInvocationSuccess, *http.Response, error) {
+	return r.ApiService.FnInvokePostExecute(r)
 }
 
 /*
-InvokePost Invoke a function
+FnInvokePost Invoke a function
 
 Invokes the specified function from the given namespace with optional parameters from the POST body
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiInvokePostRequest
+ @return ApiFnInvokePostRequest
 */
-func (a *DefaultApiService) InvokePost(ctx context.Context) ApiInvokePostRequest {
-	return ApiInvokePostRequest{
+func (a *DefaultApiService) FnInvokePost(ctx context.Context) ApiFnInvokePostRequest {
+	return ApiFnInvokePostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -315,7 +315,7 @@ func (a *DefaultApiService) InvokePost(ctx context.Context) ApiInvokePostRequest
 
 // Execute executes the request
 //  @return FunctionInvocationSuccess
-func (a *DefaultApiService) InvokePostExecute(r ApiInvokePostRequest) (*FunctionInvocationSuccess, *http.Response, error) {
+func (a *DefaultApiService) FnInvokePostExecute(r ApiFnInvokePostRequest) (*FunctionInvocationSuccess, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -323,12 +323,12 @@ func (a *DefaultApiService) InvokePostExecute(r ApiInvokePostRequest) (*Function
 		localVarReturnValue  *FunctionInvocationSuccess
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.InvokePost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.FnInvokePost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/invoke"
+	localVarPath := localBasePath + "/fn/invoke"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

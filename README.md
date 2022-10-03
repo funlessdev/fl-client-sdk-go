@@ -74,13 +74,13 @@ ctx = context.WithValue(context.Background(), openapi.ContextOperationServerVari
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost:4001*
+All URIs are relative to *http://localhost:4000*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**CreatePost**](docs/DefaultApi.md#createpost) | **Post** /create | Create a new function
-*DefaultApi* | [**DeletePost**](docs/DefaultApi.md#deletepost) | **Post** /delete | Delete a function
-*DefaultApi* | [**InvokePost**](docs/DefaultApi.md#invokepost) | **Post** /invoke | Invoke a function
+*DefaultApi* | [**FnCreatePost**](docs/DefaultApi.md#fncreatepost) | **Post** /fn/create | Create a new function
+*DefaultApi* | [**FnDeleteDelete**](docs/DefaultApi.md#fndeletedelete) | **Delete** /fn/delete | Delete a function
+*DefaultApi* | [**FnInvokePost**](docs/DefaultApi.md#fninvokepost) | **Post** /fn/invoke | Invoke a function
 
 
 ## Documentation For Models

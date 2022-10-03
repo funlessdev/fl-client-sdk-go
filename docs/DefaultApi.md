@@ -1,18 +1,18 @@
 # \DefaultApi
 
-All URIs are relative to *http://localhost:4001*
+All URIs are relative to *http://localhost:4000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreatePost**](DefaultApi.md#CreatePost) | **Post** /create | Create a new function
-[**DeletePost**](DefaultApi.md#DeletePost) | **Post** /delete | Delete a function
-[**InvokePost**](DefaultApi.md#InvokePost) | **Post** /invoke | Invoke a function
+[**FnCreatePost**](DefaultApi.md#FnCreatePost) | **Post** /fn/create | Create a new function
+[**FnDeleteDelete**](DefaultApi.md#FnDeleteDelete) | **Delete** /fn/delete | Delete a function
+[**FnInvokePost**](DefaultApi.md#FnInvokePost) | **Post** /fn/invoke | Invoke a function
 
 
 
-## CreatePost
+## FnCreatePost
 
-> FunctionCreationSuccess CreatePost(ctx).FunctionCreation(functionCreation).Execute()
+> FunctionCreationSuccess FnCreatePost(ctx).FunctionCreation(functionCreation).Execute()
 
 Create a new function
 
@@ -35,13 +35,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.CreatePost(context.Background()).FunctionCreation(functionCreation).Execute()
+    resp, r, err := apiClient.DefaultApi.FnCreatePost(context.Background()).FunctionCreation(functionCreation).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CreatePost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FnCreatePost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreatePost`: FunctionCreationSuccess
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CreatePost`: %v\n", resp)
+    // response from `FnCreatePost`: FunctionCreationSuccess
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.FnCreatePost`: %v\n", resp)
 }
 ```
 
@@ -51,7 +51,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreatePostRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiFnCreatePostRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -76,9 +76,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## DeletePost
+## FnDeleteDelete
 
-> FunctionDeletionSuccess DeletePost(ctx).FunctionDeletion(functionDeletion).Execute()
+> FunctionDeletionSuccess FnDeleteDelete(ctx).FunctionDeletion(functionDeletion).Execute()
 
 Delete a function
 
@@ -97,17 +97,17 @@ import (
 )
 
 func main() {
-    functionDeletion := *openapiclient.NewFunctionDeletion() // FunctionDeletion | Object containing the name and namespace of the function to delete
+    functionDeletion := *openapiclient.NewFunctionDeletion() // FunctionDeletion | Object containing the function's name and namespace to delete
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.DeletePost(context.Background()).FunctionDeletion(functionDeletion).Execute()
+    resp, r, err := apiClient.DefaultApi.FnDeleteDelete(context.Background()).FunctionDeletion(functionDeletion).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DeletePost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FnDeleteDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeletePost`: FunctionDeletionSuccess
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.DeletePost`: %v\n", resp)
+    // response from `FnDeleteDelete`: FunctionDeletionSuccess
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.FnDeleteDelete`: %v\n", resp)
 }
 ```
 
@@ -117,12 +117,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeletePostRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiFnDeleteDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **functionDeletion** | [**FunctionDeletion**](FunctionDeletion.md) | Object containing the name and namespace of the function to delete | 
+ **functionDeletion** | [**FunctionDeletion**](FunctionDeletion.md) | Object containing the function&#39;s name and namespace to delete | 
 
 ### Return type
 
@@ -142,9 +142,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## InvokePost
+## FnInvokePost
 
-> FunctionInvocationSuccess InvokePost(ctx).FunctionInvocation(functionInvocation).Execute()
+> FunctionInvocationSuccess FnInvokePost(ctx).FunctionInvocation(functionInvocation).Execute()
 
 Invoke a function
 
@@ -167,13 +167,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.InvokePost(context.Background()).FunctionInvocation(functionInvocation).Execute()
+    resp, r, err := apiClient.DefaultApi.FnInvokePost(context.Background()).FunctionInvocation(functionInvocation).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InvokePost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FnInvokePost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `InvokePost`: FunctionInvocationSuccess
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.InvokePost`: %v\n", resp)
+    // response from `FnInvokePost`: FunctionInvocationSuccess
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.FnInvokePost`: %v\n", resp)
 }
 ```
 
@@ -183,7 +183,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiInvokePostRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiFnInvokePostRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
