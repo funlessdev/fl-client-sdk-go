@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost:4000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**FnCreatePost**](DefaultApi.md#FnCreatePost) | **Post** /fn/create | Create a new function
-[**FnDeleteDelete**](DefaultApi.md#FnDeleteDelete) | **Delete** /fn/delete | Delete a function
-[**FnInvokePost**](DefaultApi.md#FnInvokePost) | **Post** /fn/invoke | Invoke a function
+[**V1FnCreatePost**](DefaultApi.md#V1FnCreatePost) | **Post** /v1/fn/create | Create a new function
+[**V1FnDeleteDelete**](DefaultApi.md#V1FnDeleteDelete) | **Delete** /v1/fn/delete | Delete a function
+[**V1FnInvokePost**](DefaultApi.md#V1FnInvokePost) | **Post** /v1/fn/invoke | Invoke a function
 
 
 
-## FnCreatePost
+## V1FnCreatePost
 
-> FunctionCreationSuccess FnCreatePost(ctx).FunctionCreation(functionCreation).Execute()
+> FunctionCreationSuccess V1FnCreatePost(ctx).FunctionCreation(functionCreation).Execute()
 
 Create a new function
 
@@ -35,13 +35,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.FnCreatePost(context.Background()).FunctionCreation(functionCreation).Execute()
+    resp, r, err := apiClient.DefaultApi.V1FnCreatePost(context.Background()).FunctionCreation(functionCreation).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FnCreatePost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1FnCreatePost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FnCreatePost`: FunctionCreationSuccess
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.FnCreatePost`: %v\n", resp)
+    // response from `V1FnCreatePost`: FunctionCreationSuccess
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1FnCreatePost`: %v\n", resp)
 }
 ```
 
@@ -51,7 +51,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiFnCreatePostRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiV1FnCreatePostRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -76,9 +76,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## FnDeleteDelete
+## V1FnDeleteDelete
 
-> FunctionDeletionSuccess FnDeleteDelete(ctx).FunctionDeletion(functionDeletion).Execute()
+> FunctionDeletionSuccess V1FnDeleteDelete(ctx).FunctionDeletion(functionDeletion).Execute()
 
 Delete a function
 
@@ -101,13 +101,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.FnDeleteDelete(context.Background()).FunctionDeletion(functionDeletion).Execute()
+    resp, r, err := apiClient.DefaultApi.V1FnDeleteDelete(context.Background()).FunctionDeletion(functionDeletion).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FnDeleteDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1FnDeleteDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FnDeleteDelete`: FunctionDeletionSuccess
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.FnDeleteDelete`: %v\n", resp)
+    // response from `V1FnDeleteDelete`: FunctionDeletionSuccess
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1FnDeleteDelete`: %v\n", resp)
 }
 ```
 
@@ -117,7 +117,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiFnDeleteDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiV1FnDeleteDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -142,9 +142,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## FnInvokePost
+## V1FnInvokePost
 
-> FunctionInvocationSuccess FnInvokePost(ctx).FunctionInvocation(functionInvocation).Execute()
+> FunctionInvocationSuccess V1FnInvokePost(ctx).FunctionInvocation(functionInvocation).Execute()
 
 Invoke a function
 
@@ -167,13 +167,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.FnInvokePost(context.Background()).FunctionInvocation(functionInvocation).Execute()
+    resp, r, err := apiClient.DefaultApi.V1FnInvokePost(context.Background()).FunctionInvocation(functionInvocation).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FnInvokePost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1FnInvokePost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FnInvokePost`: FunctionInvocationSuccess
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.FnInvokePost`: %v\n", resp)
+    // response from `V1FnInvokePost`: FunctionInvocationSuccess
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1FnInvokePost`: %v\n", resp)
 }
 ```
 
@@ -183,7 +183,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiFnInvokePostRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiV1FnInvokePostRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

@@ -19,7 +19,6 @@ type FunctionCreation struct {
 	Name *string `json:"name,omitempty"`
 	Namespace *string `json:"namespace,omitempty"`
 	Code *string `json:"code,omitempty"`
-	Image *string `json:"image,omitempty"`
 }
 
 // NewFunctionCreation instantiates a new FunctionCreation object
@@ -135,38 +134,6 @@ func (o *FunctionCreation) SetCode(v string) {
 	o.Code = &v
 }
 
-// GetImage returns the Image field value if set, zero value otherwise.
-func (o *FunctionCreation) GetImage() string {
-	if o == nil || o.Image == nil {
-		var ret string
-		return ret
-	}
-	return *o.Image
-}
-
-// GetImageOk returns a tuple with the Image field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FunctionCreation) GetImageOk() (*string, bool) {
-	if o == nil || o.Image == nil {
-		return nil, false
-	}
-	return o.Image, true
-}
-
-// HasImage returns a boolean if a field has been set.
-func (o *FunctionCreation) HasImage() bool {
-	if o != nil && o.Image != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetImage gets a reference to the given string and assigns it to the Image field.
-func (o *FunctionCreation) SetImage(v string) {
-	o.Image = &v
-}
-
 func (o FunctionCreation) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Name != nil {
@@ -177,9 +144,6 @@ func (o FunctionCreation) MarshalJSON() ([]byte, error) {
 	}
 	if o.Code != nil {
 		toSerialize["code"] = o.Code
-	}
-	if o.Image != nil {
-		toSerialize["image"] = o.Image
 	}
 	return json.Marshal(toSerialize)
 }

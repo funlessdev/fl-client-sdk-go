@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Namespace** | Pointer to **string** |  | [optional] 
 **Code** | Pointer to **string** |  | [optional] 
-**Image** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -102,31 +101,6 @@ SetCode sets Code field to given value.
 `func (o *FunctionCreation) HasCode() bool`
 
 HasCode returns a boolean if a field has been set.
-
-### GetImage
-
-`func (o *FunctionCreation) GetImage() string`
-
-GetImage returns the Image field if non-nil, zero value otherwise.
-
-### GetImageOk
-
-`func (o *FunctionCreation) GetImageOk() (*string, bool)`
-
-GetImageOk returns a tuple with the Image field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetImage
-
-`func (o *FunctionCreation) SetImage(v string)`
-
-SetImage sets Image field to given value.
-
-### HasImage
-
-`func (o *FunctionCreation) HasImage() bool`
-
-HasImage returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

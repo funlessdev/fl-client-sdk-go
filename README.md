@@ -78,9 +78,9 @@ All URIs are relative to *http://localhost:4000*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**FnCreatePost**](docs/DefaultApi.md#fncreatepost) | **Post** /fn/create | Create a new function
-*DefaultApi* | [**FnDeleteDelete**](docs/DefaultApi.md#fndeletedelete) | **Delete** /fn/delete | Delete a function
-*DefaultApi* | [**FnInvokePost**](docs/DefaultApi.md#fninvokepost) | **Post** /fn/invoke | Invoke a function
+*DefaultApi* | [**V1FnCreatePost**](docs/DefaultApi.md#v1fncreatepost) | **Post** /v1/fn/create | Create a new function
+*DefaultApi* | [**V1FnDeleteDelete**](docs/DefaultApi.md#v1fndeletedelete) | **Delete** /v1/fn/delete | Delete a function
+*DefaultApi* | [**V1FnInvokePost**](docs/DefaultApi.md#v1fninvokepost) | **Post** /v1/fn/invoke | Invoke a function
 
 
 ## Documentation For Models
