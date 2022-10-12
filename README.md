@@ -85,7 +85,6 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [FunctionCreation](docs/FunctionCreation.md)
  - [FunctionCreationError](docs/FunctionCreationError.md)
  - [FunctionCreationSuccess](docs/FunctionCreationSuccess.md)
  - [FunctionDeletion](docs/FunctionDeletion.md)

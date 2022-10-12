@@ -7,7 +7,6 @@ api_default.go
 client.go
 configuration.go
 docs/DefaultApi.md
-docs/FunctionCreation.md
 docs/FunctionCreationError.md
 docs/FunctionCreationSuccess.md
 docs/FunctionDeletion.md
@@ -19,7 +18,6 @@ docs/FunctionInvocationSuccess.md
 git_push.sh
 go.mod
 go.sum
-model_function_creation.go
 model_function_creation_error.go
 model_function_creation_success.go
 model_function_deletion.go
@@ -29,4 +27,5 @@ model_function_invocation.go
 model_function_invocation_error.go
 model_function_invocation_success.go
 response.go
+test/api_default_test.go
 utils.go

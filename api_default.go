@@ -16,6 +16,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"os"
 )
 
 
@@ -25,12 +26,23 @@ type DefaultApiService service
 type ApiV1FnCreatePostRequest struct {
 	ctx context.Context
 	ApiService *DefaultApiService
-	functionCreation *FunctionCreation
+	name *string
+	namespace *string
+	code **os.File
 }
 
-// Object containing the function to create, with name, optional namespace, code and runtime image identifier
-func (r ApiV1FnCreatePostRequest) FunctionCreation(functionCreation FunctionCreation) ApiV1FnCreatePostRequest {
-	r.functionCreation = &functionCreation
+func (r ApiV1FnCreatePostRequest) Name(name string) ApiV1FnCreatePostRequest {
+	r.name = &name
+	return r
+}
+
+func (r ApiV1FnCreatePostRequest) Namespace(namespace string) ApiV1FnCreatePostRequest {
+	r.namespace = &namespace
+	return r
+}
+
+func (r ApiV1FnCreatePostRequest) Code(code *os.File) ApiV1FnCreatePostRequest {
+	r.code = &code
 	return r
 }
 
@@ -73,12 +85,9 @@ func (a *DefaultApiService) V1FnCreatePostExecute(r ApiV1FnCreatePostRequest) (*
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.functionCreation == nil {
-		return localVarReturnValue, nil, reportError("functionCreation is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"multipart/form-data"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -94,8 +103,29 @@ func (a *DefaultApiService) V1FnCreatePostExecute(r ApiV1FnCreatePostRequest) (*
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.functionCreation
+	if r.name != nil {
+		localVarFormParams.Add("name", parameterToString(*r.name, ""))
+	}
+	if r.namespace != nil {
+		localVarFormParams.Add("namespace", parameterToString(*r.namespace, ""))
+	}
+	var codeLocalVarFormFileName string
+	var codeLocalVarFileName     string
+	var codeLocalVarFileBytes    []byte
+
+	codeLocalVarFormFileName = "code"
+
+	var codeLocalVarFile *os.File
+	if r.code != nil {
+		codeLocalVarFile = *r.code
+	}
+	if codeLocalVarFile != nil {
+		fbs, _ := ioutil.ReadAll(codeLocalVarFile)
+		codeLocalVarFileBytes = fbs
+		codeLocalVarFileName = codeLocalVarFile.Name()
+		codeLocalVarFile.Close()
+	}
+	formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

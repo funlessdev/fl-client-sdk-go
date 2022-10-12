@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Result** | Pointer to **map[string]interface{}** | The function invocation result | [optional] 
+**Result** | Pointer to **interface{}** | The function invocation result | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetResult
 
-`func (o *FunctionInvocationSuccess) GetResult() map[string]interface{}`
+`func (o *FunctionInvocationSuccess) GetResult() interface{}`
 
 GetResult returns the Result field if non-nil, zero value otherwise.
 
 ### GetResultOk
 
-`func (o *FunctionInvocationSuccess) GetResultOk() (*map[string]interface{}, bool)`
+`func (o *FunctionInvocationSuccess) GetResultOk() (*interface{}, bool)`
 
 GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResult
 
-`func (o *FunctionInvocationSuccess) SetResult(v map[string]interface{})`
+`func (o *FunctionInvocationSuccess) SetResult(v interface{})`
 
 SetResult sets Result field to given value.
 
@@ -50,6 +50,16 @@ SetResult sets Result field to given value.
 
 HasResult returns a boolean if a field has been set.
 
+### SetResultNil
+
+`func (o *FunctionInvocationSuccess) SetResultNil(b bool)`
+
+ SetResultNil sets the value for Result to be an explicit nil
+
+### UnsetResult
+`func (o *FunctionInvocationSuccess) UnsetResult()`
+
+UnsetResult ensures that no value is present for Result, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

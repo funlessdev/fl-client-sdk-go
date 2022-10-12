@@ -17,7 +17,7 @@ import (
 // FunctionInvocationSuccess struct for FunctionInvocationSuccess
 type FunctionInvocationSuccess struct {
 	// The function invocation result
-	Result map[string]interface{} `json:"result,omitempty"`
+	Result interface{} `json:"result,omitempty"`
 }
 
 // NewFunctionInvocationSuccess instantiates a new FunctionInvocationSuccess object
@@ -37,10 +37,10 @@ func NewFunctionInvocationSuccessWithDefaults() *FunctionInvocationSuccess {
 	return &this
 }
 
-// GetResult returns the Result field value if set, zero value otherwise.
-func (o *FunctionInvocationSuccess) GetResult() map[string]interface{} {
-	if o == nil || o.Result == nil {
-		var ret map[string]interface{}
+// GetResult returns the Result field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FunctionInvocationSuccess) GetResult() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Result
@@ -48,11 +48,12 @@ func (o *FunctionInvocationSuccess) GetResult() map[string]interface{} {
 
 // GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FunctionInvocationSuccess) GetResultOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FunctionInvocationSuccess) GetResultOk() (*interface{}, bool) {
 	if o == nil || o.Result == nil {
 		return nil, false
 	}
-	return o.Result, true
+	return &o.Result, true
 }
 
 // HasResult returns a boolean if a field has been set.
@@ -64,8 +65,8 @@ func (o *FunctionInvocationSuccess) HasResult() bool {
 	return false
 }
 
-// SetResult gets a reference to the given map[string]interface{} and assigns it to the Result field.
-func (o *FunctionInvocationSuccess) SetResult(v map[string]interface{}) {
+// SetResult gets a reference to the given interface{} and assigns it to the Result field.
+func (o *FunctionInvocationSuccess) SetResult(v interface{}) {
 	o.Result = v
 }
 

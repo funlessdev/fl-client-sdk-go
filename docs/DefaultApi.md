@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## V1FnCreatePost
 
-> FunctionCreationSuccess V1FnCreatePost(ctx).FunctionCreation(functionCreation).Execute()
+> FunctionCreationSuccess V1FnCreatePost(ctx).Name(name).Namespace(namespace).Code(code).Execute()
 
 Create a new function
 
@@ -31,11 +31,13 @@ import (
 )
 
 func main() {
-    functionCreation := *openapiclient.NewFunctionCreation() // FunctionCreation | Object containing the function to create, with name, optional namespace, code and runtime image identifier
+    name := "name_example" // string |  (optional)
+    namespace := "namespace_example" // string |  (optional)
+    code := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.V1FnCreatePost(context.Background()).FunctionCreation(functionCreation).Execute()
+    resp, r, err := apiClient.DefaultApi.V1FnCreatePost(context.Background()).Name(name).Namespace(namespace).Code(code).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1FnCreatePost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,7 +58,9 @@ Other parameters are passed through a pointer to a apiV1FnCreatePostRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **functionCreation** | [**FunctionCreation**](FunctionCreation.md) | Object containing the function to create, with name, optional namespace, code and runtime image identifier | 
+ **name** | **string** |  | 
+ **namespace** | **string** |  | 
+ **code** | ***os.File** |  | 
 
 ### Return type
 
@@ -68,7 +72,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

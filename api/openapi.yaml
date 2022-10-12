@@ -69,7 +69,11 @@ paths:
         \ POST body"
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
+            encoding:
+              code:
+                contentType: application/octet-stream
+                style: form
             schema:
               $ref: '#/components/schemas/function_creation'
         description: "Object containing the function to create, with name, optional\
@@ -147,11 +151,10 @@ components:
       type: object
     function_invocation_success:
       example:
-        result: "{}"
+        result: ""
       properties:
         result:
           description: The function invocation result
-          type: object
       type: object
     function_invocation_error:
       properties:
@@ -166,6 +169,7 @@ components:
         namespace:
           type: string
         code:
+          format: binary
           type: string
       type: object
     function_creation_success:
