@@ -115,7 +115,7 @@ paths:
         description: Object containing the function's name and namespace to delete
         required: true
       responses:
-        "204":
+        "200":
           content:
             application/json:
               examples:
