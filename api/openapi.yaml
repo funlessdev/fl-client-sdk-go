@@ -95,7 +95,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/function_creation_error'
           description: The function creation request was invalid
-        "500":
+        "503":
           content:
             application/json:
               schema:
@@ -130,7 +130,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/function_deletion_error'
           description: The function deletion request was invalid
-        "500":
+        "503":
           content:
             application/json:
               schema:

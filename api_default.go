@@ -158,7 +158,7 @@ func (a *DefaultApiService) V1FnCreatePostExecute(r ApiV1FnCreatePostRequest) (*
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 503 {
 			var v FunctionCreationError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -288,7 +288,7 @@ func (a *DefaultApiService) V1FnDeleteDeleteExecute(r ApiV1FnDeleteDeleteRequest
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 503 {
 			var v FunctionDeletionError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
