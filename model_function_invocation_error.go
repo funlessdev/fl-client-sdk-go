@@ -39,7 +39,7 @@ func NewFunctionInvocationErrorWithDefaults() *FunctionInvocationError {
 
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *FunctionInvocationError) GetError() string {
-	if o == nil || o.Error == nil {
+	if o == nil || isNil(o.Error) {
 		var ret string
 		return ret
 	}
@@ -49,15 +49,15 @@ func (o *FunctionInvocationError) GetError() string {
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionInvocationError) GetErrorOk() (*string, bool) {
-	if o == nil || o.Error == nil {
-		return nil, false
+	if o == nil || isNil(o.Error) {
+    return nil, false
 	}
 	return o.Error, true
 }
 
 // HasError returns a boolean if a field has been set.
 func (o *FunctionInvocationError) HasError() bool {
-	if o != nil && o.Error != nil {
+	if o != nil && !isNil(o.Error) {
 		return true
 	}
 
@@ -71,7 +71,7 @@ func (o *FunctionInvocationError) SetError(v string) {
 
 func (o FunctionInvocationError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Error != nil {
+	if !isNil(o.Error) {
 		toSerialize["error"] = o.Error
 	}
 	return json.Marshal(toSerialize)

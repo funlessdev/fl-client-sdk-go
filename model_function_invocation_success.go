@@ -50,15 +50,15 @@ func (o *FunctionInvocationSuccess) GetResult() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FunctionInvocationSuccess) GetResultOk() (*interface{}, bool) {
-	if o == nil || o.Result == nil {
-		return nil, false
+	if o == nil || isNil(o.Result) {
+    return nil, false
 	}
 	return &o.Result, true
 }
 
 // HasResult returns a boolean if a field has been set.
 func (o *FunctionInvocationSuccess) HasResult() bool {
-	if o != nil && o.Result != nil {
+	if o != nil && isNil(o.Result) {
 		return true
 	}
 

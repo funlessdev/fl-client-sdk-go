@@ -39,7 +39,7 @@ func NewFunctionDeletionWithDefaults() *FunctionDeletion {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *FunctionDeletion) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -49,15 +49,15 @@ func (o *FunctionDeletion) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionDeletion) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
+	if o == nil || isNil(o.Name) {
+    return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *FunctionDeletion) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !isNil(o.Name) {
 		return true
 	}
 
@@ -71,7 +71,7 @@ func (o *FunctionDeletion) SetName(v string) {
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *FunctionDeletion) GetNamespace() string {
-	if o == nil || o.Namespace == nil {
+	if o == nil || isNil(o.Namespace) {
 		var ret string
 		return ret
 	}
@@ -81,15 +81,15 @@ func (o *FunctionDeletion) GetNamespace() string {
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionDeletion) GetNamespaceOk() (*string, bool) {
-	if o == nil || o.Namespace == nil {
-		return nil, false
+	if o == nil || isNil(o.Namespace) {
+    return nil, false
 	}
 	return o.Namespace, true
 }
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *FunctionDeletion) HasNamespace() bool {
-	if o != nil && o.Namespace != nil {
+	if o != nil && !isNil(o.Namespace) {
 		return true
 	}
 
@@ -103,10 +103,10 @@ func (o *FunctionDeletion) SetNamespace(v string) {
 
 func (o FunctionDeletion) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
+	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if o.Namespace != nil {
+	if !isNil(o.Namespace) {
 		toSerialize["namespace"] = o.Namespace
 	}
 	return json.Marshal(toSerialize)

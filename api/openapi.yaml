@@ -77,7 +77,7 @@ paths:
             schema:
               $ref: '#/components/schemas/function_creation'
         description: "Object containing the function to create, with name, optional\
-          \ namespace, code and runtime image identifier"
+          \ namespace, code"
         required: true
       responses:
         "201":

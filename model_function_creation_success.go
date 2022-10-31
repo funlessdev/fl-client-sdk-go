@@ -39,7 +39,7 @@ func NewFunctionCreationSuccessWithDefaults() *FunctionCreationSuccess {
 
 // GetResult returns the Result field value if set, zero value otherwise.
 func (o *FunctionCreationSuccess) GetResult() string {
-	if o == nil || o.Result == nil {
+	if o == nil || isNil(o.Result) {
 		var ret string
 		return ret
 	}
@@ -49,15 +49,15 @@ func (o *FunctionCreationSuccess) GetResult() string {
 // GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionCreationSuccess) GetResultOk() (*string, bool) {
-	if o == nil || o.Result == nil {
-		return nil, false
+	if o == nil || isNil(o.Result) {
+    return nil, false
 	}
 	return o.Result, true
 }
 
 // HasResult returns a boolean if a field has been set.
 func (o *FunctionCreationSuccess) HasResult() bool {
-	if o != nil && o.Result != nil {
+	if o != nil && !isNil(o.Result) {
 		return true
 	}
 
@@ -71,7 +71,7 @@ func (o *FunctionCreationSuccess) SetResult(v string) {
 
 func (o FunctionCreationSuccess) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Result != nil {
+	if !isNil(o.Result) {
 		toSerialize["result"] = o.Result
 	}
 	return json.Marshal(toSerialize)

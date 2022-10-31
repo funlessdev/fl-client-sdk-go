@@ -39,7 +39,7 @@ func NewFunctionDeletionErrorWithDefaults() *FunctionDeletionError {
 
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *FunctionDeletionError) GetError() string {
-	if o == nil || o.Error == nil {
+	if o == nil || isNil(o.Error) {
 		var ret string
 		return ret
 	}
@@ -49,15 +49,15 @@ func (o *FunctionDeletionError) GetError() string {
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionDeletionError) GetErrorOk() (*string, bool) {
-	if o == nil || o.Error == nil {
-		return nil, false
+	if o == nil || isNil(o.Error) {
+    return nil, false
 	}
 	return o.Error, true
 }
 
 // HasError returns a boolean if a field has been set.
 func (o *FunctionDeletionError) HasError() bool {
-	if o != nil && o.Error != nil {
+	if o != nil && !isNil(o.Error) {
 		return true
 	}
 
@@ -71,7 +71,7 @@ func (o *FunctionDeletionError) SetError(v string) {
 
 func (o FunctionDeletionError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Error != nil {
+	if !isNil(o.Error) {
 		toSerialize["error"] = o.Error
 	}
 	return json.Marshal(toSerialize)

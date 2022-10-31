@@ -40,7 +40,7 @@ func NewFunctionInvocationWithDefaults() *FunctionInvocation {
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *FunctionInvocation) GetNamespace() string {
-	if o == nil || o.Namespace == nil {
+	if o == nil || isNil(o.Namespace) {
 		var ret string
 		return ret
 	}
@@ -50,15 +50,15 @@ func (o *FunctionInvocation) GetNamespace() string {
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionInvocation) GetNamespaceOk() (*string, bool) {
-	if o == nil || o.Namespace == nil {
-		return nil, false
+	if o == nil || isNil(o.Namespace) {
+    return nil, false
 	}
 	return o.Namespace, true
 }
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *FunctionInvocation) HasNamespace() bool {
-	if o != nil && o.Namespace != nil {
+	if o != nil && !isNil(o.Namespace) {
 		return true
 	}
 
@@ -72,7 +72,7 @@ func (o *FunctionInvocation) SetNamespace(v string) {
 
 // GetFunction returns the Function field value if set, zero value otherwise.
 func (o *FunctionInvocation) GetFunction() string {
-	if o == nil || o.Function == nil {
+	if o == nil || isNil(o.Function) {
 		var ret string
 		return ret
 	}
@@ -82,15 +82,15 @@ func (o *FunctionInvocation) GetFunction() string {
 // GetFunctionOk returns a tuple with the Function field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionInvocation) GetFunctionOk() (*string, bool) {
-	if o == nil || o.Function == nil {
-		return nil, false
+	if o == nil || isNil(o.Function) {
+    return nil, false
 	}
 	return o.Function, true
 }
 
 // HasFunction returns a boolean if a field has been set.
 func (o *FunctionInvocation) HasFunction() bool {
-	if o != nil && o.Function != nil {
+	if o != nil && !isNil(o.Function) {
 		return true
 	}
 
@@ -104,7 +104,7 @@ func (o *FunctionInvocation) SetFunction(v string) {
 
 // GetArgs returns the Args field value if set, zero value otherwise.
 func (o *FunctionInvocation) GetArgs() map[string]interface{} {
-	if o == nil || o.Args == nil {
+	if o == nil || isNil(o.Args) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -114,15 +114,15 @@ func (o *FunctionInvocation) GetArgs() map[string]interface{} {
 // GetArgsOk returns a tuple with the Args field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionInvocation) GetArgsOk() (map[string]interface{}, bool) {
-	if o == nil || o.Args == nil {
-		return nil, false
+	if o == nil || isNil(o.Args) {
+    return map[string]interface{}{}, false
 	}
 	return o.Args, true
 }
 
 // HasArgs returns a boolean if a field has been set.
 func (o *FunctionInvocation) HasArgs() bool {
-	if o != nil && o.Args != nil {
+	if o != nil && !isNil(o.Args) {
 		return true
 	}
 
@@ -136,13 +136,13 @@ func (o *FunctionInvocation) SetArgs(v map[string]interface{}) {
 
 func (o FunctionInvocation) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Namespace != nil {
+	if !isNil(o.Namespace) {
 		toSerialize["namespace"] = o.Namespace
 	}
-	if o.Function != nil {
+	if !isNil(o.Function) {
 		toSerialize["function"] = o.Function
 	}
-	if o.Args != nil {
+	if !isNil(o.Args) {
 		toSerialize["args"] = o.Args
 	}
 	return json.Marshal(toSerialize)
