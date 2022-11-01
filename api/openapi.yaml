@@ -130,6 +130,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/function_deletion_error'
           description: The function deletion request was invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/function_deletion_error'
+          description: The function to delete was not found
         "503":
           content:
             application/json:
