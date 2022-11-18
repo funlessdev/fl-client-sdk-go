@@ -51,7 +51,7 @@ func (o *FunctionInvocationSuccess) GetResult() interface{} {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FunctionInvocationSuccess) GetResultOk() (*interface{}, bool) {
 	if o == nil || isNil(o.Result) {
-    return nil, false
+		return nil, false
 	}
 	return &o.Result, true
 }

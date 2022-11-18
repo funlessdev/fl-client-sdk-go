@@ -50,7 +50,7 @@ func (o *FunctionCreationError) GetError() string {
 // and a boolean to check if the value has been set.
 func (o *FunctionCreationError) GetErrorOk() (*string, bool) {
 	if o == nil || isNil(o.Error) {
-    return nil, false
+		return nil, false
 	}
 	return o.Error, true
 }

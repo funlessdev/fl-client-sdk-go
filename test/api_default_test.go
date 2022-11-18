@@ -10,52 +10,66 @@ Testing DefaultApiService
 package openapi
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "./openapi"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func Test_openapi_DefaultApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test DefaultApiService V1FnCreatePost", func(t *testing.T) {
+	t.Run("Test DefaultApiService V1FnCreatePost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.DefaultApi.V1FnCreatePost(context.Background()).Execute()
+		resp, httpRes, err := apiClient.DefaultApi.V1FnCreatePost(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test DefaultApiService V1FnDeleteDelete", func(t *testing.T) {
+	t.Run("Test DefaultApiService V1FnDeleteDelete", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.DefaultApi.V1FnDeleteDelete(context.Background()).Execute()
+		resp, httpRes, err := apiClient.DefaultApi.V1FnDeleteDelete(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test DefaultApiService V1FnInvokePost", func(t *testing.T) {
+	t.Run("Test DefaultApiService V1FnInvokePost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.DefaultApi.V1FnInvokePost(context.Background()).Execute()
+		resp, httpRes, err := apiClient.DefaultApi.V1FnInvokePost(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
+
+	t.Run("Test DefaultApiService V1FnListFnNamespaceGet", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var fnNamespace int32
+
+		resp, httpRes, err := apiClient.DefaultApi.V1FnListFnNamespaceGet(context.Background(), fnNamespace).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
 
 }

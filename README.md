@@ -81,6 +81,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**V1FnCreatePost**](docs/DefaultApi.md#v1fncreatepost) | **Post** /v1/fn/create | Create a new function
 *DefaultApi* | [**V1FnDeleteDelete**](docs/DefaultApi.md#v1fndeletedelete) | **Delete** /v1/fn/delete | Delete a function
 *DefaultApi* | [**V1FnInvokePost**](docs/DefaultApi.md#v1fninvokepost) | **Post** /v1/fn/invoke | Invoke a function
+*DefaultApi* | [**V1FnListFnNamespaceGet**](docs/DefaultApi.md#v1fnlistfnnamespaceget) | **Get** /v1/fn/list/{fnNamespace} | List functions
 
 
 ## Documentation For Models
@@ -93,6 +94,8 @@ Class | Method | HTTP request | Description
  - [FunctionInvocation](docs/FunctionInvocation.md)
  - [FunctionInvocationError](docs/FunctionInvocationError.md)
  - [FunctionInvocationSuccess](docs/FunctionInvocationSuccess.md)
+ - [FunctionListError](docs/FunctionListError.md)
+ - [FunctionListSuccess](docs/FunctionListSuccess.md)
 
 
 ## Documentation For Authorization

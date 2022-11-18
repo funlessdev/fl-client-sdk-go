@@ -144,6 +144,35 @@ paths:
           description: The function deletion request failed because the database transaction
             was aborted
       summary: Delete a function
+  /v1/fn/list/{fnNamespace}:
+    get:
+      description: List all functions in the given namespace
+      parameters:
+      - description: Namespace of the listed functions
+        explode: false
+        in: path
+        name: fnNamespace
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Listing a namespace with the "hellojs" function:
+                  value: "{\"result\": [\"hellojs\"]}"
+              schema:
+                $ref: '#/components/schemas/function_list_success'
+          description: The required functions have been returned successfully
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/function_list_error'
+          description: The request failed because the database transaction was aborted
+      summary: List functions
 components:
   schemas:
     function_invocation:
@@ -208,6 +237,24 @@ components:
           type: string
       type: object
     function_deletion_error:
+      properties:
+        error:
+          description: The error message
+          type: string
+      type: object
+    function_list_success:
+      example:
+        result:
+        - 0
+        - 0
+      properties:
+        result:
+          description: The names of the functions in the namespace
+          items:
+            type: integer
+          type: array
+      type: object
+    function_list_error:
       properties:
         error:
           description: The error message

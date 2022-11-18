@@ -14,31 +14,31 @@ import (
 	"encoding/json"
 )
 
-// FunctionInvocationError struct for FunctionInvocationError
-type FunctionInvocationError struct {
+// FunctionListError struct for FunctionListError
+type FunctionListError struct {
 	// The error message
 	Error *string `json:"error,omitempty"`
 }
 
-// NewFunctionInvocationError instantiates a new FunctionInvocationError object
+// NewFunctionListError instantiates a new FunctionListError object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFunctionInvocationError() *FunctionInvocationError {
-	this := FunctionInvocationError{}
+func NewFunctionListError() *FunctionListError {
+	this := FunctionListError{}
 	return &this
 }
 
-// NewFunctionInvocationErrorWithDefaults instantiates a new FunctionInvocationError object
+// NewFunctionListErrorWithDefaults instantiates a new FunctionListError object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewFunctionInvocationErrorWithDefaults() *FunctionInvocationError {
-	this := FunctionInvocationError{}
+func NewFunctionListErrorWithDefaults() *FunctionListError {
+	this := FunctionListError{}
 	return &this
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
-func (o *FunctionInvocationError) GetError() string {
+func (o *FunctionListError) GetError() string {
 	if o == nil || isNil(o.Error) {
 		var ret string
 		return ret
@@ -48,7 +48,7 @@ func (o *FunctionInvocationError) GetError() string {
 
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FunctionInvocationError) GetErrorOk() (*string, bool) {
+func (o *FunctionListError) GetErrorOk() (*string, bool) {
 	if o == nil || isNil(o.Error) {
 		return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *FunctionInvocationError) GetErrorOk() (*string, bool) {
 }
 
 // HasError returns a boolean if a field has been set.
-func (o *FunctionInvocationError) HasError() bool {
+func (o *FunctionListError) HasError() bool {
 	if o != nil && !isNil(o.Error) {
 		return true
 	}
@@ -65,11 +65,11 @@ func (o *FunctionInvocationError) HasError() bool {
 }
 
 // SetError gets a reference to the given string and assigns it to the Error field.
-func (o *FunctionInvocationError) SetError(v string) {
+func (o *FunctionListError) SetError(v string) {
 	o.Error = &v
 }
 
-func (o FunctionInvocationError) MarshalJSON() ([]byte, error) {
+func (o FunctionListError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Error) {
 		toSerialize["error"] = o.Error
@@ -77,38 +77,38 @@ func (o FunctionInvocationError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableFunctionInvocationError struct {
-	value *FunctionInvocationError
+type NullableFunctionListError struct {
+	value *FunctionListError
 	isSet bool
 }
 
-func (v NullableFunctionInvocationError) Get() *FunctionInvocationError {
+func (v NullableFunctionListError) Get() *FunctionListError {
 	return v.value
 }
 
-func (v *NullableFunctionInvocationError) Set(val *FunctionInvocationError) {
+func (v *NullableFunctionListError) Set(val *FunctionListError) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableFunctionInvocationError) IsSet() bool {
+func (v NullableFunctionListError) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableFunctionInvocationError) Unset() {
+func (v *NullableFunctionListError) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableFunctionInvocationError(val *FunctionInvocationError) *NullableFunctionInvocationError {
-	return &NullableFunctionInvocationError{value: val, isSet: true}
+func NewNullableFunctionListError(val *FunctionListError) *NullableFunctionListError {
+	return &NullableFunctionListError{value: val, isSet: true}
 }
 
-func (v NullableFunctionInvocationError) MarshalJSON() ([]byte, error) {
+func (v NullableFunctionListError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableFunctionInvocationError) UnmarshalJSON(src []byte) error {
+func (v *NullableFunctionListError) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

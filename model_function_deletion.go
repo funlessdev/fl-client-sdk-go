@@ -50,7 +50,7 @@ func (o *FunctionDeletion) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *FunctionDeletion) GetNameOk() (*string, bool) {
 	if o == nil || isNil(o.Name) {
-    return nil, false
+		return nil, false
 	}
 	return o.Name, true
 }
@@ -82,7 +82,7 @@ func (o *FunctionDeletion) GetNamespace() string {
 // and a boolean to check if the value has been set.
 func (o *FunctionDeletion) GetNamespaceOk() (*string, bool) {
 	if o == nil || isNil(o.Namespace) {
-    return nil, false
+		return nil, false
 	}
 	return o.Namespace, true
 }

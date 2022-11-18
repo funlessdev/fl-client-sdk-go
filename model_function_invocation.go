@@ -51,7 +51,7 @@ func (o *FunctionInvocation) GetNamespace() string {
 // and a boolean to check if the value has been set.
 func (o *FunctionInvocation) GetNamespaceOk() (*string, bool) {
 	if o == nil || isNil(o.Namespace) {
-    return nil, false
+		return nil, false
 	}
 	return o.Namespace, true
 }
@@ -83,7 +83,7 @@ func (o *FunctionInvocation) GetFunction() string {
 // and a boolean to check if the value has been set.
 func (o *FunctionInvocation) GetFunctionOk() (*string, bool) {
 	if o == nil || isNil(o.Function) {
-    return nil, false
+		return nil, false
 	}
 	return o.Function, true
 }
@@ -115,7 +115,7 @@ func (o *FunctionInvocation) GetArgs() map[string]interface{} {
 // and a boolean to check if the value has been set.
 func (o *FunctionInvocation) GetArgsOk() (map[string]interface{}, bool) {
 	if o == nil || isNil(o.Args) {
-    return map[string]interface{}{}, false
+		return map[string]interface{}{}, false
 	}
 	return o.Args, true
 }

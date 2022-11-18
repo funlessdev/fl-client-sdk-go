@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**V1FnCreatePost**](DefaultApi.md#V1FnCreatePost) | **Post** /v1/fn/create | Create a new function
 [**V1FnDeleteDelete**](DefaultApi.md#V1FnDeleteDelete) | **Delete** /v1/fn/delete | Delete a function
 [**V1FnInvokePost**](DefaultApi.md#V1FnInvokePost) | **Post** /v1/fn/invoke | Invoke a function
+[**V1FnListFnNamespaceGet**](DefaultApi.md#V1FnListFnNamespaceGet) | **Get** /v1/fn/list/{fnNamespace} | List functions
 
 
 
@@ -205,6 +206,76 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## V1FnListFnNamespaceGet
+
+> FunctionListSuccess V1FnListFnNamespaceGet(ctx, fnNamespace).Execute()
+
+List functions
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    fnNamespace := int32(56) // int32 | Namespace of the listed functions
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.V1FnListFnNamespaceGet(context.Background(), fnNamespace).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1FnListFnNamespaceGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `V1FnListFnNamespaceGet`: FunctionListSuccess
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1FnListFnNamespaceGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fnNamespace** | **int32** | Namespace of the listed functions | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1FnListFnNamespaceGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**FunctionListSuccess**](FunctionListSuccess.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

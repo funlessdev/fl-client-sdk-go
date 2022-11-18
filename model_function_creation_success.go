@@ -50,7 +50,7 @@ func (o *FunctionCreationSuccess) GetResult() string {
 // and a boolean to check if the value has been set.
 func (o *FunctionCreationSuccess) GetResultOk() (*string, bool) {
 	if o == nil || isNil(o.Result) {
-    return nil, false
+		return nil, false
 	}
 	return o.Result, true
 }
