@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FunctionInvocationSuccess type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FunctionInvocationSuccess{}
+
 // FunctionInvocationSuccess struct for FunctionInvocationSuccess
 type FunctionInvocationSuccess struct {
 	// The function invocation result
@@ -71,11 +74,19 @@ func (o *FunctionInvocationSuccess) SetResult(v interface{}) {
 }
 
 func (o FunctionInvocationSuccess) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o FunctionInvocationSuccess) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Result != nil {
 		toSerialize["result"] = o.Result
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableFunctionInvocationSuccess struct {

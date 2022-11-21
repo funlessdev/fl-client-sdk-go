@@ -234,7 +234,7 @@ import (
 )
 
 func main() {
-    fnNamespace := int32(56) // int32 | Namespace of the listed functions
+    fnNamespace := "fnNamespace_example" // string | Namespace of the listed functions
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -254,7 +254,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**fnNamespace** | **int32** | Namespace of the listed functions | 
+**fnNamespace** | **string** | Namespace of the listed functions | 
 
 ### Other Parameters
 

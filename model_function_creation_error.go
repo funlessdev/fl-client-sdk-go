@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FunctionCreationError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FunctionCreationError{}
+
 // FunctionCreationError struct for FunctionCreationError
 type FunctionCreationError struct {
 	// The error message
@@ -70,11 +73,19 @@ func (o *FunctionCreationError) SetError(v string) {
 }
 
 func (o FunctionCreationError) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o FunctionCreationError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Error) {
 		toSerialize["error"] = o.Error
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableFunctionCreationError struct {

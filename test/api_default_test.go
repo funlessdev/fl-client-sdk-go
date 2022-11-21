@@ -62,7 +62,7 @@ func Test_openapi_DefaultApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var fnNamespace int32
+		var fnNamespace string
 
 		resp, httpRes, err := apiClient.DefaultApi.V1FnListFnNamespaceGet(context.Background(), fnNamespace).Execute()
 

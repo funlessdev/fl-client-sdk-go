@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FunctionInvocation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FunctionInvocation{}
+
 // FunctionInvocation struct for FunctionInvocation
 type FunctionInvocation struct {
 	Namespace *string `json:"namespace,omitempty"`
@@ -135,6 +138,14 @@ func (o *FunctionInvocation) SetArgs(v map[string]interface{}) {
 }
 
 func (o FunctionInvocation) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o FunctionInvocation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Namespace) {
 		toSerialize["namespace"] = o.Namespace
@@ -145,7 +156,7 @@ func (o FunctionInvocation) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Args) {
 		toSerialize["args"] = o.Args
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableFunctionInvocation struct {

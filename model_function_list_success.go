@@ -14,10 +14,13 @@ import (
 	"encoding/json"
 )
 
+// checks if the FunctionListSuccess type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FunctionListSuccess{}
+
 // FunctionListSuccess struct for FunctionListSuccess
 type FunctionListSuccess struct {
 	// The names of the functions in the namespace
-	Result []int32 `json:"result,omitempty"`
+	Result []string `json:"result,omitempty"`
 }
 
 // NewFunctionListSuccess instantiates a new FunctionListSuccess object
@@ -38,9 +41,9 @@ func NewFunctionListSuccessWithDefaults() *FunctionListSuccess {
 }
 
 // GetResult returns the Result field value if set, zero value otherwise.
-func (o *FunctionListSuccess) GetResult() []int32 {
+func (o *FunctionListSuccess) GetResult() []string {
 	if o == nil || isNil(o.Result) {
-		var ret []int32
+		var ret []string
 		return ret
 	}
 	return o.Result
@@ -48,7 +51,7 @@ func (o *FunctionListSuccess) GetResult() []int32 {
 
 // GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FunctionListSuccess) GetResultOk() ([]int32, bool) {
+func (o *FunctionListSuccess) GetResultOk() ([]string, bool) {
 	if o == nil || isNil(o.Result) {
 		return nil, false
 	}
@@ -64,17 +67,25 @@ func (o *FunctionListSuccess) HasResult() bool {
 	return false
 }
 
-// SetResult gets a reference to the given []int32 and assigns it to the Result field.
-func (o *FunctionListSuccess) SetResult(v []int32) {
+// SetResult gets a reference to the given []string and assigns it to the Result field.
+func (o *FunctionListSuccess) SetResult(v []string) {
 	o.Result = v
 }
 
 func (o FunctionListSuccess) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o FunctionListSuccess) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Result) {
 		toSerialize["result"] = o.Result
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableFunctionListSuccess struct {

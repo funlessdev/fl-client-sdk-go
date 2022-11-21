@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FunctionDeletionError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FunctionDeletionError{}
+
 // FunctionDeletionError struct for FunctionDeletionError
 type FunctionDeletionError struct {
 	// The error message
@@ -70,11 +73,19 @@ func (o *FunctionDeletionError) SetError(v string) {
 }
 
 func (o FunctionDeletionError) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o FunctionDeletionError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Error) {
 		toSerialize["error"] = o.Error
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableFunctionDeletionError struct {

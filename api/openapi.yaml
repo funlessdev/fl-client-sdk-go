@@ -154,7 +154,7 @@ paths:
         name: fnNamespace
         required: true
         schema:
-          type: integer
+          type: string
         style: simple
       responses:
         "200":
@@ -245,13 +245,13 @@ components:
     function_list_success:
       example:
         result:
-        - 0
-        - 0
+        - result
+        - result
       properties:
         result:
           description: The names of the functions in the namespace
           items:
-            type: integer
+            type: string
           type: array
       type: object
     function_list_error:

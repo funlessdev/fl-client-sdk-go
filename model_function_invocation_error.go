@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FunctionInvocationError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FunctionInvocationError{}
+
 // FunctionInvocationError struct for FunctionInvocationError
 type FunctionInvocationError struct {
 	// The error message
@@ -70,11 +73,19 @@ func (o *FunctionInvocationError) SetError(v string) {
 }
 
 func (o FunctionInvocationError) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o FunctionInvocationError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Error) {
 		toSerialize["error"] = o.Error
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableFunctionInvocationError struct {

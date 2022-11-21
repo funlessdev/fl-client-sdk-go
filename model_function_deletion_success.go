@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FunctionDeletionSuccess type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FunctionDeletionSuccess{}
+
 // FunctionDeletionSuccess struct for FunctionDeletionSuccess
 type FunctionDeletionSuccess struct {
 	// The name of the function
@@ -70,11 +73,19 @@ func (o *FunctionDeletionSuccess) SetResult(v string) {
 }
 
 func (o FunctionDeletionSuccess) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o FunctionDeletionSuccess) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Result) {
 		toSerialize["result"] = o.Result
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableFunctionDeletionSuccess struct {

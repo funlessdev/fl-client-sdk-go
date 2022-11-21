@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FunctionListError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FunctionListError{}
+
 // FunctionListError struct for FunctionListError
 type FunctionListError struct {
 	// The error message
@@ -70,11 +73,19 @@ func (o *FunctionListError) SetError(v string) {
 }
 
 func (o FunctionListError) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o FunctionListError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Error) {
 		toSerialize["error"] = o.Error
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableFunctionListError struct {

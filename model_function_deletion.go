@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FunctionDeletion type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FunctionDeletion{}
+
 // FunctionDeletion struct for FunctionDeletion
 type FunctionDeletion struct {
 	Name *string `json:"name,omitempty"`
@@ -102,6 +105,14 @@ func (o *FunctionDeletion) SetNamespace(v string) {
 }
 
 func (o FunctionDeletion) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o FunctionDeletion) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
@@ -109,7 +120,7 @@ func (o FunctionDeletion) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Namespace) {
 		toSerialize["namespace"] = o.Namespace
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableFunctionDeletion struct {

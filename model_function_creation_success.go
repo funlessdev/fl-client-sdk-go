@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FunctionCreationSuccess type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FunctionCreationSuccess{}
+
 // FunctionCreationSuccess struct for FunctionCreationSuccess
 type FunctionCreationSuccess struct {
 	// The name of the function
@@ -70,11 +73,19 @@ func (o *FunctionCreationSuccess) SetResult(v string) {
 }
 
 func (o FunctionCreationSuccess) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o FunctionCreationSuccess) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Result) {
 		toSerialize["result"] = o.Result
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableFunctionCreationSuccess struct {

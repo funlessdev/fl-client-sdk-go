@@ -105,10 +105,10 @@ func (a *DefaultApiService) V1FnCreatePostExecute(r ApiV1FnCreatePostRequest) (*
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.name != nil {
-		localVarFormParams.Add("name", parameterToString(*r.name, ""))
+		parameterAddToQuery(localVarFormParams, "name", r.name, "")
 	}
 	if r.namespace != nil {
-		localVarFormParams.Add("namespace", parameterToString(*r.namespace, ""))
+		parameterAddToQuery(localVarFormParams, "namespace", r.namespace, "")
 	}
 	var codeLocalVarFormFileName string
 	var codeLocalVarFileName     string
@@ -485,7 +485,7 @@ func (a *DefaultApiService) V1FnInvokePostExecute(r ApiV1FnInvokePostRequest) (*
 type ApiV1FnListFnNamespaceGetRequest struct {
 	ctx context.Context
 	ApiService *DefaultApiService
-	fnNamespace int32
+	fnNamespace string
 }
 
 func (r ApiV1FnListFnNamespaceGetRequest) Execute() (*FunctionListSuccess, *http.Response, error) {
@@ -501,7 +501,7 @@ List all functions in the given namespace
  @param fnNamespace Namespace of the listed functions
  @return ApiV1FnListFnNamespaceGetRequest
 */
-func (a *DefaultApiService) V1FnListFnNamespaceGet(ctx context.Context, fnNamespace int32) ApiV1FnListFnNamespaceGetRequest {
+func (a *DefaultApiService) V1FnListFnNamespaceGet(ctx context.Context, fnNamespace string) ApiV1FnListFnNamespaceGetRequest {
 	return ApiV1FnListFnNamespaceGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -525,7 +525,7 @@ func (a *DefaultApiService) V1FnListFnNamespaceGetExecute(r ApiV1FnListFnNamespa
 	}
 
 	localVarPath := localBasePath + "/v1/fn/list/{fnNamespace}"
-	localVarPath = strings.Replace(localVarPath, "{"+"fnNamespace"+"}", url.PathEscape(parameterToString(r.fnNamespace, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"fnNamespace"+"}", url.PathEscape(parameterValueToString(r.fnNamespace, "fnNamespace")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
