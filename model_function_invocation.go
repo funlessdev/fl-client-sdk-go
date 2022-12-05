@@ -19,7 +19,7 @@ var _ MappedNullable = &FunctionInvocation{}
 
 // FunctionInvocation struct for FunctionInvocation
 type FunctionInvocation struct {
-	Namespace *string `json:"namespace,omitempty"`
+	Module *string `json:"module,omitempty"`
 	Function *string `json:"function,omitempty"`
 	Args map[string]interface{} `json:"args,omitempty"`
 }
@@ -41,36 +41,36 @@ func NewFunctionInvocationWithDefaults() *FunctionInvocation {
 	return &this
 }
 
-// GetNamespace returns the Namespace field value if set, zero value otherwise.
-func (o *FunctionInvocation) GetNamespace() string {
-	if o == nil || isNil(o.Namespace) {
+// GetModule returns the Module field value if set, zero value otherwise.
+func (o *FunctionInvocation) GetModule() string {
+	if o == nil || isNil(o.Module) {
 		var ret string
 		return ret
 	}
-	return *o.Namespace
+	return *o.Module
 }
 
-// GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
+// GetModuleOk returns a tuple with the Module field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FunctionInvocation) GetNamespaceOk() (*string, bool) {
-	if o == nil || isNil(o.Namespace) {
+func (o *FunctionInvocation) GetModuleOk() (*string, bool) {
+	if o == nil || isNil(o.Module) {
 		return nil, false
 	}
-	return o.Namespace, true
+	return o.Module, true
 }
 
-// HasNamespace returns a boolean if a field has been set.
-func (o *FunctionInvocation) HasNamespace() bool {
-	if o != nil && !isNil(o.Namespace) {
+// HasModule returns a boolean if a field has been set.
+func (o *FunctionInvocation) HasModule() bool {
+	if o != nil && !isNil(o.Module) {
 		return true
 	}
 
 	return false
 }
 
-// SetNamespace gets a reference to the given string and assigns it to the Namespace field.
-func (o *FunctionInvocation) SetNamespace(v string) {
-	o.Namespace = &v
+// SetModule gets a reference to the given string and assigns it to the Module field.
+func (o *FunctionInvocation) SetModule(v string) {
+	o.Module = &v
 }
 
 // GetFunction returns the Function field value if set, zero value otherwise.
@@ -147,8 +147,8 @@ func (o FunctionInvocation) MarshalJSON() ([]byte, error) {
 
 func (o FunctionInvocation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Namespace) {
-		toSerialize["namespace"] = o.Namespace
+	if !isNil(o.Module) {
+		toSerialize["module"] = o.Module
 	}
 	if !isNil(o.Function) {
 		toSerialize["function"] = o.Function

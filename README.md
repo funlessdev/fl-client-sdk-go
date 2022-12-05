@@ -15,7 +15,6 @@ Install the following dependencies:
 
 ```shell
 go get github.com/stretchr/testify/assert
-go get golang.org/x/oauth2
 go get golang.org/x/net/context
 ```
 
@@ -81,7 +80,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**V1FnCreatePost**](docs/DefaultApi.md#v1fncreatepost) | **Post** /v1/fn/create | Create a new function
 *DefaultApi* | [**V1FnDeleteDelete**](docs/DefaultApi.md#v1fndeletedelete) | **Delete** /v1/fn/delete | Delete a function
 *DefaultApi* | [**V1FnInvokePost**](docs/DefaultApi.md#v1fninvokepost) | **Post** /v1/fn/invoke | Invoke a function
-*DefaultApi* | [**V1FnListFnNamespaceGet**](docs/DefaultApi.md#v1fnlistfnnamespaceget) | **Get** /v1/fn/list/{fnNamespace} | List functions
+*DefaultApi* | [**V1FnListFnModuleGet**](docs/DefaultApi.md#v1fnlistfnmoduleget) | **Get** /v1/fn/list/{fnModule} | List functions
 
 
 ## Documentation For Models

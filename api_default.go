@@ -28,7 +28,7 @@ type ApiV1FnCreatePostRequest struct {
 	ctx context.Context
 	ApiService *DefaultApiService
 	name *string
-	namespace *string
+	module *string
 	code **os.File
 }
 
@@ -37,8 +37,8 @@ func (r ApiV1FnCreatePostRequest) Name(name string) ApiV1FnCreatePostRequest {
 	return r
 }
 
-func (r ApiV1FnCreatePostRequest) Namespace(namespace string) ApiV1FnCreatePostRequest {
-	r.namespace = &namespace
+func (r ApiV1FnCreatePostRequest) Module(module string) ApiV1FnCreatePostRequest {
+	r.module = &module
 	return r
 }
 
@@ -107,8 +107,8 @@ func (a *DefaultApiService) V1FnCreatePostExecute(r ApiV1FnCreatePostRequest) (*
 	if r.name != nil {
 		parameterAddToQuery(localVarFormParams, "name", r.name, "")
 	}
-	if r.namespace != nil {
-		parameterAddToQuery(localVarFormParams, "namespace", r.namespace, "")
+	if r.module != nil {
+		parameterAddToQuery(localVarFormParams, "module", r.module, "")
 	}
 	var codeLocalVarFormFileName string
 	var codeLocalVarFileName     string
@@ -191,7 +191,7 @@ type ApiV1FnDeleteDeleteRequest struct {
 	functionDeletion *FunctionDeletion
 }
 
-// Object containing the function&#39;s name and namespace to delete
+// Object containing the function&#39;s name and module to delete
 func (r ApiV1FnDeleteDeleteRequest) FunctionDeletion(functionDeletion FunctionDeletion) ApiV1FnDeleteDeleteRequest {
 	r.functionDeletion = &functionDeletion
 	return r
@@ -204,7 +204,7 @@ func (r ApiV1FnDeleteDeleteRequest) Execute() (*FunctionDeletionSuccess, *http.R
 /*
 V1FnDeleteDelete Delete a function
 
-Deletes the function with the given name and namespace in the request body
+Deletes the function with the given name and module in the request body
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiV1FnDeleteDeleteRequest
@@ -334,7 +334,7 @@ type ApiV1FnInvokePostRequest struct {
 	functionInvocation *FunctionInvocation
 }
 
-// Object containing the function to invoke, the namespace and optional parameters
+// Object containing the function to invoke, the module and optional parameters
 func (r ApiV1FnInvokePostRequest) FunctionInvocation(functionInvocation FunctionInvocation) ApiV1FnInvokePostRequest {
 	r.functionInvocation = &functionInvocation
 	return r
@@ -347,7 +347,7 @@ func (r ApiV1FnInvokePostRequest) Execute() (*FunctionInvocationSuccess, *http.R
 /*
 V1FnInvokePost Invoke a function
 
-Invokes the specified function from the given namespace with optional parameters from the POST body
+Invokes the specified function from the given module with optional parameters from the POST body
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiV1FnInvokePostRequest
@@ -482,36 +482,36 @@ func (a *DefaultApiService) V1FnInvokePostExecute(r ApiV1FnInvokePostRequest) (*
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiV1FnListFnNamespaceGetRequest struct {
+type ApiV1FnListFnModuleGetRequest struct {
 	ctx context.Context
 	ApiService *DefaultApiService
-	fnNamespace string
+	fnModule string
 }
 
-func (r ApiV1FnListFnNamespaceGetRequest) Execute() (*FunctionListSuccess, *http.Response, error) {
-	return r.ApiService.V1FnListFnNamespaceGetExecute(r)
+func (r ApiV1FnListFnModuleGetRequest) Execute() (*FunctionListSuccess, *http.Response, error) {
+	return r.ApiService.V1FnListFnModuleGetExecute(r)
 }
 
 /*
-V1FnListFnNamespaceGet List functions
+V1FnListFnModuleGet List functions
 
-List all functions in the given namespace
+List all functions in the given module
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param fnNamespace Namespace of the listed functions
- @return ApiV1FnListFnNamespaceGetRequest
+ @param fnModule Module of the listed functions
+ @return ApiV1FnListFnModuleGetRequest
 */
-func (a *DefaultApiService) V1FnListFnNamespaceGet(ctx context.Context, fnNamespace string) ApiV1FnListFnNamespaceGetRequest {
-	return ApiV1FnListFnNamespaceGetRequest{
+func (a *DefaultApiService) V1FnListFnModuleGet(ctx context.Context, fnModule string) ApiV1FnListFnModuleGetRequest {
+	return ApiV1FnListFnModuleGetRequest{
 		ApiService: a,
 		ctx: ctx,
-		fnNamespace: fnNamespace,
+		fnModule: fnModule,
 	}
 }
 
 // Execute executes the request
 //  @return FunctionListSuccess
-func (a *DefaultApiService) V1FnListFnNamespaceGetExecute(r ApiV1FnListFnNamespaceGetRequest) (*FunctionListSuccess, *http.Response, error) {
+func (a *DefaultApiService) V1FnListFnModuleGetExecute(r ApiV1FnListFnModuleGetRequest) (*FunctionListSuccess, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -519,13 +519,13 @@ func (a *DefaultApiService) V1FnListFnNamespaceGetExecute(r ApiV1FnListFnNamespa
 		localVarReturnValue  *FunctionListSuccess
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.V1FnListFnNamespaceGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.V1FnListFnModuleGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/fn/list/{fnNamespace}"
-	localVarPath = strings.Replace(localVarPath, "{"+"fnNamespace"+"}", url.PathEscape(parameterValueToString(r.fnNamespace, "fnNamespace")), -1)
+	localVarPath := localBasePath + "/v1/fn/list/{fnModule}"
+	localVarPath = strings.Replace(localVarPath, "{"+"fnModule"+"}", url.PathEscape(parameterValueToString(r.fnModule, "fnModule")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -9,15 +9,15 @@ servers:
 paths:
   /v1/fn/invoke:
     post:
-      description: Invokes the specified function from the given namespace with optional
+      description: Invokes the specified function from the given module with optional
         parameters from the POST body
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/function_invocation'
-        description: "Object containing the function to invoke, the namespace and\
-          \ optional parameters"
+        description: "Object containing the function to invoke, the module and optional\
+          \ parameters"
         required: true
       responses:
         "200":
@@ -77,7 +77,7 @@ paths:
             schema:
               $ref: '#/components/schemas/function_creation'
         description: "Object containing the function to create, with name, optional\
-          \ namespace, code"
+          \ module, code"
         required: true
       responses:
         "201":
@@ -105,14 +105,14 @@ paths:
       summary: Create a new function
   /v1/fn/delete:
     delete:
-      description: Deletes the function with the given name and namespace in the request
+      description: Deletes the function with the given name and module in the request
         body
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/function_deletion'
-        description: Object containing the function's name and namespace to delete
+        description: Object containing the function's name and module to delete
         required: true
       responses:
         "200":
@@ -144,14 +144,14 @@ paths:
           description: The function deletion request failed because the database transaction
             was aborted
       summary: Delete a function
-  /v1/fn/list/{fnNamespace}:
+  /v1/fn/list/{fnModule}:
     get:
-      description: List all functions in the given namespace
+      description: List all functions in the given module
       parameters:
-      - description: Namespace of the listed functions
+      - description: Module of the listed functions
         explode: false
         in: path
-        name: fnNamespace
+        name: fnModule
         required: true
         schema:
           type: string
@@ -161,7 +161,7 @@ paths:
           content:
             application/json:
               examples:
-                Listing a namespace with the "hellojs" function:
+                Listing a module with the "hellojs" function:
                   value: "{\"result\": [\"hellojs\"]}"
               schema:
                 $ref: '#/components/schemas/function_list_success'
@@ -177,7 +177,7 @@ components:
   schemas:
     function_invocation:
       properties:
-        namespace:
+        module:
           type: string
         function:
           type: string
@@ -201,7 +201,7 @@ components:
       properties:
         name:
           type: string
-        namespace:
+        module:
           type: string
         code:
           format: binary
@@ -225,7 +225,7 @@ components:
       properties:
         name:
           type: string
-        namespace:
+        module:
           type: string
       type: object
     function_deletion_success:
@@ -249,7 +249,7 @@ components:
         - result
       properties:
         result:
-          description: The names of the functions in the namespace
+          description: The names of the functions in the module
           items:
             type: string
           type: array

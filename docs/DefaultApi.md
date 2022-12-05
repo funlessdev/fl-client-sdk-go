@@ -7,13 +7,13 @@ Method | HTTP request | Description
 [**V1FnCreatePost**](DefaultApi.md#V1FnCreatePost) | **Post** /v1/fn/create | Create a new function
 [**V1FnDeleteDelete**](DefaultApi.md#V1FnDeleteDelete) | **Delete** /v1/fn/delete | Delete a function
 [**V1FnInvokePost**](DefaultApi.md#V1FnInvokePost) | **Post** /v1/fn/invoke | Invoke a function
-[**V1FnListFnNamespaceGet**](DefaultApi.md#V1FnListFnNamespaceGet) | **Get** /v1/fn/list/{fnNamespace} | List functions
+[**V1FnListFnModuleGet**](DefaultApi.md#V1FnListFnModuleGet) | **Get** /v1/fn/list/{fnModule} | List functions
 
 
 
 ## V1FnCreatePost
 
-> FunctionCreationSuccess V1FnCreatePost(ctx).Name(name).Namespace(namespace).Code(code).Execute()
+> FunctionCreationSuccess V1FnCreatePost(ctx).Name(name).Module(module).Code(code).Execute()
 
 Create a new function
 
@@ -33,12 +33,12 @@ import (
 
 func main() {
     name := "name_example" // string |  (optional)
-    namespace := "namespace_example" // string |  (optional)
+    module := "module_example" // string |  (optional)
     code := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.V1FnCreatePost(context.Background()).Name(name).Namespace(namespace).Code(code).Execute()
+    resp, r, err := apiClient.DefaultApi.V1FnCreatePost(context.Background()).Name(name).Module(module).Code(code).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1FnCreatePost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -60,7 +60,7 @@ Other parameters are passed through a pointer to a apiV1FnCreatePostRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string** |  | 
- **namespace** | **string** |  | 
+ **module** | **string** |  | 
  **code** | ***os.File** |  | 
 
 ### Return type
@@ -102,7 +102,7 @@ import (
 )
 
 func main() {
-    functionDeletion := *openapiclient.NewFunctionDeletion() // FunctionDeletion | Object containing the function's name and namespace to delete
+    functionDeletion := *openapiclient.NewFunctionDeletion() // FunctionDeletion | Object containing the function's name and module to delete
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -127,7 +127,7 @@ Other parameters are passed through a pointer to a apiV1FnDeleteDeleteRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **functionDeletion** | [**FunctionDeletion**](FunctionDeletion.md) | Object containing the function&#39;s name and namespace to delete | 
+ **functionDeletion** | [**FunctionDeletion**](FunctionDeletion.md) | Object containing the function&#39;s name and module to delete | 
 
 ### Return type
 
@@ -168,7 +168,7 @@ import (
 )
 
 func main() {
-    functionInvocation := *openapiclient.NewFunctionInvocation() // FunctionInvocation | Object containing the function to invoke, the namespace and optional parameters
+    functionInvocation := *openapiclient.NewFunctionInvocation() // FunctionInvocation | Object containing the function to invoke, the module and optional parameters
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -193,7 +193,7 @@ Other parameters are passed through a pointer to a apiV1FnInvokePostRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **functionInvocation** | [**FunctionInvocation**](FunctionInvocation.md) | Object containing the function to invoke, the namespace and optional parameters | 
+ **functionInvocation** | [**FunctionInvocation**](FunctionInvocation.md) | Object containing the function to invoke, the module and optional parameters | 
 
 ### Return type
 
@@ -213,9 +213,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## V1FnListFnNamespaceGet
+## V1FnListFnModuleGet
 
-> FunctionListSuccess V1FnListFnNamespaceGet(ctx, fnNamespace).Execute()
+> FunctionListSuccess V1FnListFnModuleGet(ctx, fnModule).Execute()
 
 List functions
 
@@ -234,17 +234,17 @@ import (
 )
 
 func main() {
-    fnNamespace := "fnNamespace_example" // string | Namespace of the listed functions
+    fnModule := "fnModule_example" // string | Module of the listed functions
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.V1FnListFnNamespaceGet(context.Background(), fnNamespace).Execute()
+    resp, r, err := apiClient.DefaultApi.V1FnListFnModuleGet(context.Background(), fnModule).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1FnListFnNamespaceGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1FnListFnModuleGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1FnListFnNamespaceGet`: FunctionListSuccess
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1FnListFnNamespaceGet`: %v\n", resp)
+    // response from `V1FnListFnModuleGet`: FunctionListSuccess
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1FnListFnModuleGet`: %v\n", resp)
 }
 ```
 
@@ -254,11 +254,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**fnNamespace** | **string** | Namespace of the listed functions | 
+**fnModule** | **string** | Module of the listed functions | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiV1FnListFnNamespaceGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiV1FnListFnModuleGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

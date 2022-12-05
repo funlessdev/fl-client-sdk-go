@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
-**Namespace** | Pointer to **string** |  | [optional] 
+**Module** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -51,30 +51,30 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### GetNamespace
+### GetModule
 
-`func (o *FunctionDeletion) GetNamespace() string`
+`func (o *FunctionDeletion) GetModule() string`
 
-GetNamespace returns the Namespace field if non-nil, zero value otherwise.
+GetModule returns the Module field if non-nil, zero value otherwise.
 
-### GetNamespaceOk
+### GetModuleOk
 
-`func (o *FunctionDeletion) GetNamespaceOk() (*string, bool)`
+`func (o *FunctionDeletion) GetModuleOk() (*string, bool)`
 
-GetNamespaceOk returns a tuple with the Namespace field if it's non-nil, zero value otherwise
+GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNamespace
+### SetModule
 
-`func (o *FunctionDeletion) SetNamespace(v string)`
+`func (o *FunctionDeletion) SetModule(v string)`
 
-SetNamespace sets Namespace field to given value.
+SetModule sets Module field to given value.
 
-### HasNamespace
+### HasModule
 
-`func (o *FunctionDeletion) HasNamespace() bool`
+`func (o *FunctionDeletion) HasModule() bool`
 
-HasNamespace returns a boolean if a field has been set.
+HasModule returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

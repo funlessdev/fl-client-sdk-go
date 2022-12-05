@@ -20,7 +20,7 @@ var _ MappedNullable = &FunctionDeletion{}
 // FunctionDeletion struct for FunctionDeletion
 type FunctionDeletion struct {
 	Name *string `json:"name,omitempty"`
-	Namespace *string `json:"namespace,omitempty"`
+	Module *string `json:"module,omitempty"`
 }
 
 // NewFunctionDeletion instantiates a new FunctionDeletion object
@@ -72,36 +72,36 @@ func (o *FunctionDeletion) SetName(v string) {
 	o.Name = &v
 }
 
-// GetNamespace returns the Namespace field value if set, zero value otherwise.
-func (o *FunctionDeletion) GetNamespace() string {
-	if o == nil || isNil(o.Namespace) {
+// GetModule returns the Module field value if set, zero value otherwise.
+func (o *FunctionDeletion) GetModule() string {
+	if o == nil || isNil(o.Module) {
 		var ret string
 		return ret
 	}
-	return *o.Namespace
+	return *o.Module
 }
 
-// GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
+// GetModuleOk returns a tuple with the Module field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FunctionDeletion) GetNamespaceOk() (*string, bool) {
-	if o == nil || isNil(o.Namespace) {
+func (o *FunctionDeletion) GetModuleOk() (*string, bool) {
+	if o == nil || isNil(o.Module) {
 		return nil, false
 	}
-	return o.Namespace, true
+	return o.Module, true
 }
 
-// HasNamespace returns a boolean if a field has been set.
-func (o *FunctionDeletion) HasNamespace() bool {
-	if o != nil && !isNil(o.Namespace) {
+// HasModule returns a boolean if a field has been set.
+func (o *FunctionDeletion) HasModule() bool {
+	if o != nil && !isNil(o.Module) {
 		return true
 	}
 
 	return false
 }
 
-// SetNamespace gets a reference to the given string and assigns it to the Namespace field.
-func (o *FunctionDeletion) SetNamespace(v string) {
-	o.Namespace = &v
+// SetModule gets a reference to the given string and assigns it to the Module field.
+func (o *FunctionDeletion) SetModule(v string) {
+	o.Module = &v
 }
 
 func (o FunctionDeletion) MarshalJSON() ([]byte, error) {
@@ -117,8 +117,8 @@ func (o FunctionDeletion) ToMap() (map[string]interface{}, error) {
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Namespace) {
-		toSerialize["namespace"] = o.Namespace
+	if !isNil(o.Module) {
+		toSerialize["module"] = o.Module
 	}
 	return toSerialize, nil
 }

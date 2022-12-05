@@ -58,13 +58,13 @@ func Test_openapi_DefaultApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DefaultApiService V1FnListFnNamespaceGet", func(t *testing.T) {
+	t.Run("Test DefaultApiService V1FnListFnModuleGet", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var fnNamespace string
+		var fnModule string
 
-		resp, httpRes, err := apiClient.DefaultApi.V1FnListFnNamespaceGet(context.Background(), fnNamespace).Execute()
+		resp, httpRes, err := apiClient.DefaultApi.V1FnListFnModuleGet(context.Background(), fnModule).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

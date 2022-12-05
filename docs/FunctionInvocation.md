@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Namespace** | Pointer to **string** |  | [optional] 
+**Module** | Pointer to **string** |  | [optional] 
 **Function** | Pointer to **string** |  | [optional] 
 **Args** | Pointer to **map[string]interface{}** |  | [optional] 
 
@@ -27,30 +27,30 @@ NewFunctionInvocationWithDefaults instantiates a new FunctionInvocation object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetNamespace
+### GetModule
 
-`func (o *FunctionInvocation) GetNamespace() string`
+`func (o *FunctionInvocation) GetModule() string`
 
-GetNamespace returns the Namespace field if non-nil, zero value otherwise.
+GetModule returns the Module field if non-nil, zero value otherwise.
 
-### GetNamespaceOk
+### GetModuleOk
 
-`func (o *FunctionInvocation) GetNamespaceOk() (*string, bool)`
+`func (o *FunctionInvocation) GetModuleOk() (*string, bool)`
 
-GetNamespaceOk returns a tuple with the Namespace field if it's non-nil, zero value otherwise
+GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNamespace
+### SetModule
 
-`func (o *FunctionInvocation) SetNamespace(v string)`
+`func (o *FunctionInvocation) SetModule(v string)`
 
-SetNamespace sets Namespace field to given value.
+SetModule sets Module field to given value.
 
-### HasNamespace
+### HasModule
 
-`func (o *FunctionInvocation) HasNamespace() bool`
+`func (o *FunctionInvocation) HasModule() bool`
 
-HasNamespace returns a boolean if a field has been set.
+HasModule returns a boolean if a field has been set.
 
 ### GetFunction
 

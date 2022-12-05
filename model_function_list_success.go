@@ -19,7 +19,7 @@ var _ MappedNullable = &FunctionListSuccess{}
 
 // FunctionListSuccess struct for FunctionListSuccess
 type FunctionListSuccess struct {
-	// The names of the functions in the namespace
+	// The names of the functions in the module
 	Result []string `json:"result,omitempty"`
 }
 

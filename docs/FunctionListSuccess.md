@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Result** | Pointer to **[]string** | The names of the functions in the namespace | [optional] 
+**Result** | Pointer to **[]string** | The names of the functions in the module | [optional] 
 
 ## Methods
 
