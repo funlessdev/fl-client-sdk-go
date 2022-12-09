@@ -1,157 +1,83 @@
 openapi: 3.0.2
 info:
-  description: The API for the Funless Platform
-  title: Funless Platfom API
-  version: "1.0"
+  description: The API for the FunLess Platform
+  license:
+    name: Apache 2.0
+  title: FunLess Platfom API
+  version: "0.5"
 servers:
-- description: The dev server for the funless core launched locally
+- description: The dev server for the FunLess API
   url: http://localhost:4000
+tags:
+- name: modules
+- name: functions
 paths:
-  /v1/fn/invoke:
-    post:
-      description: Invokes the specified function from the given module with optional
-        parameters from the POST body
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/function_invocation'
-        description: "Object containing the function to invoke, the module and optional\
-          \ parameters"
-        required: true
+  /v1/fn:
+    get:
+      description: List all modules
+      operationId: list_modules
       responses:
         "200":
           content:
             application/json:
-              examples:
-                Invocation of hello world:
-                  value: "{\"result\": {\"payload\": \"Hello, World!\"}}"
               schema:
-                $ref: '#/components/schemas/function_invocation_success'
-          description: The function invocation was successfully sent to a worker
-        "400":
+                $ref: '#/components/schemas/list_modules_200_response'
+          description: An array of modules
+          headers:
+            X-Total-Count:
+              description: Total number of modules
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/function_invocation_error'
-          description: The invocation request was invalid
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/function_invocation_error'
-          description: The required function was not found
-        "500":
-          content:
-            application/json:
-              examples:
-                Invocation with internal error:
-                  value: "{\"error\": \"Failed to invoke function: internal worker\
-                    \ error\"}"
-              schema:
-                $ref: '#/components/schemas/function_invocation_error'
-          description: The function invocation failed for some unspecified internal
-            error
-        "503":
-          content:
-            application/json:
-              examples:
-                Invocation with no workers:
-                  value: "{\"error\": \"Failed to invoke function: no worker available\"\
-                    }"
-              schema:
-                $ref: '#/components/schemas/function_invocation_error'
-          description: The function invocation failed because no worker was available
-      summary: Invoke a function
-  /v1/fn/create:
+                $ref: '#/components/schemas/error'
+          description: Unexpected error
+      summary: List modules
+      tags:
+      - modules
     post:
-      description: "Creates the given function, extracting the parameters from the\
-        \ POST body"
+      description: Create a new module
+      operationId: create_module
       requestBody:
         content:
-          multipart/form-data:
-            encoding:
-              code:
-                contentType: application/octet-stream
-                style: form
+          application/json:
             schema:
-              $ref: '#/components/schemas/function_creation'
-        description: "Object containing the function to create, with name, optional\
-          \ module, code"
+              $ref: '#/components/schemas/create_module_request'
+        description: Module to create
         required: true
       responses:
         "201":
-          content:
-            application/json:
-              examples:
-                Creation of the "hellojs" function:
-                  value: "{\"result\": \"hellojs\"}"
-              schema:
-                $ref: '#/components/schemas/function_creation_success'
-          description: The function was created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/function_creation_error'
-          description: The function creation request was invalid
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/function_creation_error'
-          description: The function creation request failed because the database transaction
-            was aborted
-      summary: Create a new function
-  /v1/fn/delete:
+          description: Null response
+        default:
+          $ref: '#/paths/~1v1~1fn/get/responses/default'
+      summary: Create
+      tags:
+      - modules
+  /v1/fn/{module_name}:
     delete:
-      description: Deletes the function with the given name and module in the request
-        body
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/function_deletion'
-        description: Object containing the function's name and module to delete
-        required: true
+      description: Delete module
+      operationId: delete_module
+      parameters: []
       responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                Deletion of the "hellojs" function:
-                  value: "{\"result\": \"hellojs\"}"
-              schema:
-                $ref: '#/components/schemas/function_deletion_success'
-          description: The function was deleted successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/function_deletion_error'
-          description: The function deletion request was invalid
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/function_deletion_error'
-          description: The function to delete was not found
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/function_deletion_error'
-          description: The function deletion request failed because the database transaction
-            was aborted
-      summary: Delete a function
-  /v1/fn/list/{fnModule}:
+        "204":
+          $ref: '#/paths/~1v1~1fn/post/responses/201'
+        default:
+          $ref: '#/paths/~1v1~1fn/get/responses/default'
+      summary: Delete module
+      tags:
+      - modules
     get:
-      description: List all functions in the given module
+      description: "Get module data (name, array of functions, number of functions)"
+      operationId: show_module_by_name
       parameters:
-      - description: Module of the listed functions
+      - description: The name of the module to retrieve
         explode: false
         in: path
-        name: fnModule
+        name: module_name
         required: true
         schema:
           type: string
@@ -160,103 +86,295 @@ paths:
         "200":
           content:
             application/json:
-              examples:
-                Listing a module with the "hellojs" function:
-                  value: "{\"result\": [\"hellojs\"]}"
               schema:
-                $ref: '#/components/schemas/function_list_success'
-          description: The required functions have been returned successfully
-        "503":
+                $ref: '#/components/schemas/show_module_by_name_200_response'
+          description: Expected response to a valid request
+        default:
+          $ref: '#/paths/~1v1~1fn/get/responses/default'
+      summary: Show module info
+      tags:
+      - modules
+    post:
+      description: Create a new function in the specified module
+      operationId: create_function
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_function_request'
+        description: Function code to upload
+        required: true
+      responses:
+        "201":
+          $ref: '#/paths/~1v1~1fn/post/responses/201'
+        default:
+          $ref: '#/paths/~1v1~1fn/get/responses/default'
+      summary: Create new function
+      tags:
+      - functions
+    put:
+      description: Update module name
+      operationId: update_module
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/paths/~1v1~1fn/post/requestBody/content/application~1json/schema'
+        description: New module name to use
+        required: true
+      responses:
+        "200":
+          $ref: '#/paths/~1v1~1fn/post/responses/201'
+        default:
+          $ref: '#/paths/~1v1~1fn/get/responses/default'
+      summary: Update module name
+      tags:
+      - modules
+  /v1/fn/{module_name}/{function_name}:
+    delete:
+      description: Delete single function in module
+      operationId: delete_function
+      parameters:
+      - description: The name of the module
+        explode: false
+        in: path
+        name: module_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the function
+        explode: false
+        in: path
+        name: function_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          $ref: '#/paths/~1v1~1fn/post/responses/201'
+        default:
+          $ref: '#/paths/~1v1~1fn/get/responses/default'
+      summary: Delete function
+      tags:
+      - functions
+    get:
+      description: "Get function data (name, module name, size of code)"
+      operationId: show_function_by_name
+      parameters:
+      - description: The name of the function
+        explode: false
+        in: path
+        name: function_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/function_list_error'
-          description: The request failed because the database transaction was aborted
-      summary: List functions
+                $ref: '#/components/schemas/show_function_by_name_200_response'
+          description: Expected response to a valid request
+        default:
+          $ref: '#/paths/~1v1~1fn/get/responses/default'
+      summary: Show function info
+      tags:
+      - functions
+    post:
+      description: Invoke function
+      operationId: invoke_function
+      parameters:
+      - description: The name of the module
+        explode: false
+        in: path
+        name: module_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the function
+        explode: false
+        in: path
+        name: function_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/invoke_function_request'
+        description: Function input
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/invoke_function_200_response'
+          description: Expected response to a valid request
+        default:
+          $ref: '#/paths/~1v1~1fn/get/responses/default'
+      summary: Invoke function
+      tags:
+      - functions
+    put:
+      description: Update function code
+      operationId: update_function
+      parameters:
+      - description: The name of the module
+        explode: false
+        in: path
+        name: module_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the function
+        explode: false
+        in: path
+        name: function_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D/post/requestBody/content/application~1json/schema'
+        description: New function code to use
+        required: true
+      responses:
+        "200":
+          $ref: '#/paths/~1v1~1fn/post/responses/201'
+        default:
+          $ref: '#/paths/~1v1~1fn/get/responses/default'
+      summary: Update function code
+      tags:
+      - functions
 components:
+  parameters:
+    module_name:
+      $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D/get/parameters/0'
+    function_name:
+      $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D~1%7Bfunction_name%7D/get/parameters/1'
+  responses:
+    unexpected_error:
+      $ref: '#/paths/~1v1~1fn/get/responses/default'
+    null_response:
+      $ref: '#/paths/~1v1~1fn/post/responses/201'
   schemas:
-    function_invocation:
+    module_name:
+      $ref: '#/paths/~1v1~1fn/post/requestBody/content/application~1json/schema'
+    single_module_result:
+      $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D/get/responses/200/content/application~1json/schema'
+    module_names_result:
+      $ref: '#/paths/~1v1~1fn/get/responses/200/content/application~1json/schema'
+    single_function_result:
+      $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D~1%7Bfunction_name%7D/get/responses/200/content/application~1json/schema'
+    invoke_input:
+      $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D~1%7Bfunction_name%7D/post/requestBody/content/application~1json/schema'
+    invoke_result:
+      $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D~1%7Bfunction_name%7D/post/responses/200/content/application~1json/schema'
+    function_code:
+      $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D/post/requestBody/content/application~1json/schema'
+    error:
       properties:
-        module:
-          type: string
-        function:
-          type: string
-        args:
-          type: object
+        errors:
+          $ref: '#/components/schemas/error_errors'
+      required:
+      - errors
       type: object
-    function_invocation_success:
+    list_modules_200_response:
       example:
-        result: ""
+        data:
+        - data
+        - data
       properties:
-        result:
-          description: The function invocation result
-      type: object
-    function_invocation_error:
-      properties:
-        error:
-          description: The error message
-          type: string
-      type: object
-    function_creation:
-      properties:
-        name:
-          type: string
-        module:
-          type: string
-        code:
-          format: binary
-          type: string
-      type: object
-    function_creation_success:
-      example:
-        result: result
-      properties:
-        result:
-          description: The name of the function
-          type: string
-      type: object
-    function_creation_error:
-      properties:
-        error:
-          description: The error message
-          type: string
-      type: object
-    function_deletion:
-      properties:
-        name:
-          type: string
-        module:
-          type: string
-      type: object
-    function_deletion_success:
-      example:
-        result: result
-      properties:
-        result:
-          description: The name of the function
-          type: string
-      type: object
-    function_deletion_error:
-      properties:
-        error:
-          description: The error message
-          type: string
-      type: object
-    function_list_success:
-      example:
-        result:
-        - result
-        - result
-      properties:
-        result:
-          description: The names of the functions in the module
+        data:
           items:
             type: string
           type: array
       type: object
-    function_list_error:
+    create_module_request:
       properties:
-        error:
-          description: The error message
+        name:
+          type: string
+      type: object
+    show_module_by_name_200_response_data:
+      example:
+        functions:
+        - functions
+        - functions
+        name: name
+      properties:
+        name:
+          type: string
+        functions:
+          items:
+            type: string
+          type: array
+      type: object
+    show_module_by_name_200_response:
+      example:
+        data:
+          functions:
+          - functions
+          - functions
+          name: name
+      properties:
+        data:
+          $ref: '#/components/schemas/show_module_by_name_200_response_data'
+      type: object
+    create_function_request:
+      properties:
+        code:
+          type: binary
+      type: object
+    show_function_by_name_200_response_data:
+      example:
+        code_size: 0
+        name: name
+        module_name: module_name
+      properties:
+        name:
+          type: string
+        module_name:
+          type: string
+        code_size:
+          type: integer
+      type: object
+    show_function_by_name_200_response:
+      example:
+        data:
+          code_size: 0
+          name: name
+          module_name: module_name
+      properties:
+        data:
+          $ref: '#/components/schemas/show_function_by_name_200_response_data'
+      type: object
+    invoke_function_request:
+      properties:
+        args:
+          type: object
+      type: object
+    invoke_function_200_response:
+      example:
+        data: "{}"
+      properties:
+        data:
+          type: object
+      type: object
+    error_errors:
+      properties:
+        detail:
           type: string
       type: object
