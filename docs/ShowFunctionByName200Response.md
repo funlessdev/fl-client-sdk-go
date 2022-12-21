@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**ShowFunctionByName200ResponseData**](ShowFunctionByName200ResponseData.md) |  | [optional] 
+**Data** | Pointer to [**CreateModuleRequest**](CreateModuleRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *ShowFunctionByName200Response) GetData() ShowFunctionByName200ResponseData`
+`func (o *ShowFunctionByName200Response) GetData() CreateModuleRequest`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *ShowFunctionByName200Response) GetDataOk() (*ShowFunctionByName200ResponseData, bool)`
+`func (o *ShowFunctionByName200Response) GetDataOk() (*CreateModuleRequest, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *ShowFunctionByName200Response) SetData(v ShowFunctionByName200ResponseData)`
+`func (o *ShowFunctionByName200Response) SetData(v CreateModuleRequest)`
 
 SetData sets Data field to given value.
 

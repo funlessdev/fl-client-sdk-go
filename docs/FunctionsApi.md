@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateFunction
 
-> CreateFunction(ctx).CreateFunctionRequest(createFunctionRequest).Execute()
+> CreateFunction(ctx).Name(name).Code(code).Execute()
 
 Create new function
 
@@ -33,11 +33,12 @@ import (
 )
 
 func main() {
-    createFunctionRequest := *openapiclient.NewCreateFunctionRequest() // CreateFunctionRequest | Function code to upload
+    name := "name_example" // string | Name of the function (optional)
+    code := os.NewFile(1234, "some_file") // *os.File | File with the code of the function (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FunctionsApi.CreateFunction(context.Background()).CreateFunctionRequest(createFunctionRequest).Execute()
+    resp, r, err := apiClient.FunctionsApi.CreateFunction(context.Background()).Name(name).Code(code).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.CreateFunction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,7 +57,8 @@ Other parameters are passed through a pointer to a apiCreateFunctionRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createFunctionRequest** | [**CreateFunctionRequest**](CreateFunctionRequest.md) | Function code to upload | 
+ **name** | **string** | Name of the function | 
+ **code** | ***os.File** | File with the code of the function | 
 
 ### Return type
 
@@ -68,7 +70,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: multipart/form-data
 - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -294,7 +296,7 @@ No authorization required
 
 ## UpdateFunction
 
-> UpdateFunction(ctx, moduleName, functionName).Body(body).Execute()
+> UpdateFunction(ctx, moduleName, functionName).Execute()
 
 Update function code
 
@@ -315,11 +317,10 @@ import (
 func main() {
     moduleName := "moduleName_example" // string | The name of the module
     functionName := "functionName_example" // string | The name of the function
-    body := Object(987) // Object | New function code to use
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FunctionsApi.UpdateFunction(context.Background(), moduleName, functionName).Body(body).Execute()
+    resp, r, err := apiClient.FunctionsApi.UpdateFunction(context.Background(), moduleName, functionName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.UpdateFunction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -345,7 +346,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | **Object** | New function code to use | 
 
 ### Return type
 
@@ -357,7 +357,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: multipart/form-data
 - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

@@ -92,7 +92,6 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [CreateFunctionRequest](docs/CreateFunctionRequest.md)
  - [CreateModuleRequest](docs/CreateModuleRequest.md)
  - [ErrorErrors](docs/ErrorErrors.md)
  - [InvokeFunction200Response](docs/InvokeFunction200Response.md)
@@ -100,7 +99,6 @@ Class | Method | HTTP request | Description
  - [ListModules200Response](docs/ListModules200Response.md)
  - [ModelError](docs/ModelError.md)
  - [ShowFunctionByName200Response](docs/ShowFunctionByName200Response.md)
- - [ShowFunctionByName200ResponseData](docs/ShowFunctionByName200ResponseData.md)
  - [ShowModuleByName200Response](docs/ShowModuleByName200Response.md)
  - [ShowModuleByName200ResponseData](docs/ShowModuleByName200ResponseData.md)
 

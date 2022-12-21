@@ -7,7 +7,6 @@ api_functions.go
 api_modules.go
 client.go
 configuration.go
-docs/CreateFunctionRequest.md
 docs/CreateModuleRequest.md
 docs/ErrorErrors.md
 docs/FunctionsApi.md
@@ -17,13 +16,11 @@ docs/ListModules200Response.md
 docs/ModelError.md
 docs/ModulesApi.md
 docs/ShowFunctionByName200Response.md
-docs/ShowFunctionByName200ResponseData.md
 docs/ShowModuleByName200Response.md
 docs/ShowModuleByName200ResponseData.md
 git_push.sh
 go.mod
 go.sum
-model_create_function_request.go
 model_create_module_request.go
 model_error.go
 model_error_errors.go
@@ -31,7 +28,6 @@ model_invoke_function_200_response.go
 model_invoke_function_request.go
 model_list_modules_200_response.go
 model_show_function_by_name_200_response.go
-model_show_function_by_name_200_response_data.go
 model_show_module_by_name_200_response.go
 model_show_module_by_name_200_response_data.go
 response.go

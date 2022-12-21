@@ -16,7 +16,7 @@ import (
 
 // ShowFunctionByName200Response struct for ShowFunctionByName200Response
 type ShowFunctionByName200Response struct {
-	Data *ShowFunctionByName200ResponseData `json:"data,omitempty"`
+	Data *CreateModuleRequest `json:"data,omitempty"`
 }
 
 // NewShowFunctionByName200Response instantiates a new ShowFunctionByName200Response object
@@ -37,9 +37,9 @@ func NewShowFunctionByName200ResponseWithDefaults() *ShowFunctionByName200Respon
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *ShowFunctionByName200Response) GetData() ShowFunctionByName200ResponseData {
+func (o *ShowFunctionByName200Response) GetData() CreateModuleRequest {
 	if o == nil || isNil(o.Data) {
-		var ret ShowFunctionByName200ResponseData
+		var ret CreateModuleRequest
 		return ret
 	}
 	return *o.Data
@@ -47,7 +47,7 @@ func (o *ShowFunctionByName200Response) GetData() ShowFunctionByName200ResponseD
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ShowFunctionByName200Response) GetDataOk() (*ShowFunctionByName200ResponseData, bool) {
+func (o *ShowFunctionByName200Response) GetDataOk() (*CreateModuleRequest, bool) {
 	if o == nil || isNil(o.Data) {
     return nil, false
 	}
@@ -63,8 +63,8 @@ func (o *ShowFunctionByName200Response) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given ShowFunctionByName200ResponseData and assigns it to the Data field.
-func (o *ShowFunctionByName200Response) SetData(v ShowFunctionByName200ResponseData) {
+// SetData gets a reference to the given CreateModuleRequest and assigns it to the Data field.
+func (o *ShowFunctionByName200Response) SetData(v CreateModuleRequest) {
 	o.Data = &v
 }
 

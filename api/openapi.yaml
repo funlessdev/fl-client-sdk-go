@@ -100,10 +100,14 @@ paths:
       parameters: []
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
+            encoding:
+              code:
+                contentType: application/octet-stream
+                style: form
             schema:
               $ref: '#/components/schemas/create_function_request'
-        description: Function code to upload
+        description: Object containing the function's name and code
         required: true
       responses:
         "201":
@@ -246,9 +250,13 @@ paths:
         style: simple
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
+            encoding:
+              code:
+                contentType: application/octet-stream
+                style: form
             schema:
-              $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D/post/requestBody/content/multipart~1form-data/schema'
         description: New function code to use
         required: true
       responses:
@@ -283,8 +291,8 @@ components:
       $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D~1%7Bfunction_name%7D/post/requestBody/content/application~1json/schema'
     invoke_result:
       $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D~1%7Bfunction_name%7D/post/responses/200/content/application~1json/schema'
-    function_code:
-      $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D/post/requestBody/content/application~1json/schema'
+    function_create_update:
+      $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D/post/requestBody/content/multipart~1form-data/schema'
     error:
       properties:
         errors:
@@ -304,6 +312,8 @@ components:
           type: array
       type: object
     create_module_request:
+      example:
+        name: name
       properties:
         name:
           type: string
@@ -335,31 +345,21 @@ components:
       type: object
     create_function_request:
       properties:
-        code:
-          type: binary
-      type: object
-    show_function_by_name_200_response_data:
-      example:
-        code_size: 0
-        name: name
-        module_name: module_name
-      properties:
         name:
+          description: Name of the function
           type: string
-        module_name:
+        code:
+          description: File with the code of the function
+          format: binary
           type: string
-        code_size:
-          type: integer
       type: object
     show_function_by_name_200_response:
       example:
         data:
-          code_size: 0
           name: name
-          module_name: module_name
       properties:
         data:
-          $ref: '#/components/schemas/show_function_by_name_200_response_data'
+          $ref: '#/components/schemas/create_module_request'
       type: object
     invoke_function_request:
       properties:

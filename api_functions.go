@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"os"
 )
 
 
@@ -26,12 +27,19 @@ type FunctionsApiService service
 type ApiCreateFunctionRequest struct {
 	ctx context.Context
 	ApiService *FunctionsApiService
-	createFunctionRequest *CreateFunctionRequest
+	name *string
+	code **os.File
 }
 
-// Function code to upload
-func (r ApiCreateFunctionRequest) CreateFunctionRequest(createFunctionRequest CreateFunctionRequest) ApiCreateFunctionRequest {
-	r.createFunctionRequest = &createFunctionRequest
+// Name of the function
+func (r ApiCreateFunctionRequest) Name(name string) ApiCreateFunctionRequest {
+	r.name = &name
+	return r
+}
+
+// File with the code of the function
+func (r ApiCreateFunctionRequest) Code(code *os.File) ApiCreateFunctionRequest {
+	r.code = &code
 	return r
 }
 
@@ -72,12 +80,9 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createFunctionRequest == nil {
-		return nil, reportError("createFunctionRequest is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"multipart/form-data"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -93,8 +98,26 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.createFunctionRequest
+	if r.name != nil {
+		localVarFormParams.Add("name", parameterToString(*r.name, ""))
+	}
+	var codeLocalVarFormFileName string
+	var codeLocalVarFileName     string
+	var codeLocalVarFileBytes    []byte
+
+	codeLocalVarFormFileName = "code"
+
+	var codeLocalVarFile *os.File
+	if r.code != nil {
+		codeLocalVarFile = *r.code
+	}
+	if codeLocalVarFile != nil {
+		fbs, _ := ioutil.ReadAll(codeLocalVarFile)
+		codeLocalVarFileBytes = fbs
+		codeLocalVarFileName = codeLocalVarFile.Name()
+		codeLocalVarFile.Close()
+	}
+	formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -446,13 +469,6 @@ type ApiUpdateFunctionRequest struct {
 	ApiService *FunctionsApiService
 	moduleName string
 	functionName string
-	body *Object
-}
-
-// New function code to use
-func (r ApiUpdateFunctionRequest) Body(body Object) ApiUpdateFunctionRequest {
-	r.body = &body
-	return r
 }
 
 func (r ApiUpdateFunctionRequest) Execute() (*http.Response, error) {
@@ -498,12 +514,9 @@ func (a *FunctionsApiService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"multipart/form-data"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -519,8 +532,6 @@ func (a *FunctionsApiService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.body
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
