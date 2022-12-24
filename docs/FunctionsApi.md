@@ -8,13 +8,13 @@ Method | HTTP request | Description
 [**DeleteFunction**](FunctionsApi.md#DeleteFunction) | **Delete** /v1/fn/{module_name}/{function_name} | Delete function
 [**InvokeFunction**](FunctionsApi.md#InvokeFunction) | **Post** /v1/fn/{module_name}/{function_name} | Invoke function
 [**ShowFunctionByName**](FunctionsApi.md#ShowFunctionByName) | **Get** /v1/fn/{module_name}/{function_name} | Show function info
-[**UpdateFunction**](FunctionsApi.md#UpdateFunction) | **Put** /v1/fn/{module_name}/{function_name} | Update function code
+[**UpdateFunction**](FunctionsApi.md#UpdateFunction) | **Put** /v1/fn/{module_name}/{function_name} | Update function
 
 
 
 ## CreateFunction
 
-> CreateFunction(ctx).Name(name).Code(code).Execute()
+> CreateFunction(ctx).Name(name).Code(code).Events(events).Execute()
 
 Create new function
 
@@ -35,10 +35,11 @@ import (
 func main() {
     name := "name_example" // string | Name of the function (optional)
     code := os.NewFile(1234, "some_file") // *os.File | File with the code of the function (optional)
+    events := []ConnectedEvent{"TODO"} // []ConnectedEvent | Events that can trigger the function (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FunctionsApi.CreateFunction(context.Background()).Name(name).Code(code).Execute()
+    resp, r, err := apiClient.FunctionsApi.CreateFunction(context.Background()).Name(name).Code(code).Events(events).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.CreateFunction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,6 +60,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string** | Name of the function | 
  **code** | ***os.File** | File with the code of the function | 
+ **events** | [**[]ConnectedEvent**](ConnectedEvent.md) | Events that can trigger the function | 
 
 ### Return type
 
@@ -71,7 +73,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: multipart/form-data
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -298,7 +300,7 @@ No authorization required
 
 > UpdateFunction(ctx, moduleName, functionName).Execute()
 
-Update function code
+Update function
 
 
 

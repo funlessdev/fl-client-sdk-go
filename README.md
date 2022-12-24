@@ -82,7 +82,7 @@ Class | Method | HTTP request | Description
 *FunctionsApi* | [**DeleteFunction**](docs/FunctionsApi.md#deletefunction) | **Delete** /v1/fn/{module_name}/{function_name} | Delete function
 *FunctionsApi* | [**InvokeFunction**](docs/FunctionsApi.md#invokefunction) | **Post** /v1/fn/{module_name}/{function_name} | Invoke function
 *FunctionsApi* | [**ShowFunctionByName**](docs/FunctionsApi.md#showfunctionbyname) | **Get** /v1/fn/{module_name}/{function_name} | Show function info
-*FunctionsApi* | [**UpdateFunction**](docs/FunctionsApi.md#updatefunction) | **Put** /v1/fn/{module_name}/{function_name} | Update function code
+*FunctionsApi* | [**UpdateFunction**](docs/FunctionsApi.md#updatefunction) | **Put** /v1/fn/{module_name}/{function_name} | Update function
 *ModulesApi* | [**CreateModule**](docs/ModulesApi.md#createmodule) | **Post** /v1/fn | Create
 *ModulesApi* | [**DeleteModule**](docs/ModulesApi.md#deletemodule) | **Delete** /v1/fn/{module_name} | Delete module
 *ModulesApi* | [**ListModules**](docs/ModulesApi.md#listmodules) | **Get** /v1/fn | List modules
@@ -97,6 +97,10 @@ Class | Method | HTTP request | Description
  - [InvokeFunction200Response](docs/InvokeFunction200Response.md)
  - [InvokeFunctionRequest](docs/InvokeFunctionRequest.md)
  - [ListModules200Response](docs/ListModules200Response.md)
+ - [MixedEventResults](docs/MixedEventResults.md)
+ - [MixedEventResultsData](docs/MixedEventResultsData.md)
+ - [MixedEventResultsDataEventsInner](docs/MixedEventResultsDataEventsInner.md)
+ - [MixedEventResultsDataMetadata](docs/MixedEventResultsDataMetadata.md)
  - [ModelError](docs/ModelError.md)
  - [ShowFunctionByName200Response](docs/ShowFunctionByName200Response.md)
  - [ShowModuleByName200Response](docs/ShowModuleByName200Response.md)

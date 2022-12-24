@@ -29,6 +29,7 @@ type ApiCreateFunctionRequest struct {
 	ApiService *FunctionsApiService
 	name *string
 	code **os.File
+	events *[]ConnectedEvent
 }
 
 // Name of the function
@@ -40,6 +41,12 @@ func (r ApiCreateFunctionRequest) Name(name string) ApiCreateFunctionRequest {
 // File with the code of the function
 func (r ApiCreateFunctionRequest) Code(code *os.File) ApiCreateFunctionRequest {
 	r.code = &code
+	return r
+}
+
+// Events that can trigger the function
+func (r ApiCreateFunctionRequest) Events(events []ConnectedEvent) ApiCreateFunctionRequest {
+	r.events = &events
 	return r
 }
 
@@ -91,7 +98,7 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -118,6 +125,9 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 		codeLocalVarFile.Close()
 	}
 	formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
+	if r.events != nil {
+		localVarFormParams.Add("events", parameterToString(*r.events, "csv"))
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -476,9 +486,9 @@ func (r ApiUpdateFunctionRequest) Execute() (*http.Response, error) {
 }
 
 /*
-UpdateFunction Update function code
+UpdateFunction Update function
 
-Update function code
+Update function
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param moduleName The name of the module

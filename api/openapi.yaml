@@ -112,6 +112,12 @@ paths:
       responses:
         "201":
           $ref: '#/paths/~1v1~1fn/post/responses/201'
+        "207":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/mixed_event_results'
+          description: Mixed response
         default:
           $ref: '#/paths/~1v1~1fn/get/responses/default'
       summary: Create new function
@@ -229,7 +235,7 @@ paths:
       tags:
       - functions
     put:
-      description: Update function code
+      description: Update function
       operationId: update_function
       parameters:
       - description: The name of the module
@@ -262,9 +268,11 @@ paths:
       responses:
         "200":
           $ref: '#/paths/~1v1~1fn/post/responses/201'
+        "207":
+          $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D/post/responses/207'
         default:
           $ref: '#/paths/~1v1~1fn/get/responses/default'
-      summary: Update function code
+      summary: Update function
       tags:
       - functions
 components:
@@ -278,6 +286,8 @@ components:
       $ref: '#/paths/~1v1~1fn/get/responses/default'
     null_response:
       $ref: '#/paths/~1v1~1fn/post/responses/201'
+    mixed_response_events:
+      $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D/post/responses/207'
   schemas:
     module_name:
       $ref: '#/paths/~1v1~1fn/post/requestBody/content/application~1json/schema'
@@ -293,6 +303,22 @@ components:
       $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D~1%7Bfunction_name%7D/post/responses/200/content/application~1json/schema'
     function_create_update:
       $ref: '#/paths/~1v1~1fn~1%7Bmodule_name%7D/post/requestBody/content/multipart~1form-data/schema'
+    connected_event:
+      properties:
+        type:
+          description: Type of the event
+          enum:
+          - mqtt
+          type: string
+        params:
+          description: Additional parameters of the event
+          type: object
+      type: object
+    mixed_event_results:
+      properties:
+        data:
+          $ref: '#/components/schemas/mixed_event_results_data'
+      type: object
     error:
       properties:
         errors:
@@ -352,6 +378,11 @@ components:
           description: File with the code of the function
           format: binary
           type: string
+        events:
+          description: Events that can trigger the function
+          items:
+            $ref: '#/components/schemas/connected_event'
+          type: array
       type: object
     show_function_by_name_200_response:
       example:
@@ -372,6 +403,43 @@ components:
       properties:
         data:
           type: object
+      type: object
+    mixed_event_results_data_events_inner:
+      properties:
+        status:
+          description: Whether the corresponding event was connected successfully
+          enum:
+          - success
+          - error
+          type: string
+        message:
+          description: Additional information on the error
+          type: string
+      type: object
+    mixed_event_results_data_metadata:
+      properties:
+        successful:
+          description: The amount of events that was successfully connected
+          type: integer
+        failed:
+          description: The amount of events that wasn't successfully connected
+          type: integer
+        total:
+          description: The total amount of events that was passed
+          type: integer
+      type: object
+    mixed_event_results_data:
+      properties:
+        name:
+          description: The name of the function
+          type: string
+        events:
+          description: "The results of event connection, both successful and failed"
+          items:
+            $ref: '#/components/schemas/mixed_event_results_data_events_inner'
+          type: array
+        metadata:
+          $ref: '#/components/schemas/mixed_event_results_data_metadata'
       type: object
     error_errors:
       properties:
