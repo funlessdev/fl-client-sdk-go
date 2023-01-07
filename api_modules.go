@@ -86,7 +86,7 @@ func (a *ModulesApiService) CreateModuleExecute(r ApiCreateModuleRequest) (*http
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -117,6 +117,14 @@ func (a *ModulesApiService) CreateModuleExecute(r ApiCreateModuleRequest) (*http
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+			var v ListModulesDefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -126,6 +134,7 @@ func (a *ModulesApiService) CreateModuleExecute(r ApiCreateModuleRequest) (*http
 type ApiDeleteModuleRequest struct {
 	ctx context.Context
 	ApiService *ModulesApiService
+	moduleName string
 }
 
 func (r ApiDeleteModuleRequest) Execute() (*http.Response, error) {
@@ -138,12 +147,14 @@ DeleteModule Delete module
 Delete module
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param moduleName The name of the module to retrieve
  @return ApiDeleteModuleRequest
 */
-func (a *ModulesApiService) DeleteModule(ctx context.Context) ApiDeleteModuleRequest {
+func (a *ModulesApiService) DeleteModule(ctx context.Context, moduleName string) ApiDeleteModuleRequest {
 	return ApiDeleteModuleRequest{
 		ApiService: a,
 		ctx: ctx,
+		moduleName: moduleName,
 	}
 }
 
@@ -161,6 +172,7 @@ func (a *ModulesApiService) DeleteModuleExecute(r ApiDeleteModuleRequest) (*http
 	}
 
 	localVarPath := localBasePath + "/v1/fn/{module_name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterToString(r.moduleName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -176,7 +188,7 @@ func (a *ModulesApiService) DeleteModuleExecute(r ApiDeleteModuleRequest) (*http
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -205,6 +217,14 @@ func (a *ModulesApiService) DeleteModuleExecute(r ApiDeleteModuleRequest) (*http
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+			var v ListModulesDefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -295,7 +315,7 @@ func (a *ModulesApiService) ListModulesExecute(r ApiListModulesRequest) (*ListMo
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ModelError
+			var v ListModulesDefaultResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -406,6 +426,14 @@ func (a *ModulesApiService) ShowModuleByNameExecute(r ApiShowModuleByNameRequest
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+			var v ListModulesDefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -424,12 +452,13 @@ func (a *ModulesApiService) ShowModuleByNameExecute(r ApiShowModuleByNameRequest
 type ApiUpdateModuleRequest struct {
 	ctx context.Context
 	ApiService *ModulesApiService
-	body *Object
+	moduleName string
+	createModuleRequest *CreateModuleRequest
 }
 
 // New module name to use
-func (r ApiUpdateModuleRequest) Body(body Object) ApiUpdateModuleRequest {
-	r.body = &body
+func (r ApiUpdateModuleRequest) CreateModuleRequest(createModuleRequest CreateModuleRequest) ApiUpdateModuleRequest {
+	r.createModuleRequest = &createModuleRequest
 	return r
 }
 
@@ -443,12 +472,14 @@ UpdateModule Update module name
 Update module name
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param moduleName The name of the module to retrieve
  @return ApiUpdateModuleRequest
 */
-func (a *ModulesApiService) UpdateModule(ctx context.Context) ApiUpdateModuleRequest {
+func (a *ModulesApiService) UpdateModule(ctx context.Context, moduleName string) ApiUpdateModuleRequest {
 	return ApiUpdateModuleRequest{
 		ApiService: a,
 		ctx: ctx,
+		moduleName: moduleName,
 	}
 }
 
@@ -466,12 +497,13 @@ func (a *ModulesApiService) UpdateModuleExecute(r ApiUpdateModuleRequest) (*http
 	}
 
 	localVarPath := localBasePath + "/v1/fn/{module_name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterToString(r.moduleName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
+	if r.createModuleRequest == nil {
+		return nil, reportError("createModuleRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -484,7 +516,7 @@ func (a *ModulesApiService) UpdateModuleExecute(r ApiUpdateModuleRequest) (*http
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -492,7 +524,7 @@ func (a *ModulesApiService) UpdateModuleExecute(r ApiUpdateModuleRequest) (*http
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.createModuleRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -515,6 +547,14 @@ func (a *ModulesApiService) UpdateModuleExecute(r ApiUpdateModuleRequest) (*http
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+			var v ListModulesDefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 

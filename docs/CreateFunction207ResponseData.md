@@ -1,104 +1,104 @@
-# MixedEventResultsData
+# CreateFunction207ResponseData
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | The name of the function | [optional] 
-**Events** | Pointer to [**[]MixedEventResultsDataEventsInner**](MixedEventResultsDataEventsInner.md) | The results of event connection, both successful and failed | [optional] 
-**Metadata** | Pointer to [**MixedEventResultsDataMetadata**](MixedEventResultsDataMetadata.md) |  | [optional] 
+**Events** | Pointer to [**[]CreateFunction207ResponseDataEventsInner**](CreateFunction207ResponseDataEventsInner.md) | The results of event connection, both successful and failed | [optional] 
+**Metadata** | Pointer to [**CreateFunction207ResponseDataMetadata**](CreateFunction207ResponseDataMetadata.md) |  | [optional] 
 
 ## Methods
 
-### NewMixedEventResultsData
+### NewCreateFunction207ResponseData
 
-`func NewMixedEventResultsData() *MixedEventResultsData`
+`func NewCreateFunction207ResponseData() *CreateFunction207ResponseData`
 
-NewMixedEventResultsData instantiates a new MixedEventResultsData object
+NewCreateFunction207ResponseData instantiates a new CreateFunction207ResponseData object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewMixedEventResultsDataWithDefaults
+### NewCreateFunction207ResponseDataWithDefaults
 
-`func NewMixedEventResultsDataWithDefaults() *MixedEventResultsData`
+`func NewCreateFunction207ResponseDataWithDefaults() *CreateFunction207ResponseData`
 
-NewMixedEventResultsDataWithDefaults instantiates a new MixedEventResultsData object
+NewCreateFunction207ResponseDataWithDefaults instantiates a new CreateFunction207ResponseData object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetName
 
-`func (o *MixedEventResultsData) GetName() string`
+`func (o *CreateFunction207ResponseData) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *MixedEventResultsData) GetNameOk() (*string, bool)`
+`func (o *CreateFunction207ResponseData) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *MixedEventResultsData) SetName(v string)`
+`func (o *CreateFunction207ResponseData) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### HasName
 
-`func (o *MixedEventResultsData) HasName() bool`
+`func (o *CreateFunction207ResponseData) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 ### GetEvents
 
-`func (o *MixedEventResultsData) GetEvents() []MixedEventResultsDataEventsInner`
+`func (o *CreateFunction207ResponseData) GetEvents() []CreateFunction207ResponseDataEventsInner`
 
 GetEvents returns the Events field if non-nil, zero value otherwise.
 
 ### GetEventsOk
 
-`func (o *MixedEventResultsData) GetEventsOk() (*[]MixedEventResultsDataEventsInner, bool)`
+`func (o *CreateFunction207ResponseData) GetEventsOk() (*[]CreateFunction207ResponseDataEventsInner, bool)`
 
 GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEvents
 
-`func (o *MixedEventResultsData) SetEvents(v []MixedEventResultsDataEventsInner)`
+`func (o *CreateFunction207ResponseData) SetEvents(v []CreateFunction207ResponseDataEventsInner)`
 
 SetEvents sets Events field to given value.
 
 ### HasEvents
 
-`func (o *MixedEventResultsData) HasEvents() bool`
+`func (o *CreateFunction207ResponseData) HasEvents() bool`
 
 HasEvents returns a boolean if a field has been set.
 
 ### GetMetadata
 
-`func (o *MixedEventResultsData) GetMetadata() MixedEventResultsDataMetadata`
+`func (o *CreateFunction207ResponseData) GetMetadata() CreateFunction207ResponseDataMetadata`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *MixedEventResultsData) GetMetadataOk() (*MixedEventResultsDataMetadata, bool)`
+`func (o *CreateFunction207ResponseData) GetMetadataOk() (*CreateFunction207ResponseDataMetadata, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *MixedEventResultsData) SetMetadata(v MixedEventResultsDataMetadata)`
+`func (o *CreateFunction207ResponseData) SetMetadata(v CreateFunction207ResponseDataMetadata)`
 
 SetMetadata sets Metadata field to given value.
 
 ### HasMetadata
 
-`func (o *MixedEventResultsData) HasMetadata() bool`
+`func (o *CreateFunction207ResponseData) HasMetadata() bool`
 
 HasMetadata returns a boolean if a field has been set.
 

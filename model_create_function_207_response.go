@@ -14,30 +14,30 @@ import (
 	"encoding/json"
 )
 
-// MixedEventResults struct for MixedEventResults
-type MixedEventResults struct {
+// CreateFunction207Response struct for CreateFunction207Response
+type CreateFunction207Response struct {
 	Data *CreateFunction207ResponseData `json:"data,omitempty"`
 }
 
-// NewMixedEventResults instantiates a new MixedEventResults object
+// NewCreateFunction207Response instantiates a new CreateFunction207Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMixedEventResults() *MixedEventResults {
-	this := MixedEventResults{}
+func NewCreateFunction207Response() *CreateFunction207Response {
+	this := CreateFunction207Response{}
 	return &this
 }
 
-// NewMixedEventResultsWithDefaults instantiates a new MixedEventResults object
+// NewCreateFunction207ResponseWithDefaults instantiates a new CreateFunction207Response object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMixedEventResultsWithDefaults() *MixedEventResults {
-	this := MixedEventResults{}
+func NewCreateFunction207ResponseWithDefaults() *CreateFunction207Response {
+	this := CreateFunction207Response{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *MixedEventResults) GetData() CreateFunction207ResponseData {
+func (o *CreateFunction207Response) GetData() CreateFunction207ResponseData {
 	if o == nil || isNil(o.Data) {
 		var ret CreateFunction207ResponseData
 		return ret
@@ -47,7 +47,7 @@ func (o *MixedEventResults) GetData() CreateFunction207ResponseData {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MixedEventResults) GetDataOk() (*CreateFunction207ResponseData, bool) {
+func (o *CreateFunction207Response) GetDataOk() (*CreateFunction207ResponseData, bool) {
 	if o == nil || isNil(o.Data) {
     return nil, false
 	}
@@ -55,7 +55,7 @@ func (o *MixedEventResults) GetDataOk() (*CreateFunction207ResponseData, bool) {
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *MixedEventResults) HasData() bool {
+func (o *CreateFunction207Response) HasData() bool {
 	if o != nil && !isNil(o.Data) {
 		return true
 	}
@@ -64,11 +64,11 @@ func (o *MixedEventResults) HasData() bool {
 }
 
 // SetData gets a reference to the given CreateFunction207ResponseData and assigns it to the Data field.
-func (o *MixedEventResults) SetData(v CreateFunction207ResponseData) {
+func (o *CreateFunction207Response) SetData(v CreateFunction207ResponseData) {
 	o.Data = &v
 }
 
-func (o MixedEventResults) MarshalJSON() ([]byte, error) {
+func (o CreateFunction207Response) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Data) {
 		toSerialize["data"] = o.Data
@@ -76,38 +76,38 @@ func (o MixedEventResults) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableMixedEventResults struct {
-	value *MixedEventResults
+type NullableCreateFunction207Response struct {
+	value *CreateFunction207Response
 	isSet bool
 }
 
-func (v NullableMixedEventResults) Get() *MixedEventResults {
+func (v NullableCreateFunction207Response) Get() *CreateFunction207Response {
 	return v.value
 }
 
-func (v *NullableMixedEventResults) Set(val *MixedEventResults) {
+func (v *NullableCreateFunction207Response) Set(val *CreateFunction207Response) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMixedEventResults) IsSet() bool {
+func (v NullableCreateFunction207Response) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMixedEventResults) Unset() {
+func (v *NullableCreateFunction207Response) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMixedEventResults(val *MixedEventResults) *NullableMixedEventResults {
-	return &NullableMixedEventResults{value: val, isSet: true}
+func NewNullableCreateFunction207Response(val *CreateFunction207Response) *NullableCreateFunction207Response {
+	return &NullableCreateFunction207Response{value: val, isSet: true}
 }
 
-func (v NullableMixedEventResults) MarshalJSON() ([]byte, error) {
+func (v NullableCreateFunction207Response) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMixedEventResults) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateFunction207Response) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -27,9 +27,10 @@ type FunctionsApiService service
 type ApiCreateFunctionRequest struct {
 	ctx context.Context
 	ApiService *FunctionsApiService
+	moduleName string
 	name *string
 	code **os.File
-	events *[]ConnectedEvent
+	events *[]CreateFunctionRequestEventsInner
 }
 
 // Name of the function
@@ -45,7 +46,7 @@ func (r ApiCreateFunctionRequest) Code(code *os.File) ApiCreateFunctionRequest {
 }
 
 // Events that can trigger the function
-func (r ApiCreateFunctionRequest) Events(events []ConnectedEvent) ApiCreateFunctionRequest {
+func (r ApiCreateFunctionRequest) Events(events []CreateFunctionRequestEventsInner) ApiCreateFunctionRequest {
 	r.events = &events
 	return r
 }
@@ -60,12 +61,14 @@ CreateFunction Create new function
 Create a new function in the specified module
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param moduleName The name of the module to retrieve
  @return ApiCreateFunctionRequest
 */
-func (a *FunctionsApiService) CreateFunction(ctx context.Context) ApiCreateFunctionRequest {
+func (a *FunctionsApiService) CreateFunction(ctx context.Context, moduleName string) ApiCreateFunctionRequest {
 	return ApiCreateFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
+		moduleName: moduleName,
 	}
 }
 
@@ -83,6 +86,7 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 	}
 
 	localVarPath := localBasePath + "/v1/fn/{module_name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterToString(r.moduleName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -150,6 +154,14 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+			var v ListModulesDefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -217,7 +229,7 @@ func (a *FunctionsApiService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -246,6 +258,14 @@ func (a *FunctionsApiService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+			var v ListModulesDefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -356,6 +376,14 @@ func (a *FunctionsApiService) InvokeFunctionExecute(r ApiInvokeFunctionRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+			var v ListModulesDefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -374,6 +402,7 @@ func (a *FunctionsApiService) InvokeFunctionExecute(r ApiInvokeFunctionRequest) 
 type ApiShowFunctionByNameRequest struct {
 	ctx context.Context
 	ApiService *FunctionsApiService
+	moduleName string
 	functionName string
 }
 
@@ -387,13 +416,15 @@ ShowFunctionByName Show function info
 Get function data (name, module name, size of code)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param moduleName The name of the module to retrieve
  @param functionName The name of the function
  @return ApiShowFunctionByNameRequest
 */
-func (a *FunctionsApiService) ShowFunctionByName(ctx context.Context, functionName string) ApiShowFunctionByNameRequest {
+func (a *FunctionsApiService) ShowFunctionByName(ctx context.Context, moduleName string, functionName string) ApiShowFunctionByNameRequest {
 	return ApiShowFunctionByNameRequest{
 		ApiService: a,
 		ctx: ctx,
+		moduleName: moduleName,
 		functionName: functionName,
 	}
 }
@@ -414,6 +445,7 @@ func (a *FunctionsApiService) ShowFunctionByNameExecute(r ApiShowFunctionByNameR
 	}
 
 	localVarPath := localBasePath + "/v1/fn/{module_name}/{function_name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterToString(r.moduleName, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"function_name"+"}", url.PathEscape(parameterToString(r.functionName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -459,6 +491,14 @@ func (a *FunctionsApiService) ShowFunctionByNameExecute(r ApiShowFunctionByNameR
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+			var v ListModulesDefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -479,6 +519,27 @@ type ApiUpdateFunctionRequest struct {
 	ApiService *FunctionsApiService
 	moduleName string
 	functionName string
+	name *string
+	code **os.File
+	events *[]CreateFunctionRequestEventsInner
+}
+
+// Name of the function
+func (r ApiUpdateFunctionRequest) Name(name string) ApiUpdateFunctionRequest {
+	r.name = &name
+	return r
+}
+
+// File with the code of the function
+func (r ApiUpdateFunctionRequest) Code(code *os.File) ApiUpdateFunctionRequest {
+	r.code = &code
+	return r
+}
+
+// Events that can trigger the function
+func (r ApiUpdateFunctionRequest) Events(events []CreateFunctionRequestEventsInner) ApiUpdateFunctionRequest {
+	r.events = &events
+	return r
 }
 
 func (r ApiUpdateFunctionRequest) Execute() (*http.Response, error) {
@@ -535,12 +596,35 @@ func (a *FunctionsApiService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.name != nil {
+		localVarFormParams.Add("name", parameterToString(*r.name, ""))
+	}
+	var codeLocalVarFormFileName string
+	var codeLocalVarFileName     string
+	var codeLocalVarFileBytes    []byte
+
+	codeLocalVarFormFileName = "code"
+
+	var codeLocalVarFile *os.File
+	if r.code != nil {
+		codeLocalVarFile = *r.code
+	}
+	if codeLocalVarFile != nil {
+		fbs, _ := ioutil.ReadAll(codeLocalVarFile)
+		codeLocalVarFileBytes = fbs
+		codeLocalVarFileName = codeLocalVarFile.Name()
+		codeLocalVarFile.Close()
+	}
+	formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
+	if r.events != nil {
+		localVarFormParams.Add("events", parameterToString(*r.events, "csv"))
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -564,6 +648,14 @@ func (a *FunctionsApiService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+			var v ListModulesDefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 

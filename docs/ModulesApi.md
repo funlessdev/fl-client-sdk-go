@@ -69,7 +69,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -78,7 +78,7 @@ No authorization required
 
 ## DeleteModule
 
-> DeleteModule(ctx).Execute()
+> DeleteModule(ctx, moduleName).Execute()
 
 Delete module
 
@@ -97,10 +97,11 @@ import (
 )
 
 func main() {
+    moduleName := "moduleName_example" // string | The name of the module to retrieve
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ModulesApi.DeleteModule(context.Background()).Execute()
+    resp, r, err := apiClient.ModulesApi.DeleteModule(context.Background(), moduleName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ModulesApi.DeleteModule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -110,11 +111,19 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**moduleName** | **string** | The name of the module to retrieve | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteModuleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 ### Return type
@@ -128,7 +137,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -268,7 +277,7 @@ No authorization required
 
 ## UpdateModule
 
-> UpdateModule(ctx).Body(body).Execute()
+> UpdateModule(ctx, moduleName).CreateModuleRequest(createModuleRequest).Execute()
 
 Update module name
 
@@ -287,11 +296,12 @@ import (
 )
 
 func main() {
-    body := Object(987) // Object | New module name to use
+    moduleName := "moduleName_example" // string | The name of the module to retrieve
+    createModuleRequest := *openapiclient.NewCreateModuleRequest() // CreateModuleRequest | New module name to use
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ModulesApi.UpdateModule(context.Background()).Body(body).Execute()
+    resp, r, err := apiClient.ModulesApi.UpdateModule(context.Background(), moduleName).CreateModuleRequest(createModuleRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ModulesApi.UpdateModule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -302,6 +312,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**moduleName** | **string** | The name of the module to retrieve | 
 
 ### Other Parameters
 
@@ -310,7 +324,8 @@ Other parameters are passed through a pointer to a apiUpdateModuleRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **Object** | New module name to use | 
+
+ **createModuleRequest** | [**CreateModuleRequest**](CreateModuleRequest.md) | New module name to use | 
 
 ### Return type
 
@@ -323,7 +338,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

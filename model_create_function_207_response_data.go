@@ -14,34 +14,34 @@ import (
 	"encoding/json"
 )
 
-// MixedEventResultsData struct for MixedEventResultsData
-type MixedEventResultsData struct {
+// CreateFunction207ResponseData struct for CreateFunction207ResponseData
+type CreateFunction207ResponseData struct {
 	// The name of the function
 	Name *string `json:"name,omitempty"`
 	// The results of event connection, both successful and failed
-	Events []MixedEventResultsDataEventsInner `json:"events,omitempty"`
-	Metadata *MixedEventResultsDataMetadata `json:"metadata,omitempty"`
+	Events []CreateFunction207ResponseDataEventsInner `json:"events,omitempty"`
+	Metadata *CreateFunction207ResponseDataMetadata `json:"metadata,omitempty"`
 }
 
-// NewMixedEventResultsData instantiates a new MixedEventResultsData object
+// NewCreateFunction207ResponseData instantiates a new CreateFunction207ResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMixedEventResultsData() *MixedEventResultsData {
-	this := MixedEventResultsData{}
+func NewCreateFunction207ResponseData() *CreateFunction207ResponseData {
+	this := CreateFunction207ResponseData{}
 	return &this
 }
 
-// NewMixedEventResultsDataWithDefaults instantiates a new MixedEventResultsData object
+// NewCreateFunction207ResponseDataWithDefaults instantiates a new CreateFunction207ResponseData object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMixedEventResultsDataWithDefaults() *MixedEventResultsData {
-	this := MixedEventResultsData{}
+func NewCreateFunction207ResponseDataWithDefaults() *CreateFunction207ResponseData {
+	this := CreateFunction207ResponseData{}
 	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *MixedEventResultsData) GetName() string {
+func (o *CreateFunction207ResponseData) GetName() string {
 	if o == nil || isNil(o.Name) {
 		var ret string
 		return ret
@@ -51,7 +51,7 @@ func (o *MixedEventResultsData) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MixedEventResultsData) GetNameOk() (*string, bool) {
+func (o *CreateFunction207ResponseData) GetNameOk() (*string, bool) {
 	if o == nil || isNil(o.Name) {
     return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *MixedEventResultsData) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *MixedEventResultsData) HasName() bool {
+func (o *CreateFunction207ResponseData) HasName() bool {
 	if o != nil && !isNil(o.Name) {
 		return true
 	}
@@ -68,14 +68,14 @@ func (o *MixedEventResultsData) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *MixedEventResultsData) SetName(v string) {
+func (o *CreateFunction207ResponseData) SetName(v string) {
 	o.Name = &v
 }
 
 // GetEvents returns the Events field value if set, zero value otherwise.
-func (o *MixedEventResultsData) GetEvents() []MixedEventResultsDataEventsInner {
+func (o *CreateFunction207ResponseData) GetEvents() []CreateFunction207ResponseDataEventsInner {
 	if o == nil || isNil(o.Events) {
-		var ret []MixedEventResultsDataEventsInner
+		var ret []CreateFunction207ResponseDataEventsInner
 		return ret
 	}
 	return o.Events
@@ -83,7 +83,7 @@ func (o *MixedEventResultsData) GetEvents() []MixedEventResultsDataEventsInner {
 
 // GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MixedEventResultsData) GetEventsOk() ([]MixedEventResultsDataEventsInner, bool) {
+func (o *CreateFunction207ResponseData) GetEventsOk() ([]CreateFunction207ResponseDataEventsInner, bool) {
 	if o == nil || isNil(o.Events) {
     return nil, false
 	}
@@ -91,7 +91,7 @@ func (o *MixedEventResultsData) GetEventsOk() ([]MixedEventResultsDataEventsInne
 }
 
 // HasEvents returns a boolean if a field has been set.
-func (o *MixedEventResultsData) HasEvents() bool {
+func (o *CreateFunction207ResponseData) HasEvents() bool {
 	if o != nil && !isNil(o.Events) {
 		return true
 	}
@@ -99,15 +99,15 @@ func (o *MixedEventResultsData) HasEvents() bool {
 	return false
 }
 
-// SetEvents gets a reference to the given []MixedEventResultsDataEventsInner and assigns it to the Events field.
-func (o *MixedEventResultsData) SetEvents(v []MixedEventResultsDataEventsInner) {
+// SetEvents gets a reference to the given []CreateFunction207ResponseDataEventsInner and assigns it to the Events field.
+func (o *CreateFunction207ResponseData) SetEvents(v []CreateFunction207ResponseDataEventsInner) {
 	o.Events = v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *MixedEventResultsData) GetMetadata() MixedEventResultsDataMetadata {
+func (o *CreateFunction207ResponseData) GetMetadata() CreateFunction207ResponseDataMetadata {
 	if o == nil || isNil(o.Metadata) {
-		var ret MixedEventResultsDataMetadata
+		var ret CreateFunction207ResponseDataMetadata
 		return ret
 	}
 	return *o.Metadata
@@ -115,7 +115,7 @@ func (o *MixedEventResultsData) GetMetadata() MixedEventResultsDataMetadata {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MixedEventResultsData) GetMetadataOk() (*MixedEventResultsDataMetadata, bool) {
+func (o *CreateFunction207ResponseData) GetMetadataOk() (*CreateFunction207ResponseDataMetadata, bool) {
 	if o == nil || isNil(o.Metadata) {
     return nil, false
 	}
@@ -123,7 +123,7 @@ func (o *MixedEventResultsData) GetMetadataOk() (*MixedEventResultsDataMetadata,
 }
 
 // HasMetadata returns a boolean if a field has been set.
-func (o *MixedEventResultsData) HasMetadata() bool {
+func (o *CreateFunction207ResponseData) HasMetadata() bool {
 	if o != nil && !isNil(o.Metadata) {
 		return true
 	}
@@ -131,12 +131,12 @@ func (o *MixedEventResultsData) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given MixedEventResultsDataMetadata and assigns it to the Metadata field.
-func (o *MixedEventResultsData) SetMetadata(v MixedEventResultsDataMetadata) {
+// SetMetadata gets a reference to the given CreateFunction207ResponseDataMetadata and assigns it to the Metadata field.
+func (o *CreateFunction207ResponseData) SetMetadata(v CreateFunction207ResponseDataMetadata) {
 	o.Metadata = &v
 }
 
-func (o MixedEventResultsData) MarshalJSON() ([]byte, error) {
+func (o CreateFunction207ResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
@@ -150,38 +150,38 @@ func (o MixedEventResultsData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableMixedEventResultsData struct {
-	value *MixedEventResultsData
+type NullableCreateFunction207ResponseData struct {
+	value *CreateFunction207ResponseData
 	isSet bool
 }
 
-func (v NullableMixedEventResultsData) Get() *MixedEventResultsData {
+func (v NullableCreateFunction207ResponseData) Get() *CreateFunction207ResponseData {
 	return v.value
 }
 
-func (v *NullableMixedEventResultsData) Set(val *MixedEventResultsData) {
+func (v *NullableCreateFunction207ResponseData) Set(val *CreateFunction207ResponseData) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMixedEventResultsData) IsSet() bool {
+func (v NullableCreateFunction207ResponseData) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMixedEventResultsData) Unset() {
+func (v *NullableCreateFunction207ResponseData) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMixedEventResultsData(val *MixedEventResultsData) *NullableMixedEventResultsData {
-	return &NullableMixedEventResultsData{value: val, isSet: true}
+func NewNullableCreateFunction207ResponseData(val *CreateFunction207ResponseData) *NullableCreateFunction207ResponseData {
+	return &NullableCreateFunction207ResponseData{value: val, isSet: true}
 }
 
-func (v NullableMixedEventResultsData) MarshalJSON() ([]byte, error) {
+func (v NullableCreateFunction207ResponseData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMixedEventResultsData) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateFunction207ResponseData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -92,19 +92,29 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [ConnectedEvent](docs/ConnectedEvent.md)
+ - [CreateFunction207Response](docs/CreateFunction207Response.md)
+ - [CreateFunction207ResponseData](docs/CreateFunction207ResponseData.md)
+ - [CreateFunction207ResponseDataEventsInner](docs/CreateFunction207ResponseDataEventsInner.md)
+ - [CreateFunction207ResponseDataMetadata](docs/CreateFunction207ResponseDataMetadata.md)
  - [CreateModuleRequest](docs/CreateModuleRequest.md)
- - [ErrorErrors](docs/ErrorErrors.md)
+ - [FunctionCreateUpdate](docs/FunctionCreateUpdate.md)
  - [InvokeFunction200Response](docs/InvokeFunction200Response.md)
  - [InvokeFunctionRequest](docs/InvokeFunctionRequest.md)
+ - [InvokeInput](docs/InvokeInput.md)
+ - [InvokeResult](docs/InvokeResult.md)
  - [ListModules200Response](docs/ListModules200Response.md)
+ - [ListModulesDefaultResponse](docs/ListModulesDefaultResponse.md)
+ - [ListModulesDefaultResponseErrors](docs/ListModulesDefaultResponseErrors.md)
  - [MixedEventResults](docs/MixedEventResults.md)
- - [MixedEventResultsData](docs/MixedEventResultsData.md)
- - [MixedEventResultsDataEventsInner](docs/MixedEventResultsDataEventsInner.md)
- - [MixedEventResultsDataMetadata](docs/MixedEventResultsDataMetadata.md)
  - [ModelError](docs/ModelError.md)
+ - [ModuleName](docs/ModuleName.md)
+ - [ModuleNamesResult](docs/ModuleNamesResult.md)
  - [ShowFunctionByName200Response](docs/ShowFunctionByName200Response.md)
  - [ShowModuleByName200Response](docs/ShowModuleByName200Response.md)
  - [ShowModuleByName200ResponseData](docs/ShowModuleByName200ResponseData.md)
+ - [SingleFunctionResult](docs/SingleFunctionResult.md)
+ - [SingleModuleResult](docs/SingleModuleResult.md)
 
 
 ## Documentation For Authorization

@@ -1,52 +1,52 @@
-# MixedEventResults
+# SingleModuleResult
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**CreateFunction207ResponseData**](CreateFunction207ResponseData.md) |  | [optional] 
+**Data** | Pointer to [**ShowModuleByName200ResponseData**](ShowModuleByName200ResponseData.md) |  | [optional] 
 
 ## Methods
 
-### NewMixedEventResults
+### NewSingleModuleResult
 
-`func NewMixedEventResults() *MixedEventResults`
+`func NewSingleModuleResult() *SingleModuleResult`
 
-NewMixedEventResults instantiates a new MixedEventResults object
+NewSingleModuleResult instantiates a new SingleModuleResult object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewMixedEventResultsWithDefaults
+### NewSingleModuleResultWithDefaults
 
-`func NewMixedEventResultsWithDefaults() *MixedEventResults`
+`func NewSingleModuleResultWithDefaults() *SingleModuleResult`
 
-NewMixedEventResultsWithDefaults instantiates a new MixedEventResults object
+NewSingleModuleResultWithDefaults instantiates a new SingleModuleResult object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *MixedEventResults) GetData() CreateFunction207ResponseData`
+`func (o *SingleModuleResult) GetData() ShowModuleByName200ResponseData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *MixedEventResults) GetDataOk() (*CreateFunction207ResponseData, bool)`
+`func (o *SingleModuleResult) GetDataOk() (*ShowModuleByName200ResponseData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *MixedEventResults) SetData(v CreateFunction207ResponseData)`
+`func (o *SingleModuleResult) SetData(v ShowModuleByName200ResponseData)`
 
 SetData sets Data field to given value.
 
 ### HasData
 
-`func (o *MixedEventResults) HasData() bool`
+`func (o *SingleModuleResult) HasData() bool`
 
 HasData returns a boolean if a field has been set.
 

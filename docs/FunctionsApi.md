@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateFunction
 
-> CreateFunction(ctx).Name(name).Code(code).Events(events).Execute()
+> CreateFunction(ctx, moduleName).Name(name).Code(code).Events(events).Execute()
 
 Create new function
 
@@ -33,13 +33,14 @@ import (
 )
 
 func main() {
+    moduleName := "moduleName_example" // string | The name of the module to retrieve
     name := "name_example" // string | Name of the function (optional)
     code := os.NewFile(1234, "some_file") // *os.File | File with the code of the function (optional)
-    events := []ConnectedEvent{"TODO"} // []ConnectedEvent | Events that can trigger the function (optional)
+    events := []CreateFunctionRequestEventsInner{"TODO"} // []CreateFunctionRequestEventsInner | Events that can trigger the function (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FunctionsApi.CreateFunction(context.Background()).Name(name).Code(code).Events(events).Execute()
+    resp, r, err := apiClient.FunctionsApi.CreateFunction(context.Background(), moduleName).Name(name).Code(code).Events(events).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.CreateFunction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -50,6 +51,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**moduleName** | **string** | The name of the module to retrieve | 
 
 ### Other Parameters
 
@@ -58,9 +63,10 @@ Other parameters are passed through a pointer to a apiCreateFunctionRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **name** | **string** | Name of the function | 
  **code** | ***os.File** | File with the code of the function | 
- **events** | [**[]ConnectedEvent**](ConnectedEvent.md) | Events that can trigger the function | 
+ **events** | [**[]CreateFunctionRequestEventsInner**](CreateFunctionRequestEventsInner.md) | Events that can trigger the function | 
 
 ### Return type
 
@@ -144,7 +150,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -228,7 +234,7 @@ No authorization required
 
 ## ShowFunctionByName
 
-> ShowFunctionByName200Response ShowFunctionByName(ctx, functionName).Execute()
+> ShowFunctionByName200Response ShowFunctionByName(ctx, moduleName, functionName).Execute()
 
 Show function info
 
@@ -247,11 +253,12 @@ import (
 )
 
 func main() {
+    moduleName := "moduleName_example" // string | The name of the module to retrieve
     functionName := "functionName_example" // string | The name of the function
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FunctionsApi.ShowFunctionByName(context.Background(), functionName).Execute()
+    resp, r, err := apiClient.FunctionsApi.ShowFunctionByName(context.Background(), moduleName, functionName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.ShowFunctionByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -267,6 +274,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**moduleName** | **string** | The name of the module to retrieve | 
 **functionName** | **string** | The name of the function | 
 
 ### Other Parameters
@@ -276,6 +284,7 @@ Other parameters are passed through a pointer to a apiShowFunctionByNameRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -298,7 +307,7 @@ No authorization required
 
 ## UpdateFunction
 
-> UpdateFunction(ctx, moduleName, functionName).Execute()
+> UpdateFunction(ctx, moduleName, functionName).Name(name).Code(code).Events(events).Execute()
 
 Update function
 
@@ -319,10 +328,13 @@ import (
 func main() {
     moduleName := "moduleName_example" // string | The name of the module
     functionName := "functionName_example" // string | The name of the function
+    name := "name_example" // string | Name of the function (optional)
+    code := os.NewFile(1234, "some_file") // *os.File | File with the code of the function (optional)
+    events := []CreateFunctionRequestEventsInner{"TODO"} // []CreateFunctionRequestEventsInner | Events that can trigger the function (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FunctionsApi.UpdateFunction(context.Background(), moduleName, functionName).Execute()
+    resp, r, err := apiClient.FunctionsApi.UpdateFunction(context.Background(), moduleName, functionName).Name(name).Code(code).Events(events).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.UpdateFunction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -348,6 +360,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **name** | **string** | Name of the function | 
+ **code** | ***os.File** | File with the code of the function | 
+ **events** | [**[]CreateFunctionRequestEventsInner**](CreateFunctionRequestEventsInner.md) | Events that can trigger the function | 
 
 ### Return type
 
@@ -360,7 +375,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: multipart/form-data
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

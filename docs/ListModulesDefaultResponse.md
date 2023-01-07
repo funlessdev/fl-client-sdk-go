@@ -1,4 +1,4 @@
-# ModelError
+# ListModulesDefaultResponse
 
 ## Properties
 
@@ -8,39 +8,39 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewModelError
+### NewListModulesDefaultResponse
 
-`func NewModelError(errors ListModulesDefaultResponseErrors, ) *ModelError`
+`func NewListModulesDefaultResponse(errors ListModulesDefaultResponseErrors, ) *ListModulesDefaultResponse`
 
-NewModelError instantiates a new ModelError object
+NewListModulesDefaultResponse instantiates a new ListModulesDefaultResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewModelErrorWithDefaults
+### NewListModulesDefaultResponseWithDefaults
 
-`func NewModelErrorWithDefaults() *ModelError`
+`func NewListModulesDefaultResponseWithDefaults() *ListModulesDefaultResponse`
 
-NewModelErrorWithDefaults instantiates a new ModelError object
+NewListModulesDefaultResponseWithDefaults instantiates a new ListModulesDefaultResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetErrors
 
-`func (o *ModelError) GetErrors() ListModulesDefaultResponseErrors`
+`func (o *ListModulesDefaultResponse) GetErrors() ListModulesDefaultResponseErrors`
 
 GetErrors returns the Errors field if non-nil, zero value otherwise.
 
 ### GetErrorsOk
 
-`func (o *ModelError) GetErrorsOk() (*ListModulesDefaultResponseErrors, bool)`
+`func (o *ListModulesDefaultResponse) GetErrorsOk() (*ListModulesDefaultResponseErrors, bool)`
 
 GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetErrors
 
-`func (o *ModelError) SetErrors(v ListModulesDefaultResponseErrors)`
+`func (o *ListModulesDefaultResponse) SetErrors(v ListModulesDefaultResponseErrors)`
 
 SetErrors sets Errors field to given value.
 

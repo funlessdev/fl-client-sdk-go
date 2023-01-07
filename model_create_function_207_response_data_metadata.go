@@ -14,8 +14,8 @@ import (
 	"encoding/json"
 )
 
-// MixedEventResultsDataMetadata struct for MixedEventResultsDataMetadata
-type MixedEventResultsDataMetadata struct {
+// CreateFunction207ResponseDataMetadata struct for CreateFunction207ResponseDataMetadata
+type CreateFunction207ResponseDataMetadata struct {
 	// The amount of events that was successfully connected
 	Successful *int32 `json:"successful,omitempty"`
 	// The amount of events that wasn't successfully connected
@@ -24,25 +24,25 @@ type MixedEventResultsDataMetadata struct {
 	Total *int32 `json:"total,omitempty"`
 }
 
-// NewMixedEventResultsDataMetadata instantiates a new MixedEventResultsDataMetadata object
+// NewCreateFunction207ResponseDataMetadata instantiates a new CreateFunction207ResponseDataMetadata object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMixedEventResultsDataMetadata() *MixedEventResultsDataMetadata {
-	this := MixedEventResultsDataMetadata{}
+func NewCreateFunction207ResponseDataMetadata() *CreateFunction207ResponseDataMetadata {
+	this := CreateFunction207ResponseDataMetadata{}
 	return &this
 }
 
-// NewMixedEventResultsDataMetadataWithDefaults instantiates a new MixedEventResultsDataMetadata object
+// NewCreateFunction207ResponseDataMetadataWithDefaults instantiates a new CreateFunction207ResponseDataMetadata object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMixedEventResultsDataMetadataWithDefaults() *MixedEventResultsDataMetadata {
-	this := MixedEventResultsDataMetadata{}
+func NewCreateFunction207ResponseDataMetadataWithDefaults() *CreateFunction207ResponseDataMetadata {
+	this := CreateFunction207ResponseDataMetadata{}
 	return &this
 }
 
 // GetSuccessful returns the Successful field value if set, zero value otherwise.
-func (o *MixedEventResultsDataMetadata) GetSuccessful() int32 {
+func (o *CreateFunction207ResponseDataMetadata) GetSuccessful() int32 {
 	if o == nil || isNil(o.Successful) {
 		var ret int32
 		return ret
@@ -52,7 +52,7 @@ func (o *MixedEventResultsDataMetadata) GetSuccessful() int32 {
 
 // GetSuccessfulOk returns a tuple with the Successful field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MixedEventResultsDataMetadata) GetSuccessfulOk() (*int32, bool) {
+func (o *CreateFunction207ResponseDataMetadata) GetSuccessfulOk() (*int32, bool) {
 	if o == nil || isNil(o.Successful) {
     return nil, false
 	}
@@ -60,7 +60,7 @@ func (o *MixedEventResultsDataMetadata) GetSuccessfulOk() (*int32, bool) {
 }
 
 // HasSuccessful returns a boolean if a field has been set.
-func (o *MixedEventResultsDataMetadata) HasSuccessful() bool {
+func (o *CreateFunction207ResponseDataMetadata) HasSuccessful() bool {
 	if o != nil && !isNil(o.Successful) {
 		return true
 	}
@@ -69,12 +69,12 @@ func (o *MixedEventResultsDataMetadata) HasSuccessful() bool {
 }
 
 // SetSuccessful gets a reference to the given int32 and assigns it to the Successful field.
-func (o *MixedEventResultsDataMetadata) SetSuccessful(v int32) {
+func (o *CreateFunction207ResponseDataMetadata) SetSuccessful(v int32) {
 	o.Successful = &v
 }
 
 // GetFailed returns the Failed field value if set, zero value otherwise.
-func (o *MixedEventResultsDataMetadata) GetFailed() int32 {
+func (o *CreateFunction207ResponseDataMetadata) GetFailed() int32 {
 	if o == nil || isNil(o.Failed) {
 		var ret int32
 		return ret
@@ -84,7 +84,7 @@ func (o *MixedEventResultsDataMetadata) GetFailed() int32 {
 
 // GetFailedOk returns a tuple with the Failed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MixedEventResultsDataMetadata) GetFailedOk() (*int32, bool) {
+func (o *CreateFunction207ResponseDataMetadata) GetFailedOk() (*int32, bool) {
 	if o == nil || isNil(o.Failed) {
     return nil, false
 	}
@@ -92,7 +92,7 @@ func (o *MixedEventResultsDataMetadata) GetFailedOk() (*int32, bool) {
 }
 
 // HasFailed returns a boolean if a field has been set.
-func (o *MixedEventResultsDataMetadata) HasFailed() bool {
+func (o *CreateFunction207ResponseDataMetadata) HasFailed() bool {
 	if o != nil && !isNil(o.Failed) {
 		return true
 	}
@@ -101,12 +101,12 @@ func (o *MixedEventResultsDataMetadata) HasFailed() bool {
 }
 
 // SetFailed gets a reference to the given int32 and assigns it to the Failed field.
-func (o *MixedEventResultsDataMetadata) SetFailed(v int32) {
+func (o *CreateFunction207ResponseDataMetadata) SetFailed(v int32) {
 	o.Failed = &v
 }
 
 // GetTotal returns the Total field value if set, zero value otherwise.
-func (o *MixedEventResultsDataMetadata) GetTotal() int32 {
+func (o *CreateFunction207ResponseDataMetadata) GetTotal() int32 {
 	if o == nil || isNil(o.Total) {
 		var ret int32
 		return ret
@@ -116,7 +116,7 @@ func (o *MixedEventResultsDataMetadata) GetTotal() int32 {
 
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MixedEventResultsDataMetadata) GetTotalOk() (*int32, bool) {
+func (o *CreateFunction207ResponseDataMetadata) GetTotalOk() (*int32, bool) {
 	if o == nil || isNil(o.Total) {
     return nil, false
 	}
@@ -124,7 +124,7 @@ func (o *MixedEventResultsDataMetadata) GetTotalOk() (*int32, bool) {
 }
 
 // HasTotal returns a boolean if a field has been set.
-func (o *MixedEventResultsDataMetadata) HasTotal() bool {
+func (o *CreateFunction207ResponseDataMetadata) HasTotal() bool {
 	if o != nil && !isNil(o.Total) {
 		return true
 	}
@@ -133,11 +133,11 @@ func (o *MixedEventResultsDataMetadata) HasTotal() bool {
 }
 
 // SetTotal gets a reference to the given int32 and assigns it to the Total field.
-func (o *MixedEventResultsDataMetadata) SetTotal(v int32) {
+func (o *CreateFunction207ResponseDataMetadata) SetTotal(v int32) {
 	o.Total = &v
 }
 
-func (o MixedEventResultsDataMetadata) MarshalJSON() ([]byte, error) {
+func (o CreateFunction207ResponseDataMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Successful) {
 		toSerialize["successful"] = o.Successful
@@ -151,38 +151,38 @@ func (o MixedEventResultsDataMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableMixedEventResultsDataMetadata struct {
-	value *MixedEventResultsDataMetadata
+type NullableCreateFunction207ResponseDataMetadata struct {
+	value *CreateFunction207ResponseDataMetadata
 	isSet bool
 }
 
-func (v NullableMixedEventResultsDataMetadata) Get() *MixedEventResultsDataMetadata {
+func (v NullableCreateFunction207ResponseDataMetadata) Get() *CreateFunction207ResponseDataMetadata {
 	return v.value
 }
 
-func (v *NullableMixedEventResultsDataMetadata) Set(val *MixedEventResultsDataMetadata) {
+func (v *NullableCreateFunction207ResponseDataMetadata) Set(val *CreateFunction207ResponseDataMetadata) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMixedEventResultsDataMetadata) IsSet() bool {
+func (v NullableCreateFunction207ResponseDataMetadata) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMixedEventResultsDataMetadata) Unset() {
+func (v *NullableCreateFunction207ResponseDataMetadata) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMixedEventResultsDataMetadata(val *MixedEventResultsDataMetadata) *NullableMixedEventResultsDataMetadata {
-	return &NullableMixedEventResultsDataMetadata{value: val, isSet: true}
+func NewNullableCreateFunction207ResponseDataMetadata(val *CreateFunction207ResponseDataMetadata) *NullableCreateFunction207ResponseDataMetadata {
+	return &NullableCreateFunction207ResponseDataMetadata{value: val, isSet: true}
 }
 
-func (v NullableMixedEventResultsDataMetadata) MarshalJSON() ([]byte, error) {
+func (v NullableCreateFunction207ResponseDataMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMixedEventResultsDataMetadata) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateFunction207ResponseDataMetadata) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

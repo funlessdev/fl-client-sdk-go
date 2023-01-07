@@ -16,14 +16,14 @@ import (
 
 // ModelError struct for ModelError
 type ModelError struct {
-	Errors ErrorErrors `json:"errors"`
+	Errors ListModulesDefaultResponseErrors `json:"errors"`
 }
 
 // NewModelError instantiates a new ModelError object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewModelError(errors ErrorErrors) *ModelError {
+func NewModelError(errors ListModulesDefaultResponseErrors) *ModelError {
 	this := ModelError{}
 	this.Errors = errors
 	return &this
@@ -38,9 +38,9 @@ func NewModelErrorWithDefaults() *ModelError {
 }
 
 // GetErrors returns the Errors field value
-func (o *ModelError) GetErrors() ErrorErrors {
+func (o *ModelError) GetErrors() ListModulesDefaultResponseErrors {
 	if o == nil {
-		var ret ErrorErrors
+		var ret ListModulesDefaultResponseErrors
 		return ret
 	}
 
@@ -49,7 +49,7 @@ func (o *ModelError) GetErrors() ErrorErrors {
 
 // GetErrorsOk returns a tuple with the Errors field value
 // and a boolean to check if the value has been set.
-func (o *ModelError) GetErrorsOk() (*ErrorErrors, bool) {
+func (o *ModelError) GetErrorsOk() (*ListModulesDefaultResponseErrors, bool) {
 	if o == nil {
     return nil, false
 	}
@@ -57,7 +57,7 @@ func (o *ModelError) GetErrorsOk() (*ErrorErrors, bool) {
 }
 
 // SetErrors sets field value
-func (o *ModelError) SetErrors(v ErrorErrors) {
+func (o *ModelError) SetErrors(v ListModulesDefaultResponseErrors) {
 	o.Errors = v
 }
 

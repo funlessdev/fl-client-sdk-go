@@ -26,7 +26,9 @@ func Test_openapi_FunctionsApiService(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.FunctionsApi.CreateFunction(context.Background()).Execute()
+        var moduleName string
+
+        resp, httpRes, err := apiClient.FunctionsApi.CreateFunction(context.Background(), moduleName).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -68,9 +70,10 @@ func Test_openapi_FunctionsApiService(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
+        var moduleName string
         var functionName string
 
-        resp, httpRes, err := apiClient.FunctionsApi.ShowFunctionByName(context.Background(), functionName).Execute()
+        resp, httpRes, err := apiClient.FunctionsApi.ShowFunctionByName(context.Background(), moduleName, functionName).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)

@@ -38,7 +38,9 @@ func Test_openapi_ModulesApiService(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.ModulesApi.DeleteModule(context.Background()).Execute()
+        var moduleName string
+
+        resp, httpRes, err := apiClient.ModulesApi.DeleteModule(context.Background(), moduleName).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -76,7 +78,9 @@ func Test_openapi_ModulesApiService(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.ModulesApi.UpdateModule(context.Background()).Execute()
+        var moduleName string
+
+        resp, httpRes, err := apiClient.ModulesApi.UpdateModule(context.Background(), moduleName).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
