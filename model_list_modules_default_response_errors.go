@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ListModulesDefaultResponseErrors type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListModulesDefaultResponseErrors{}
+
 // ListModulesDefaultResponseErrors struct for ListModulesDefaultResponseErrors
 type ListModulesDefaultResponseErrors struct {
 	Detail *string `json:"detail,omitempty"`
@@ -49,7 +52,7 @@ func (o *ListModulesDefaultResponseErrors) GetDetail() string {
 // and a boolean to check if the value has been set.
 func (o *ListModulesDefaultResponseErrors) GetDetailOk() (*string, bool) {
 	if o == nil || isNil(o.Detail) {
-    return nil, false
+		return nil, false
 	}
 	return o.Detail, true
 }
@@ -69,11 +72,19 @@ func (o *ListModulesDefaultResponseErrors) SetDetail(v string) {
 }
 
 func (o ListModulesDefaultResponseErrors) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ListModulesDefaultResponseErrors) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Detail) {
 		toSerialize["detail"] = o.Detail
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableListModulesDefaultResponseErrors struct {

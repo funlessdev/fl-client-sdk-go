@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MixedEventResults type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MixedEventResults{}
+
 // MixedEventResults struct for MixedEventResults
 type MixedEventResults struct {
 	Data *CreateFunction207ResponseData `json:"data,omitempty"`
@@ -49,7 +52,7 @@ func (o *MixedEventResults) GetData() CreateFunction207ResponseData {
 // and a boolean to check if the value has been set.
 func (o *MixedEventResults) GetDataOk() (*CreateFunction207ResponseData, bool) {
 	if o == nil || isNil(o.Data) {
-    return nil, false
+		return nil, false
 	}
 	return o.Data, true
 }
@@ -69,11 +72,19 @@ func (o *MixedEventResults) SetData(v CreateFunction207ResponseData) {
 }
 
 func (o MixedEventResults) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o MixedEventResults) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableMixedEventResults struct {

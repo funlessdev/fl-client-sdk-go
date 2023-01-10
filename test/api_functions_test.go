@@ -10,90 +10,87 @@ Testing FunctionsApiService
 package openapi
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "./openapi"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func Test_openapi_FunctionsApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test FunctionsApiService CreateFunction", func(t *testing.T) {
+	t.Run("Test FunctionsApiService CreateFunction", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var moduleName string
+		var moduleName string
 
-        resp, httpRes, err := apiClient.FunctionsApi.CreateFunction(context.Background(), moduleName).Execute()
+		httpRes, err := apiClient.FunctionsApi.CreateFunction(context.Background(), moduleName).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test FunctionsApiService DeleteFunction", func(t *testing.T) {
+	t.Run("Test FunctionsApiService DeleteFunction", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var moduleName string
-        var functionName string
+		var moduleName string
+		var functionName string
 
-        resp, httpRes, err := apiClient.FunctionsApi.DeleteFunction(context.Background(), moduleName, functionName).Execute()
+		httpRes, err := apiClient.FunctionsApi.DeleteFunction(context.Background(), moduleName, functionName).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test FunctionsApiService InvokeFunction", func(t *testing.T) {
+	t.Run("Test FunctionsApiService InvokeFunction", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var moduleName string
-        var functionName string
+		var moduleName string
+		var functionName string
 
-        resp, httpRes, err := apiClient.FunctionsApi.InvokeFunction(context.Background(), moduleName, functionName).Execute()
+		resp, httpRes, err := apiClient.FunctionsApi.InvokeFunction(context.Background(), moduleName, functionName).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test FunctionsApiService ShowFunctionByName", func(t *testing.T) {
+	t.Run("Test FunctionsApiService ShowFunctionByName", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var moduleName string
-        var functionName string
+		var moduleName string
+		var functionName string
 
-        resp, httpRes, err := apiClient.FunctionsApi.ShowFunctionByName(context.Background(), moduleName, functionName).Execute()
+		resp, httpRes, err := apiClient.FunctionsApi.ShowFunctionByName(context.Background(), moduleName, functionName).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test FunctionsApiService UpdateFunction", func(t *testing.T) {
+	t.Run("Test FunctionsApiService UpdateFunction", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var moduleName string
-        var functionName string
+		var moduleName string
+		var functionName string
 
-        resp, httpRes, err := apiClient.FunctionsApi.UpdateFunction(context.Background(), moduleName, functionName).Execute()
+		httpRes, err := apiClient.FunctionsApi.UpdateFunction(context.Background(), moduleName, functionName).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

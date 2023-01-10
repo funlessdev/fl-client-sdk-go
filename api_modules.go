@@ -123,8 +123,8 @@ func (a *ModulesApiService) CreateModuleExecute(r ApiCreateModuleRequest) (*http
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -172,7 +172,7 @@ func (a *ModulesApiService) DeleteModuleExecute(r ApiDeleteModuleRequest) (*http
 	}
 
 	localVarPath := localBasePath + "/v1/fn/{module_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterToString(r.moduleName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterValueToString(r.moduleName, "moduleName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -223,8 +223,8 @@ func (a *ModulesApiService) DeleteModuleExecute(r ApiDeleteModuleRequest) (*http
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -321,8 +321,8 @@ func (a *ModulesApiService) ListModulesExecute(r ApiListModulesRequest) (*ListMo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -381,7 +381,7 @@ func (a *ModulesApiService) ShowModuleByNameExecute(r ApiShowModuleByNameRequest
 	}
 
 	localVarPath := localBasePath + "/v1/fn/{module_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterToString(r.moduleName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterValueToString(r.moduleName, "moduleName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -432,8 +432,8 @@ func (a *ModulesApiService) ShowModuleByNameExecute(r ApiShowModuleByNameRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -497,7 +497,7 @@ func (a *ModulesApiService) UpdateModuleExecute(r ApiUpdateModuleRequest) (*http
 	}
 
 	localVarPath := localBasePath + "/v1/fn/{module_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterToString(r.moduleName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterValueToString(r.moduleName, "moduleName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -553,8 +553,8 @@ func (a *ModulesApiService) UpdateModuleExecute(r ApiUpdateModuleRequest) (*http
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModuleNamesResult type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModuleNamesResult{}
+
 // ModuleNamesResult struct for ModuleNamesResult
 type ModuleNamesResult struct {
 	Data []string `json:"data,omitempty"`
@@ -49,7 +52,7 @@ func (o *ModuleNamesResult) GetData() []string {
 // and a boolean to check if the value has been set.
 func (o *ModuleNamesResult) GetDataOk() ([]string, bool) {
 	if o == nil || isNil(o.Data) {
-    return nil, false
+		return nil, false
 	}
 	return o.Data, true
 }
@@ -69,11 +72,19 @@ func (o *ModuleNamesResult) SetData(v []string) {
 }
 
 func (o ModuleNamesResult) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ModuleNamesResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableModuleNamesResult struct {

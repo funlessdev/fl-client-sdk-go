@@ -15,12 +15,15 @@ import (
 	"os"
 )
 
+// checks if the FunctionCreateUpdate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FunctionCreateUpdate{}
+
 // FunctionCreateUpdate struct for FunctionCreateUpdate
 type FunctionCreateUpdate struct {
 	// Name of the function
 	Name *string `json:"name,omitempty"`
 	// File with the code of the function
-	Code **os.File `json:"code,omitempty"`
+	Code *os.File `json:"code,omitempty"`
 	// Events that can trigger the function
 	Events []CreateFunctionRequestEventsInner `json:"events,omitempty"`
 }
@@ -55,7 +58,7 @@ func (o *FunctionCreateUpdate) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *FunctionCreateUpdate) GetNameOk() (*string, bool) {
 	if o == nil || isNil(o.Name) {
-    return nil, false
+		return nil, false
 	}
 	return o.Name, true
 }
@@ -75,9 +78,9 @@ func (o *FunctionCreateUpdate) SetName(v string) {
 }
 
 // GetCode returns the Code field value if set, zero value otherwise.
-func (o *FunctionCreateUpdate) GetCode() *os.File {
+func (o *FunctionCreateUpdate) GetCode() os.File {
 	if o == nil || isNil(o.Code) {
-		var ret *os.File
+		var ret os.File
 		return ret
 	}
 	return *o.Code
@@ -85,9 +88,9 @@ func (o *FunctionCreateUpdate) GetCode() *os.File {
 
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FunctionCreateUpdate) GetCodeOk() (**os.File, bool) {
+func (o *FunctionCreateUpdate) GetCodeOk() (*os.File, bool) {
 	if o == nil || isNil(o.Code) {
-    return nil, false
+		return nil, false
 	}
 	return o.Code, true
 }
@@ -101,8 +104,8 @@ func (o *FunctionCreateUpdate) HasCode() bool {
 	return false
 }
 
-// SetCode gets a reference to the given *os.File and assigns it to the Code field.
-func (o *FunctionCreateUpdate) SetCode(v *os.File) {
+// SetCode gets a reference to the given os.File and assigns it to the Code field.
+func (o *FunctionCreateUpdate) SetCode(v os.File) {
 	o.Code = &v
 }
 
@@ -119,7 +122,7 @@ func (o *FunctionCreateUpdate) GetEvents() []CreateFunctionRequestEventsInner {
 // and a boolean to check if the value has been set.
 func (o *FunctionCreateUpdate) GetEventsOk() ([]CreateFunctionRequestEventsInner, bool) {
 	if o == nil || isNil(o.Events) {
-    return nil, false
+		return nil, false
 	}
 	return o.Events, true
 }
@@ -139,6 +142,14 @@ func (o *FunctionCreateUpdate) SetEvents(v []CreateFunctionRequestEventsInner) {
 }
 
 func (o FunctionCreateUpdate) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o FunctionCreateUpdate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
@@ -149,7 +160,7 @@ func (o FunctionCreateUpdate) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Events) {
 		toSerialize["events"] = o.Events
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableFunctionCreateUpdate struct {

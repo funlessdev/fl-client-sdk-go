@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateFunction207ResponseDataMetadata type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateFunction207ResponseDataMetadata{}
+
 // CreateFunction207ResponseDataMetadata struct for CreateFunction207ResponseDataMetadata
 type CreateFunction207ResponseDataMetadata struct {
 	// The amount of events that was successfully connected
@@ -54,7 +57,7 @@ func (o *CreateFunction207ResponseDataMetadata) GetSuccessful() int32 {
 // and a boolean to check if the value has been set.
 func (o *CreateFunction207ResponseDataMetadata) GetSuccessfulOk() (*int32, bool) {
 	if o == nil || isNil(o.Successful) {
-    return nil, false
+		return nil, false
 	}
 	return o.Successful, true
 }
@@ -86,7 +89,7 @@ func (o *CreateFunction207ResponseDataMetadata) GetFailed() int32 {
 // and a boolean to check if the value has been set.
 func (o *CreateFunction207ResponseDataMetadata) GetFailedOk() (*int32, bool) {
 	if o == nil || isNil(o.Failed) {
-    return nil, false
+		return nil, false
 	}
 	return o.Failed, true
 }
@@ -118,7 +121,7 @@ func (o *CreateFunction207ResponseDataMetadata) GetTotal() int32 {
 // and a boolean to check if the value has been set.
 func (o *CreateFunction207ResponseDataMetadata) GetTotalOk() (*int32, bool) {
 	if o == nil || isNil(o.Total) {
-    return nil, false
+		return nil, false
 	}
 	return o.Total, true
 }
@@ -138,6 +141,14 @@ func (o *CreateFunction207ResponseDataMetadata) SetTotal(v int32) {
 }
 
 func (o CreateFunction207ResponseDataMetadata) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateFunction207ResponseDataMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Successful) {
 		toSerialize["successful"] = o.Successful
@@ -148,7 +159,7 @@ func (o CreateFunction207ResponseDataMetadata) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Total) {
 		toSerialize["total"] = o.Total
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCreateFunction207ResponseDataMetadata struct {

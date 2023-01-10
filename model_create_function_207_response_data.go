@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateFunction207ResponseData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateFunction207ResponseData{}
+
 // CreateFunction207ResponseData struct for CreateFunction207ResponseData
 type CreateFunction207ResponseData struct {
 	// The name of the function
@@ -53,7 +56,7 @@ func (o *CreateFunction207ResponseData) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CreateFunction207ResponseData) GetNameOk() (*string, bool) {
 	if o == nil || isNil(o.Name) {
-    return nil, false
+		return nil, false
 	}
 	return o.Name, true
 }
@@ -85,7 +88,7 @@ func (o *CreateFunction207ResponseData) GetEvents() []CreateFunction207ResponseD
 // and a boolean to check if the value has been set.
 func (o *CreateFunction207ResponseData) GetEventsOk() ([]CreateFunction207ResponseDataEventsInner, bool) {
 	if o == nil || isNil(o.Events) {
-    return nil, false
+		return nil, false
 	}
 	return o.Events, true
 }
@@ -117,7 +120,7 @@ func (o *CreateFunction207ResponseData) GetMetadata() CreateFunction207ResponseD
 // and a boolean to check if the value has been set.
 func (o *CreateFunction207ResponseData) GetMetadataOk() (*CreateFunction207ResponseDataMetadata, bool) {
 	if o == nil || isNil(o.Metadata) {
-    return nil, false
+		return nil, false
 	}
 	return o.Metadata, true
 }
@@ -137,6 +140,14 @@ func (o *CreateFunction207ResponseData) SetMetadata(v CreateFunction207ResponseD
 }
 
 func (o CreateFunction207ResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateFunction207ResponseData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
@@ -147,7 +158,7 @@ func (o CreateFunction207ResponseData) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCreateFunction207ResponseData struct {

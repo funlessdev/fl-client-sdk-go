@@ -29,7 +29,7 @@ type ApiCreateFunctionRequest struct {
 	ApiService *FunctionsApiService
 	moduleName string
 	name *string
-	code **os.File
+	code *os.File
 	events *[]CreateFunctionRequestEventsInner
 }
 
@@ -40,7 +40,7 @@ func (r ApiCreateFunctionRequest) Name(name string) ApiCreateFunctionRequest {
 }
 
 // File with the code of the function
-func (r ApiCreateFunctionRequest) Code(code *os.File) ApiCreateFunctionRequest {
+func (r ApiCreateFunctionRequest) Code(code os.File) ApiCreateFunctionRequest {
 	r.code = &code
 	return r
 }
@@ -86,7 +86,7 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 	}
 
 	localVarPath := localBasePath + "/v1/fn/{module_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterToString(r.moduleName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterValueToString(r.moduleName, "moduleName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -110,7 +110,7 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.name != nil {
-		localVarFormParams.Add("name", parameterToString(*r.name, ""))
+		parameterAddToQuery(localVarFormParams, "name", r.name, "")
 	}
 	var codeLocalVarFormFileName string
 	var codeLocalVarFileName     string
@@ -120,7 +120,7 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 
 	var codeLocalVarFile *os.File
 	if r.code != nil {
-		codeLocalVarFile = *r.code
+		codeLocalVarFile = r.code
 	}
 	if codeLocalVarFile != nil {
 		fbs, _ := ioutil.ReadAll(codeLocalVarFile)
@@ -130,7 +130,7 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 	}
 	formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
 	if r.events != nil {
-		localVarFormParams.Add("events", parameterToString(*r.events, "csv"))
+		parameterAddToQuery(localVarFormParams, "events", r.events, "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -160,8 +160,8 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -212,8 +212,8 @@ func (a *FunctionsApiService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) 
 	}
 
 	localVarPath := localBasePath + "/v1/fn/{module_name}/{function_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterToString(r.moduleName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"function_name"+"}", url.PathEscape(parameterToString(r.functionName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterValueToString(r.moduleName, "moduleName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"function_name"+"}", url.PathEscape(parameterValueToString(r.functionName, "functionName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -264,8 +264,8 @@ func (a *FunctionsApiService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -325,8 +325,8 @@ func (a *FunctionsApiService) InvokeFunctionExecute(r ApiInvokeFunctionRequest) 
 	}
 
 	localVarPath := localBasePath + "/v1/fn/{module_name}/{function_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterToString(r.moduleName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"function_name"+"}", url.PathEscape(parameterToString(r.functionName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterValueToString(r.moduleName, "moduleName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"function_name"+"}", url.PathEscape(parameterValueToString(r.functionName, "functionName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -382,8 +382,8 @@ func (a *FunctionsApiService) InvokeFunctionExecute(r ApiInvokeFunctionRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -445,8 +445,8 @@ func (a *FunctionsApiService) ShowFunctionByNameExecute(r ApiShowFunctionByNameR
 	}
 
 	localVarPath := localBasePath + "/v1/fn/{module_name}/{function_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterToString(r.moduleName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"function_name"+"}", url.PathEscape(parameterToString(r.functionName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterValueToString(r.moduleName, "moduleName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"function_name"+"}", url.PathEscape(parameterValueToString(r.functionName, "functionName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -497,8 +497,8 @@ func (a *FunctionsApiService) ShowFunctionByNameExecute(r ApiShowFunctionByNameR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -520,7 +520,7 @@ type ApiUpdateFunctionRequest struct {
 	moduleName string
 	functionName string
 	name *string
-	code **os.File
+	code *os.File
 	events *[]CreateFunctionRequestEventsInner
 }
 
@@ -531,7 +531,7 @@ func (r ApiUpdateFunctionRequest) Name(name string) ApiUpdateFunctionRequest {
 }
 
 // File with the code of the function
-func (r ApiUpdateFunctionRequest) Code(code *os.File) ApiUpdateFunctionRequest {
+func (r ApiUpdateFunctionRequest) Code(code os.File) ApiUpdateFunctionRequest {
 	r.code = &code
 	return r
 }
@@ -579,8 +579,8 @@ func (a *FunctionsApiService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 	}
 
 	localVarPath := localBasePath + "/v1/fn/{module_name}/{function_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterToString(r.moduleName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"function_name"+"}", url.PathEscape(parameterToString(r.functionName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterValueToString(r.moduleName, "moduleName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"function_name"+"}", url.PathEscape(parameterValueToString(r.functionName, "functionName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -604,7 +604,7 @@ func (a *FunctionsApiService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.name != nil {
-		localVarFormParams.Add("name", parameterToString(*r.name, ""))
+		parameterAddToQuery(localVarFormParams, "name", r.name, "")
 	}
 	var codeLocalVarFormFileName string
 	var codeLocalVarFileName     string
@@ -614,7 +614,7 @@ func (a *FunctionsApiService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 
 	var codeLocalVarFile *os.File
 	if r.code != nil {
-		codeLocalVarFile = *r.code
+		codeLocalVarFile = r.code
 	}
 	if codeLocalVarFile != nil {
 		fbs, _ := ioutil.ReadAll(codeLocalVarFile)
@@ -624,7 +624,7 @@ func (a *FunctionsApiService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 	}
 	formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
 	if r.events != nil {
-		localVarFormParams.Add("events", parameterToString(*r.events, "csv"))
+		parameterAddToQuery(localVarFormParams, "events", r.events, "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -654,8 +654,8 @@ func (a *FunctionsApiService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ShowFunctionByName200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ShowFunctionByName200Response{}
+
 // ShowFunctionByName200Response struct for ShowFunctionByName200Response
 type ShowFunctionByName200Response struct {
 	Data *CreateModuleRequest `json:"data,omitempty"`
@@ -49,7 +52,7 @@ func (o *ShowFunctionByName200Response) GetData() CreateModuleRequest {
 // and a boolean to check if the value has been set.
 func (o *ShowFunctionByName200Response) GetDataOk() (*CreateModuleRequest, bool) {
 	if o == nil || isNil(o.Data) {
-    return nil, false
+		return nil, false
 	}
 	return o.Data, true
 }
@@ -69,11 +72,19 @@ func (o *ShowFunctionByName200Response) SetData(v CreateModuleRequest) {
 }
 
 func (o ShowFunctionByName200Response) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ShowFunctionByName200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableShowFunctionByName200Response struct {

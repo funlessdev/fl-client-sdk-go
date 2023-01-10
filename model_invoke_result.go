@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the InvokeResult type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InvokeResult{}
+
 // InvokeResult struct for InvokeResult
 type InvokeResult struct {
 	Data map[string]interface{} `json:"data,omitempty"`
@@ -49,7 +52,7 @@ func (o *InvokeResult) GetData() map[string]interface{} {
 // and a boolean to check if the value has been set.
 func (o *InvokeResult) GetDataOk() (map[string]interface{}, bool) {
 	if o == nil || isNil(o.Data) {
-    return map[string]interface{}{}, false
+		return map[string]interface{}{}, false
 	}
 	return o.Data, true
 }
@@ -69,11 +72,19 @@ func (o *InvokeResult) SetData(v map[string]interface{}) {
 }
 
 func (o InvokeResult) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o InvokeResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableInvokeResult struct {

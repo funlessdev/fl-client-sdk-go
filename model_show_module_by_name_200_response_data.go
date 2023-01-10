@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ShowModuleByName200ResponseData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ShowModuleByName200ResponseData{}
+
 // ShowModuleByName200ResponseData struct for ShowModuleByName200ResponseData
 type ShowModuleByName200ResponseData struct {
 	Name *string `json:"name,omitempty"`
@@ -50,7 +53,7 @@ func (o *ShowModuleByName200ResponseData) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *ShowModuleByName200ResponseData) GetNameOk() (*string, bool) {
 	if o == nil || isNil(o.Name) {
-    return nil, false
+		return nil, false
 	}
 	return o.Name, true
 }
@@ -82,7 +85,7 @@ func (o *ShowModuleByName200ResponseData) GetFunctions() []string {
 // and a boolean to check if the value has been set.
 func (o *ShowModuleByName200ResponseData) GetFunctionsOk() ([]string, bool) {
 	if o == nil || isNil(o.Functions) {
-    return nil, false
+		return nil, false
 	}
 	return o.Functions, true
 }
@@ -102,6 +105,14 @@ func (o *ShowModuleByName200ResponseData) SetFunctions(v []string) {
 }
 
 func (o ShowModuleByName200ResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ShowModuleByName200ResponseData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
@@ -109,7 +120,7 @@ func (o ShowModuleByName200ResponseData) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Functions) {
 		toSerialize["functions"] = o.Functions
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableShowModuleByName200ResponseData struct {

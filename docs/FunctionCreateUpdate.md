@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | Name of the function | [optional] 
-**Code** | Pointer to ***os.File** | File with the code of the function | [optional] 
+**Code** | Pointer to **os.File** | File with the code of the function | [optional] 
 **Events** | Pointer to [**[]CreateFunctionRequestEventsInner**](CreateFunctionRequestEventsInner.md) | Events that can trigger the function | [optional] 
 
 ## Methods
@@ -54,20 +54,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetCode
 
-`func (o *FunctionCreateUpdate) GetCode() *os.File`
+`func (o *FunctionCreateUpdate) GetCode() os.File`
 
 GetCode returns the Code field if non-nil, zero value otherwise.
 
 ### GetCodeOk
 
-`func (o *FunctionCreateUpdate) GetCodeOk() (**os.File, bool)`
+`func (o *FunctionCreateUpdate) GetCodeOk() (*os.File, bool)`
 
 GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCode
 
-`func (o *FunctionCreateUpdate) SetCode(v *os.File)`
+`func (o *FunctionCreateUpdate) SetCode(v os.File)`
 
 SetCode sets Code field to given value.
 

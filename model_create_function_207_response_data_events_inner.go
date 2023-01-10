@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateFunction207ResponseDataEventsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateFunction207ResponseDataEventsInner{}
+
 // CreateFunction207ResponseDataEventsInner struct for CreateFunction207ResponseDataEventsInner
 type CreateFunction207ResponseDataEventsInner struct {
 	// Whether the corresponding event was connected successfully
@@ -52,7 +55,7 @@ func (o *CreateFunction207ResponseDataEventsInner) GetStatus() string {
 // and a boolean to check if the value has been set.
 func (o *CreateFunction207ResponseDataEventsInner) GetStatusOk() (*string, bool) {
 	if o == nil || isNil(o.Status) {
-    return nil, false
+		return nil, false
 	}
 	return o.Status, true
 }
@@ -84,7 +87,7 @@ func (o *CreateFunction207ResponseDataEventsInner) GetMessage() string {
 // and a boolean to check if the value has been set.
 func (o *CreateFunction207ResponseDataEventsInner) GetMessageOk() (*string, bool) {
 	if o == nil || isNil(o.Message) {
-    return nil, false
+		return nil, false
 	}
 	return o.Message, true
 }
@@ -104,6 +107,14 @@ func (o *CreateFunction207ResponseDataEventsInner) SetMessage(v string) {
 }
 
 func (o CreateFunction207ResponseDataEventsInner) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateFunction207ResponseDataEventsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Status) {
 		toSerialize["status"] = o.Status
@@ -111,7 +122,7 @@ func (o CreateFunction207ResponseDataEventsInner) MarshalJSON() ([]byte, error) 
 	if !isNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCreateFunction207ResponseDataEventsInner struct {

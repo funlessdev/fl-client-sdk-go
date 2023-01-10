@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the InvokeFunctionRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InvokeFunctionRequest{}
+
 // InvokeFunctionRequest struct for InvokeFunctionRequest
 type InvokeFunctionRequest struct {
 	Args map[string]interface{} `json:"args,omitempty"`
@@ -49,7 +52,7 @@ func (o *InvokeFunctionRequest) GetArgs() map[string]interface{} {
 // and a boolean to check if the value has been set.
 func (o *InvokeFunctionRequest) GetArgsOk() (map[string]interface{}, bool) {
 	if o == nil || isNil(o.Args) {
-    return map[string]interface{}{}, false
+		return map[string]interface{}{}, false
 	}
 	return o.Args, true
 }
@@ -69,11 +72,19 @@ func (o *InvokeFunctionRequest) SetArgs(v map[string]interface{}) {
 }
 
 func (o InvokeFunctionRequest) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o InvokeFunctionRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Args) {
 		toSerialize["args"] = o.Args
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableInvokeFunctionRequest struct {

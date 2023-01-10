@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateFunction207Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateFunction207Response{}
+
 // CreateFunction207Response struct for CreateFunction207Response
 type CreateFunction207Response struct {
 	Data *CreateFunction207ResponseData `json:"data,omitempty"`
@@ -49,7 +52,7 @@ func (o *CreateFunction207Response) GetData() CreateFunction207ResponseData {
 // and a boolean to check if the value has been set.
 func (o *CreateFunction207Response) GetDataOk() (*CreateFunction207ResponseData, bool) {
 	if o == nil || isNil(o.Data) {
-    return nil, false
+		return nil, false
 	}
 	return o.Data, true
 }
@@ -69,11 +72,19 @@ func (o *CreateFunction207Response) SetData(v CreateFunction207ResponseData) {
 }
 
 func (o CreateFunction207Response) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateFunction207Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCreateFunction207Response struct {

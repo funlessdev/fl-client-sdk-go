@@ -35,7 +35,7 @@ import (
 func main() {
     moduleName := "moduleName_example" // string | The name of the module to retrieve
     name := "name_example" // string | Name of the function (optional)
-    code := os.NewFile(1234, "some_file") // *os.File | File with the code of the function (optional)
+    code := os.NewFile(1234, "some_file") // os.File | File with the code of the function (optional)
     events := []CreateFunctionRequestEventsInner{"TODO"} // []CreateFunctionRequestEventsInner | Events that can trigger the function (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **name** | **string** | Name of the function | 
- **code** | ***os.File** | File with the code of the function | 
+ **code** | **os.File** | File with the code of the function | 
  **events** | [**[]CreateFunctionRequestEventsInner**](CreateFunctionRequestEventsInner.md) | Events that can trigger the function | 
 
 ### Return type
@@ -329,7 +329,7 @@ func main() {
     moduleName := "moduleName_example" // string | The name of the module
     functionName := "functionName_example" // string | The name of the function
     name := "name_example" // string | Name of the function (optional)
-    code := os.NewFile(1234, "some_file") // *os.File | File with the code of the function (optional)
+    code := os.NewFile(1234, "some_file") // os.File | File with the code of the function (optional)
     events := []CreateFunctionRequestEventsInner{"TODO"} // []CreateFunctionRequestEventsInner | Events that can trigger the function (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -361,7 +361,7 @@ Name | Type | Description  | Notes
 
 
  **name** | **string** | Name of the function | 
- **code** | ***os.File** | File with the code of the function | 
+ **code** | **os.File** | File with the code of the function | 
  **events** | [**[]CreateFunctionRequestEventsInner**](CreateFunctionRequestEventsInner.md) | Events that can trigger the function | 
 
 ### Return type

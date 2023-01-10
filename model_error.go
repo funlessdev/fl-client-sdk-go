@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModelError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModelError{}
+
 // ModelError struct for ModelError
 type ModelError struct {
 	Errors ListModulesDefaultResponseErrors `json:"errors"`
@@ -51,7 +54,7 @@ func (o *ModelError) GetErrors() ListModulesDefaultResponseErrors {
 // and a boolean to check if the value has been set.
 func (o *ModelError) GetErrorsOk() (*ListModulesDefaultResponseErrors, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Errors, true
 }
@@ -62,11 +65,17 @@ func (o *ModelError) SetErrors(v ListModulesDefaultResponseErrors) {
 }
 
 func (o ModelError) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["errors"] = o.Errors
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ModelError) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["errors"] = o.Errors
+	return toSerialize, nil
 }
 
 type NullableModelError struct {
