@@ -19,7 +19,7 @@ var _ MappedNullable = &InvokeResult{}
 
 // InvokeResult struct for InvokeResult
 type InvokeResult struct {
-	Data interface{} `json:"data,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty"`
 }
 
 // NewInvokeResult instantiates a new InvokeResult object
@@ -39,10 +39,10 @@ func NewInvokeResultWithDefaults() *InvokeResult {
 	return &this
 }
 
-// GetData returns the Data field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *InvokeResult) GetData() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *InvokeResult) GetData() map[string]interface{} {
+	if o == nil || isNil(o.Data) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Data
@@ -50,25 +50,24 @@ func (o *InvokeResult) GetData() interface{} {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InvokeResult) GetDataOk() (*interface{}, bool) {
+func (o *InvokeResult) GetDataOk() (map[string]interface{}, bool) {
 	if o == nil || isNil(o.Data) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Data, true
+	return o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
 func (o *InvokeResult) HasData() bool {
-	if o != nil && isNil(o.Data) {
+	if o != nil && !isNil(o.Data) {
 		return true
 	}
 
 	return false
 }
 
-// SetData gets a reference to the given interface{} and assigns it to the Data field.
-func (o *InvokeResult) SetData(v interface{}) {
+// SetData gets a reference to the given map[string]interface{} and assigns it to the Data field.
+func (o *InvokeResult) SetData(v map[string]interface{}) {
 	o.Data = v
 }
 
@@ -82,7 +81,7 @@ func (o InvokeResult) MarshalJSON() ([]byte, error) {
 
 func (o InvokeResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Data != nil {
+	if !isNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
 	return toSerialize, nil

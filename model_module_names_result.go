@@ -19,7 +19,7 @@ var _ MappedNullable = &ModuleNamesResult{}
 
 // ModuleNamesResult struct for ModuleNamesResult
 type ModuleNamesResult struct {
-	Data interface{} `json:"data,omitempty"`
+	Data []ModuleNameModule `json:"data,omitempty"`
 }
 
 // NewModuleNamesResult instantiates a new ModuleNamesResult object
@@ -39,10 +39,10 @@ func NewModuleNamesResultWithDefaults() *ModuleNamesResult {
 	return &this
 }
 
-// GetData returns the Data field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ModuleNamesResult) GetData() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *ModuleNamesResult) GetData() []ModuleNameModule {
+	if o == nil || isNil(o.Data) {
+		var ret []ModuleNameModule
 		return ret
 	}
 	return o.Data
@@ -50,25 +50,24 @@ func (o *ModuleNamesResult) GetData() interface{} {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ModuleNamesResult) GetDataOk() (*interface{}, bool) {
+func (o *ModuleNamesResult) GetDataOk() ([]ModuleNameModule, bool) {
 	if o == nil || isNil(o.Data) {
 		return nil, false
 	}
-	return &o.Data, true
+	return o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
 func (o *ModuleNamesResult) HasData() bool {
-	if o != nil && isNil(o.Data) {
+	if o != nil && !isNil(o.Data) {
 		return true
 	}
 
 	return false
 }
 
-// SetData gets a reference to the given interface{} and assigns it to the Data field.
-func (o *ModuleNamesResult) SetData(v interface{}) {
+// SetData gets a reference to the given []ModuleNameModule and assigns it to the Data field.
+func (o *ModuleNamesResult) SetData(v []ModuleNameModule) {
 	o.Data = v
 }
 
@@ -82,7 +81,7 @@ func (o ModuleNamesResult) MarshalJSON() ([]byte, error) {
 
 func (o ModuleNamesResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Data != nil {
+	if !isNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
 	return toSerialize, nil

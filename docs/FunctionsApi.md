@@ -33,10 +33,10 @@ import (
 )
 
 func main() {
-    moduleName := TODO // interface{} | The name of the module to retrieve
-    name := TODO // interface{} | Name of the function (optional)
-    code := TODO // interface{} | File with the code of the function (optional)
-    events := TODO // interface{} | Events that can trigger the function (optional)
+    moduleName := "moduleName_example" // string | The name of the module to retrieve
+    name := "name_example" // string | Name of the function (optional)
+    code := os.NewFile(1234, "some_file") // os.File | File with the code of the function (optional)
+    events := []FunctionCreateUpdateEventsInner{"TODO"} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -54,7 +54,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**moduleName** | [**interface{}**](.md) | The name of the module to retrieve | 
+**moduleName** | **string** | The name of the module to retrieve | 
 
 ### Other Parameters
 
@@ -64,9 +64,9 @@ Other parameters are passed through a pointer to a apiCreateFunctionRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **name** | [**interface{}**](interface{}.md) | Name of the function | 
- **code** | [**interface{}**](interface{}.md) | File with the code of the function | 
- **events** | [**interface{}**](interface{}.md) | Events that can trigger the function | 
+ **name** | **string** | Name of the function | 
+ **code** | **os.File** | File with the code of the function | 
+ **events** | [**[]FunctionCreateUpdateEventsInner**](FunctionCreateUpdateEventsInner.md) | Events that can trigger the function | 
 
 ### Return type
 
@@ -107,8 +107,8 @@ import (
 )
 
 func main() {
-    moduleName := TODO // interface{} | The name of the module
-    functionName := TODO // interface{} | The name of the function
+    moduleName := "moduleName_example" // string | The name of the module
+    functionName := "functionName_example" // string | The name of the function
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -126,8 +126,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**moduleName** | [**interface{}**](.md) | The name of the module | 
-**functionName** | [**interface{}**](.md) | The name of the function | 
+**moduleName** | **string** | The name of the module | 
+**functionName** | **string** | The name of the function | 
 
 ### Other Parameters
 
@@ -178,8 +178,8 @@ import (
 )
 
 func main() {
-    moduleName := TODO // interface{} | The name of the module
-    functionName := TODO // interface{} | The name of the function
+    moduleName := "moduleName_example" // string | The name of the module
+    functionName := "functionName_example" // string | The name of the function
     invokeInput := *openapiclient.NewInvokeInput() // InvokeInput | Function input
 
     configuration := openapiclient.NewConfiguration()
@@ -200,8 +200,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**moduleName** | [**interface{}**](.md) | The name of the module | 
-**functionName** | [**interface{}**](.md) | The name of the function | 
+**moduleName** | **string** | The name of the module | 
+**functionName** | **string** | The name of the function | 
 
 ### Other Parameters
 
@@ -253,8 +253,8 @@ import (
 )
 
 func main() {
-    moduleName := TODO // interface{} | The name of the module to retrieve
-    functionName := TODO // interface{} | The name of the function
+    moduleName := "moduleName_example" // string | The name of the module to retrieve
+    functionName := "functionName_example" // string | The name of the function
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -274,8 +274,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**moduleName** | [**interface{}**](.md) | The name of the module to retrieve | 
-**functionName** | [**interface{}**](.md) | The name of the function | 
+**moduleName** | **string** | The name of the module to retrieve | 
+**functionName** | **string** | The name of the function | 
 
 ### Other Parameters
 
@@ -326,11 +326,11 @@ import (
 )
 
 func main() {
-    moduleName := TODO // interface{} | The name of the module
-    functionName := TODO // interface{} | The name of the function
-    name := TODO // interface{} | Name of the function (optional)
-    code := TODO // interface{} | File with the code of the function (optional)
-    events := TODO // interface{} | Events that can trigger the function (optional)
+    moduleName := "moduleName_example" // string | The name of the module
+    functionName := "functionName_example" // string | The name of the function
+    name := "name_example" // string | Name of the function (optional)
+    code := os.NewFile(1234, "some_file") // os.File | File with the code of the function (optional)
+    events := []FunctionCreateUpdateEventsInner{"TODO"} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -348,8 +348,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**moduleName** | [**interface{}**](.md) | The name of the module | 
-**functionName** | [**interface{}**](.md) | The name of the function | 
+**moduleName** | **string** | The name of the module | 
+**functionName** | **string** | The name of the function | 
 
 ### Other Parameters
 
@@ -360,9 +360,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **name** | [**interface{}**](interface{}.md) | Name of the function | 
- **code** | [**interface{}**](interface{}.md) | File with the code of the function | 
- **events** | [**interface{}**](interface{}.md) | Events that can trigger the function | 
+ **name** | **string** | Name of the function | 
+ **code** | **os.File** | File with the code of the function | 
+ **events** | [**[]FunctionCreateUpdateEventsInner**](FunctionCreateUpdateEventsInner.md) | Events that can trigger the function | 
 
 ### Return type
 

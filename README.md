@@ -96,6 +96,7 @@ Class | Method | HTTP request | Description
  - [InvokeResult](docs/InvokeResult.md)
  - [MixedEventResults](docs/MixedEventResults.md)
  - [MixedEventResultsData](docs/MixedEventResultsData.md)
+ - [MixedEventResultsDataEventsInner](docs/MixedEventResultsDataEventsInner.md)
  - [MixedEventResultsDataMetadata](docs/MixedEventResultsDataMetadata.md)
  - [ModelError](docs/ModelError.md)
  - [ModuleName](docs/ModuleName.md)

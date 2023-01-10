@@ -19,8 +19,8 @@ var _ MappedNullable = &SingleModuleResultData{}
 
 // SingleModuleResultData struct for SingleModuleResultData
 type SingleModuleResultData struct {
-	Name interface{} `json:"name,omitempty"`
-	Functions interface{} `json:"functions,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Functions []ModuleNameModule `json:"functions,omitempty"`
 }
 
 // NewSingleModuleResultData instantiates a new SingleModuleResultData object
@@ -40,43 +40,42 @@ func NewSingleModuleResultDataWithDefaults() *SingleModuleResultData {
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SingleModuleResultData) GetName() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *SingleModuleResultData) GetName() string {
+	if o == nil || isNil(o.Name) {
+		var ret string
 		return ret
 	}
-	return o.Name
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SingleModuleResultData) GetNameOk() (*interface{}, bool) {
+func (o *SingleModuleResultData) GetNameOk() (*string, bool) {
 	if o == nil || isNil(o.Name) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *SingleModuleResultData) HasName() bool {
-	if o != nil && isNil(o.Name) {
+	if o != nil && !isNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given interface{} and assigns it to the Name field.
-func (o *SingleModuleResultData) SetName(v interface{}) {
-	o.Name = v
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *SingleModuleResultData) SetName(v string) {
+	o.Name = &v
 }
 
-// GetFunctions returns the Functions field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SingleModuleResultData) GetFunctions() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetFunctions returns the Functions field value if set, zero value otherwise.
+func (o *SingleModuleResultData) GetFunctions() []ModuleNameModule {
+	if o == nil || isNil(o.Functions) {
+		var ret []ModuleNameModule
 		return ret
 	}
 	return o.Functions
@@ -84,25 +83,24 @@ func (o *SingleModuleResultData) GetFunctions() interface{} {
 
 // GetFunctionsOk returns a tuple with the Functions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SingleModuleResultData) GetFunctionsOk() (*interface{}, bool) {
+func (o *SingleModuleResultData) GetFunctionsOk() ([]ModuleNameModule, bool) {
 	if o == nil || isNil(o.Functions) {
 		return nil, false
 	}
-	return &o.Functions, true
+	return o.Functions, true
 }
 
 // HasFunctions returns a boolean if a field has been set.
 func (o *SingleModuleResultData) HasFunctions() bool {
-	if o != nil && isNil(o.Functions) {
+	if o != nil && !isNil(o.Functions) {
 		return true
 	}
 
 	return false
 }
 
-// SetFunctions gets a reference to the given interface{} and assigns it to the Functions field.
-func (o *SingleModuleResultData) SetFunctions(v interface{}) {
+// SetFunctions gets a reference to the given []ModuleNameModule and assigns it to the Functions field.
+func (o *SingleModuleResultData) SetFunctions(v []ModuleNameModule) {
 	o.Functions = v
 }
 
@@ -116,10 +114,10 @@ func (o SingleModuleResultData) MarshalJSON() ([]byte, error) {
 
 func (o SingleModuleResultData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
+	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if o.Functions != nil {
+	if !isNil(o.Functions) {
 		toSerialize["functions"] = o.Functions
 	}
 	return toSerialize, nil

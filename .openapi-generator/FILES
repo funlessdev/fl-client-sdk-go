@@ -13,6 +13,7 @@ docs/InvokeInput.md
 docs/InvokeResult.md
 docs/MixedEventResults.md
 docs/MixedEventResultsData.md
+docs/MixedEventResultsDataEventsInner.md
 docs/MixedEventResultsDataMetadata.md
 docs/ModelError.md
 docs/ModuleName.md
@@ -31,6 +32,7 @@ model_invoke_input.go
 model_invoke_result.go
 model_mixed_event_results.go
 model_mixed_event_results_data.go
+model_mixed_event_results_data_events_inner.go
 model_mixed_event_results_data_metadata.go
 model_module_name.go
 model_module_name_module.go

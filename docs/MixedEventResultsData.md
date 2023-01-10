@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **interface{}** | The name of the function | [optional] 
-**Events** | Pointer to **interface{}** | The results of event connection, both successful and failed | [optional] 
+**Name** | Pointer to **string** | The name of the function | [optional] 
+**Events** | Pointer to [**[]MixedEventResultsDataEventsInner**](MixedEventResultsDataEventsInner.md) | The results of event connection, both successful and failed | [optional] 
 **Metadata** | Pointer to [**MixedEventResultsDataMetadata**](MixedEventResultsDataMetadata.md) |  | [optional] 
 
 ## Methods
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetName
 
-`func (o *MixedEventResultsData) GetName() interface{}`
+`func (o *MixedEventResultsData) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *MixedEventResultsData) GetNameOk() (*interface{}, bool)`
+`func (o *MixedEventResultsData) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *MixedEventResultsData) SetName(v interface{})`
+`func (o *MixedEventResultsData) SetName(v string)`
 
 SetName sets Name field to given value.
 
@@ -52,32 +52,22 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *MixedEventResultsData) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *MixedEventResultsData) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetEvents
 
-`func (o *MixedEventResultsData) GetEvents() interface{}`
+`func (o *MixedEventResultsData) GetEvents() []MixedEventResultsDataEventsInner`
 
 GetEvents returns the Events field if non-nil, zero value otherwise.
 
 ### GetEventsOk
 
-`func (o *MixedEventResultsData) GetEventsOk() (*interface{}, bool)`
+`func (o *MixedEventResultsData) GetEventsOk() (*[]MixedEventResultsDataEventsInner, bool)`
 
 GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEvents
 
-`func (o *MixedEventResultsData) SetEvents(v interface{})`
+`func (o *MixedEventResultsData) SetEvents(v []MixedEventResultsDataEventsInner)`
 
 SetEvents sets Events field to given value.
 
@@ -87,16 +77,6 @@ SetEvents sets Events field to given value.
 
 HasEvents returns a boolean if a field has been set.
 
-### SetEventsNil
-
-`func (o *MixedEventResultsData) SetEventsNil(b bool)`
-
- SetEventsNil sets the value for Events to be an explicit nil
-
-### UnsetEvents
-`func (o *MixedEventResultsData) UnsetEvents()`
-
-UnsetEvents ensures that no value is present for Events, not even an explicit nil
 ### GetMetadata
 
 `func (o *MixedEventResultsData) GetMetadata() MixedEventResultsDataMetadata`

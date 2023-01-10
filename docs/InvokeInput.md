@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Args** | Pointer to **interface{}** |  | [optional] 
+**Args** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetArgs
 
-`func (o *InvokeInput) GetArgs() interface{}`
+`func (o *InvokeInput) GetArgs() map[string]interface{}`
 
 GetArgs returns the Args field if non-nil, zero value otherwise.
 
 ### GetArgsOk
 
-`func (o *InvokeInput) GetArgsOk() (*interface{}, bool)`
+`func (o *InvokeInput) GetArgsOk() (*map[string]interface{}, bool)`
 
 GetArgsOk returns a tuple with the Args field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetArgs
 
-`func (o *InvokeInput) SetArgs(v interface{})`
+`func (o *InvokeInput) SetArgs(v map[string]interface{})`
 
 SetArgs sets Args field to given value.
 
@@ -50,16 +50,6 @@ SetArgs sets Args field to given value.
 
 HasArgs returns a boolean if a field has been set.
 
-### SetArgsNil
-
-`func (o *InvokeInput) SetArgsNil(b bool)`
-
- SetArgsNil sets the value for Args to be an explicit nil
-
-### UnsetArgs
-`func (o *InvokeInput) UnsetArgs()`
-
-UnsetArgs ensures that no value is present for Args, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

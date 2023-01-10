@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Successful** | Pointer to **interface{}** | The amount of events that was successfully connected | [optional] 
-**Failed** | Pointer to **interface{}** | The amount of events that wasn&#39;t successfully connected | [optional] 
-**Total** | Pointer to **interface{}** | The total amount of events that was passed | [optional] 
+**Successful** | Pointer to **int32** | The amount of events that was successfully connected | [optional] 
+**Failed** | Pointer to **int32** | The amount of events that wasn&#39;t successfully connected | [optional] 
+**Total** | Pointer to **int32** | The total amount of events that was passed | [optional] 
 
 ## Methods
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSuccessful
 
-`func (o *MixedEventResultsDataMetadata) GetSuccessful() interface{}`
+`func (o *MixedEventResultsDataMetadata) GetSuccessful() int32`
 
 GetSuccessful returns the Successful field if non-nil, zero value otherwise.
 
 ### GetSuccessfulOk
 
-`func (o *MixedEventResultsDataMetadata) GetSuccessfulOk() (*interface{}, bool)`
+`func (o *MixedEventResultsDataMetadata) GetSuccessfulOk() (*int32, bool)`
 
 GetSuccessfulOk returns a tuple with the Successful field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSuccessful
 
-`func (o *MixedEventResultsDataMetadata) SetSuccessful(v interface{})`
+`func (o *MixedEventResultsDataMetadata) SetSuccessful(v int32)`
 
 SetSuccessful sets Successful field to given value.
 
@@ -52,32 +52,22 @@ SetSuccessful sets Successful field to given value.
 
 HasSuccessful returns a boolean if a field has been set.
 
-### SetSuccessfulNil
-
-`func (o *MixedEventResultsDataMetadata) SetSuccessfulNil(b bool)`
-
- SetSuccessfulNil sets the value for Successful to be an explicit nil
-
-### UnsetSuccessful
-`func (o *MixedEventResultsDataMetadata) UnsetSuccessful()`
-
-UnsetSuccessful ensures that no value is present for Successful, not even an explicit nil
 ### GetFailed
 
-`func (o *MixedEventResultsDataMetadata) GetFailed() interface{}`
+`func (o *MixedEventResultsDataMetadata) GetFailed() int32`
 
 GetFailed returns the Failed field if non-nil, zero value otherwise.
 
 ### GetFailedOk
 
-`func (o *MixedEventResultsDataMetadata) GetFailedOk() (*interface{}, bool)`
+`func (o *MixedEventResultsDataMetadata) GetFailedOk() (*int32, bool)`
 
 GetFailedOk returns a tuple with the Failed field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFailed
 
-`func (o *MixedEventResultsDataMetadata) SetFailed(v interface{})`
+`func (o *MixedEventResultsDataMetadata) SetFailed(v int32)`
 
 SetFailed sets Failed field to given value.
 
@@ -87,32 +77,22 @@ SetFailed sets Failed field to given value.
 
 HasFailed returns a boolean if a field has been set.
 
-### SetFailedNil
-
-`func (o *MixedEventResultsDataMetadata) SetFailedNil(b bool)`
-
- SetFailedNil sets the value for Failed to be an explicit nil
-
-### UnsetFailed
-`func (o *MixedEventResultsDataMetadata) UnsetFailed()`
-
-UnsetFailed ensures that no value is present for Failed, not even an explicit nil
 ### GetTotal
 
-`func (o *MixedEventResultsDataMetadata) GetTotal() interface{}`
+`func (o *MixedEventResultsDataMetadata) GetTotal() int32`
 
 GetTotal returns the Total field if non-nil, zero value otherwise.
 
 ### GetTotalOk
 
-`func (o *MixedEventResultsDataMetadata) GetTotalOk() (*interface{}, bool)`
+`func (o *MixedEventResultsDataMetadata) GetTotalOk() (*int32, bool)`
 
 GetTotalOk returns a tuple with the Total field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotal
 
-`func (o *MixedEventResultsDataMetadata) SetTotal(v interface{})`
+`func (o *MixedEventResultsDataMetadata) SetTotal(v int32)`
 
 SetTotal sets Total field to given value.
 
@@ -122,16 +102,6 @@ SetTotal sets Total field to given value.
 
 HasTotal returns a boolean if a field has been set.
 
-### SetTotalNil
-
-`func (o *MixedEventResultsDataMetadata) SetTotalNil(b bool)`
-
- SetTotalNil sets the value for Total to be an explicit nil
-
-### UnsetTotal
-`func (o *MixedEventResultsDataMetadata) UnsetTotal()`
-
-UnsetTotal ensures that no value is present for Total, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -26,7 +26,7 @@ func Test_openapi_FunctionsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var moduleName interface{}
+		var moduleName string
 
 		httpRes, err := apiClient.FunctionsApi.CreateFunction(context.Background(), moduleName).Execute()
 
@@ -39,8 +39,8 @@ func Test_openapi_FunctionsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var moduleName interface{}
-		var functionName interface{}
+		var moduleName string
+		var functionName string
 
 		httpRes, err := apiClient.FunctionsApi.DeleteFunction(context.Background(), moduleName, functionName).Execute()
 
@@ -53,8 +53,8 @@ func Test_openapi_FunctionsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var moduleName interface{}
-		var functionName interface{}
+		var moduleName string
+		var functionName string
 
 		resp, httpRes, err := apiClient.FunctionsApi.InvokeFunction(context.Background(), moduleName, functionName).Execute()
 
@@ -68,8 +68,8 @@ func Test_openapi_FunctionsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var moduleName interface{}
-		var functionName interface{}
+		var moduleName string
+		var functionName string
 
 		resp, httpRes, err := apiClient.FunctionsApi.ShowFunctionByName(context.Background(), moduleName, functionName).Execute()
 
@@ -83,8 +83,8 @@ func Test_openapi_FunctionsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var moduleName interface{}
-		var functionName interface{}
+		var moduleName string
+		var functionName string
 
 		httpRes, err := apiClient.FunctionsApi.UpdateFunction(context.Background(), moduleName, functionName).Execute()
 

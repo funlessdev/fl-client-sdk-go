@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"os"
 )
 
 
@@ -26,26 +27,26 @@ type FunctionsApiService service
 type ApiCreateFunctionRequest struct {
 	ctx context.Context
 	ApiService *FunctionsApiService
-	moduleName interface{}
-	name *interface{}
-	code *interface{}
-	events *interface{}
+	moduleName string
+	name *string
+	code *os.File
+	events *[]FunctionCreateUpdateEventsInner
 }
 
 // Name of the function
-func (r ApiCreateFunctionRequest) Name(name interface{}) ApiCreateFunctionRequest {
+func (r ApiCreateFunctionRequest) Name(name string) ApiCreateFunctionRequest {
 	r.name = &name
 	return r
 }
 
 // File with the code of the function
-func (r ApiCreateFunctionRequest) Code(code interface{}) ApiCreateFunctionRequest {
+func (r ApiCreateFunctionRequest) Code(code os.File) ApiCreateFunctionRequest {
 	r.code = &code
 	return r
 }
 
 // Events that can trigger the function
-func (r ApiCreateFunctionRequest) Events(events interface{}) ApiCreateFunctionRequest {
+func (r ApiCreateFunctionRequest) Events(events []FunctionCreateUpdateEventsInner) ApiCreateFunctionRequest {
 	r.events = &events
 	return r
 }
@@ -63,7 +64,7 @@ Create a new function in the specified module
  @param moduleName The name of the module to retrieve
  @return ApiCreateFunctionRequest
 */
-func (a *FunctionsApiService) CreateFunction(ctx context.Context, moduleName interface{}) ApiCreateFunctionRequest {
+func (a *FunctionsApiService) CreateFunction(ctx context.Context, moduleName string) ApiCreateFunctionRequest {
 	return ApiCreateFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -111,11 +112,25 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 	if r.name != nil {
 		parameterAddToQuery(localVarFormParams, "name", r.name, "")
 	}
+	var codeLocalVarFormFileName string
+	var codeLocalVarFileName     string
+	var codeLocalVarFileBytes    []byte
+
+	codeLocalVarFormFileName = "code"
+
+	var codeLocalVarFile *os.File
 	if r.code != nil {
-		parameterAddToQuery(localVarFormParams, "code", r.code, "")
+		codeLocalVarFile = r.code
 	}
+	if codeLocalVarFile != nil {
+		fbs, _ := ioutil.ReadAll(codeLocalVarFile)
+		codeLocalVarFileBytes = fbs
+		codeLocalVarFileName = codeLocalVarFile.Name()
+		codeLocalVarFile.Close()
+	}
+	formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
 	if r.events != nil {
-		parameterAddToQuery(localVarFormParams, "events", r.events, "")
+		parameterAddToQuery(localVarFormParams, "events", r.events, "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -139,6 +154,14 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -148,8 +171,8 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 type ApiDeleteFunctionRequest struct {
 	ctx context.Context
 	ApiService *FunctionsApiService
-	moduleName interface{}
-	functionName interface{}
+	moduleName string
+	functionName string
 }
 
 func (r ApiDeleteFunctionRequest) Execute() (*http.Response, error) {
@@ -166,7 +189,7 @@ Delete single function in module
  @param functionName The name of the function
  @return ApiDeleteFunctionRequest
 */
-func (a *FunctionsApiService) DeleteFunction(ctx context.Context, moduleName interface{}, functionName interface{}) ApiDeleteFunctionRequest {
+func (a *FunctionsApiService) DeleteFunction(ctx context.Context, moduleName string, functionName string) ApiDeleteFunctionRequest {
 	return ApiDeleteFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -235,6 +258,14 @@ func (a *FunctionsApiService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -244,8 +275,8 @@ func (a *FunctionsApiService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) 
 type ApiInvokeFunctionRequest struct {
 	ctx context.Context
 	ApiService *FunctionsApiService
-	moduleName interface{}
-	functionName interface{}
+	moduleName string
+	functionName string
 	invokeInput *InvokeInput
 }
 
@@ -269,7 +300,7 @@ Invoke function
  @param functionName The name of the function
  @return ApiInvokeFunctionRequest
 */
-func (a *FunctionsApiService) InvokeFunction(ctx context.Context, moduleName interface{}, functionName interface{}) ApiInvokeFunctionRequest {
+func (a *FunctionsApiService) InvokeFunction(ctx context.Context, moduleName string, functionName string) ApiInvokeFunctionRequest {
 	return ApiInvokeFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -345,6 +376,14 @@ func (a *FunctionsApiService) InvokeFunctionExecute(r ApiInvokeFunctionRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -363,8 +402,8 @@ func (a *FunctionsApiService) InvokeFunctionExecute(r ApiInvokeFunctionRequest) 
 type ApiShowFunctionByNameRequest struct {
 	ctx context.Context
 	ApiService *FunctionsApiService
-	moduleName interface{}
-	functionName interface{}
+	moduleName string
+	functionName string
 }
 
 func (r ApiShowFunctionByNameRequest) Execute() (*SingleFunctionResult, *http.Response, error) {
@@ -381,7 +420,7 @@ Get function data (name, module name, size of code)
  @param functionName The name of the function
  @return ApiShowFunctionByNameRequest
 */
-func (a *FunctionsApiService) ShowFunctionByName(ctx context.Context, moduleName interface{}, functionName interface{}) ApiShowFunctionByNameRequest {
+func (a *FunctionsApiService) ShowFunctionByName(ctx context.Context, moduleName string, functionName string) ApiShowFunctionByNameRequest {
 	return ApiShowFunctionByNameRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -452,6 +491,14 @@ func (a *FunctionsApiService) ShowFunctionByNameExecute(r ApiShowFunctionByNameR
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -470,27 +517,27 @@ func (a *FunctionsApiService) ShowFunctionByNameExecute(r ApiShowFunctionByNameR
 type ApiUpdateFunctionRequest struct {
 	ctx context.Context
 	ApiService *FunctionsApiService
-	moduleName interface{}
-	functionName interface{}
-	name *interface{}
-	code *interface{}
-	events *interface{}
+	moduleName string
+	functionName string
+	name *string
+	code *os.File
+	events *[]FunctionCreateUpdateEventsInner
 }
 
 // Name of the function
-func (r ApiUpdateFunctionRequest) Name(name interface{}) ApiUpdateFunctionRequest {
+func (r ApiUpdateFunctionRequest) Name(name string) ApiUpdateFunctionRequest {
 	r.name = &name
 	return r
 }
 
 // File with the code of the function
-func (r ApiUpdateFunctionRequest) Code(code interface{}) ApiUpdateFunctionRequest {
+func (r ApiUpdateFunctionRequest) Code(code os.File) ApiUpdateFunctionRequest {
 	r.code = &code
 	return r
 }
 
 // Events that can trigger the function
-func (r ApiUpdateFunctionRequest) Events(events interface{}) ApiUpdateFunctionRequest {
+func (r ApiUpdateFunctionRequest) Events(events []FunctionCreateUpdateEventsInner) ApiUpdateFunctionRequest {
 	r.events = &events
 	return r
 }
@@ -509,7 +556,7 @@ Update function
  @param functionName The name of the function
  @return ApiUpdateFunctionRequest
 */
-func (a *FunctionsApiService) UpdateFunction(ctx context.Context, moduleName interface{}, functionName interface{}) ApiUpdateFunctionRequest {
+func (a *FunctionsApiService) UpdateFunction(ctx context.Context, moduleName string, functionName string) ApiUpdateFunctionRequest {
 	return ApiUpdateFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -559,11 +606,25 @@ func (a *FunctionsApiService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 	if r.name != nil {
 		parameterAddToQuery(localVarFormParams, "name", r.name, "")
 	}
+	var codeLocalVarFormFileName string
+	var codeLocalVarFileName     string
+	var codeLocalVarFileBytes    []byte
+
+	codeLocalVarFormFileName = "code"
+
+	var codeLocalVarFile *os.File
 	if r.code != nil {
-		parameterAddToQuery(localVarFormParams, "code", r.code, "")
+		codeLocalVarFile = r.code
 	}
+	if codeLocalVarFile != nil {
+		fbs, _ := ioutil.ReadAll(codeLocalVarFile)
+		codeLocalVarFileBytes = fbs
+		codeLocalVarFileName = codeLocalVarFile.Name()
+		codeLocalVarFile.Close()
+	}
+	formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
 	if r.events != nil {
-		parameterAddToQuery(localVarFormParams, "events", r.events, "")
+		parameterAddToQuery(localVarFormParams, "events", r.events, "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -587,6 +648,14 @@ func (a *FunctionsApiService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+			var v ModelError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
