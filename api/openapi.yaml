@@ -491,9 +491,6 @@ components:
       properties:
         status:
           description: Whether the corresponding event was connected successfully
-          enum:
-          - success
-          - error
           type: string
         message:
           description: Additional information on the error
