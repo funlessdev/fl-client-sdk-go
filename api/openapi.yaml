@@ -482,6 +482,8 @@ components:
       properties:
         type:
           description: Type of the event
+          enum:
+          - mqtt
           type: string
         params:
           description: Additional parameters of the event
@@ -491,6 +493,9 @@ components:
       properties:
         status:
           description: Whether the corresponding event was connected successfully
+          enum:
+          - success
+          - error
           type: string
         message:
           description: Additional information on the error

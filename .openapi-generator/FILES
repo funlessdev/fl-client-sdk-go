@@ -8,6 +8,8 @@ api_modules.go
 client.go
 configuration.go
 docs/ErrorErrors.md
+docs/FunctionCreateUpdate.md
+docs/FunctionCreateUpdateEventsInner.md
 docs/FunctionsApi.md
 docs/InvokeInput.md
 docs/InvokeResult.md
@@ -28,6 +30,8 @@ go.mod
 go.sum
 model_error.go
 model_error_errors.go
+model_function_create_update.go
+model_function_create_update_events_inner.go
 model_invoke_input.go
 model_invoke_result.go
 model_mixed_event_results.go

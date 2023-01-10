@@ -36,7 +36,7 @@ func main() {
     moduleName := "moduleName_example" // string | The name of the module to retrieve
     name := "name_example" // string | Name of the function (optional)
     code := os.NewFile(1234, "some_file") // os.File | File with the code of the function (optional)
-    events := []FunctionCreateUpdateEventsInner{"TODO"} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
+    events := []openapiclient.FunctionCreateUpdateEventsInner{*openapiclient.NewFunctionCreateUpdateEventsInner()} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -330,7 +330,7 @@ func main() {
     functionName := "functionName_example" // string | The name of the function
     name := "name_example" // string | Name of the function (optional)
     code := os.NewFile(1234, "some_file") // os.File | File with the code of the function (optional)
-    events := []FunctionCreateUpdateEventsInner{"TODO"} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
+    events := []openapiclient.FunctionCreateUpdateEventsInner{*openapiclient.NewFunctionCreateUpdateEventsInner()} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

@@ -92,6 +92,8 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [ErrorErrors](docs/ErrorErrors.md)
+ - [FunctionCreateUpdate](docs/FunctionCreateUpdate.md)
+ - [FunctionCreateUpdateEventsInner](docs/FunctionCreateUpdateEventsInner.md)
  - [InvokeInput](docs/InvokeInput.md)
  - [InvokeResult](docs/InvokeResult.md)
  - [MixedEventResults](docs/MixedEventResults.md)
