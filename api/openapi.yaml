@@ -475,17 +475,6 @@ components:
             $ref: '#/components/schemas/create_function_request_events_inner'
           type: array
       type: object
-    connected_event:
-      properties:
-        type:
-          description: Type of the event
-          enum:
-          - mqtt
-          type: string
-        params:
-          description: Additional parameters of the event
-          type: object
-      type: object
     mixed_event_results:
       properties:
         data:

@@ -7,7 +7,6 @@ api_functions.go
 api_modules.go
 client.go
 configuration.go
-docs/ConnectedEvent.md
 docs/CreateFunction207Response.md
 docs/CreateFunction207ResponseData.md
 docs/CreateFunction207ResponseDataEventsInner.md
@@ -35,7 +34,6 @@ docs/SingleModuleResult.md
 git_push.sh
 go.mod
 go.sum
-model_connected_event.go
 model_create_function_207_response.go
 model_create_function_207_response_data.go
 model_create_function_207_response_data_events_inner.go

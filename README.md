@@ -92,7 +92,6 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [ConnectedEvent](docs/ConnectedEvent.md)
  - [CreateFunction207Response](docs/CreateFunction207Response.md)
  - [CreateFunction207ResponseData](docs/CreateFunction207ResponseData.md)
  - [CreateFunction207ResponseDataEventsInner](docs/CreateFunction207ResponseDataEventsInner.md)
