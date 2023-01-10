@@ -1,4 +1,4 @@
-# {{classname}}
+# \FunctionsApi
 
 All URIs are relative to *http://localhost:4000*
 
@@ -10,21 +10,63 @@ Method | HTTP request | Description
 [**ShowFunctionByName**](FunctionsApi.md#ShowFunctionByName) | **Get** /v1/fn/{module_name}/{function_name} | Show function info
 [**UpdateFunction**](FunctionsApi.md#UpdateFunction) | **Put** /v1/fn/{module_name}/{function_name} | Update function
 
-# **CreateFunction**
-> CreateFunction(ctx, name, code, events, moduleName)
+
+
+## CreateFunction
+
+> CreateFunction(ctx, moduleName).Name(name).Code(code).Events(events).Execute()
+
 Create new function
 
-Create a new function in the specified module
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    moduleName := "moduleName_example" // string | The name of the module to retrieve
+    name := "name_example" // string | Name of the function (optional)
+    code := os.NewFile(1234, "some_file") // os.File | File with the code of the function (optional)
+    events := []FunctionCreateUpdateEventsInner{"TODO"} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.FunctionsApi.CreateFunction(context.Background(), moduleName).Name(name).Code(code).Events(events).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.CreateFunction``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **name** | **string**|  | 
-  **code** | ***os.File*****os.File**|  | 
-  **events** | [**[]V1fnmoduleNameEvents**](V1fnmoduleNameEvents.md)|  | 
-  **moduleName** | **string**| The name of the module to retrieve | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**moduleName** | **string** | The name of the module to retrieve | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateFunctionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **name** | **string** | Name of the function | 
+ **code** | **os.File** | File with the code of the function | 
+ **events** | [**[]FunctionCreateUpdateEventsInner**](FunctionCreateUpdateEventsInner.md) | Events that can trigger the function | 
 
 ### Return type
 
@@ -36,24 +78,66 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
- - **Accept**: application/json
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **DeleteFunction**
-> DeleteFunction(ctx, moduleName, functionName)
+
+## DeleteFunction
+
+> DeleteFunction(ctx, moduleName, functionName).Execute()
+
 Delete function
 
-Delete single function in module
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    moduleName := "moduleName_example" // string | The name of the module
+    functionName := "functionName_example" // string | The name of the function
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.FunctionsApi.DeleteFunction(context.Background(), moduleName, functionName).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.DeleteFunction``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **moduleName** | **string**| The name of the module | 
-  **functionName** | **string**| The name of the function | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**moduleName** | **string** | The name of the module | 
+**functionName** | **string** | The name of the function | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteFunctionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
 
 ### Return type
 
@@ -65,29 +149,74 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **InvokeFunction**
-> InlineResponse2003 InvokeFunction(ctx, body, moduleName, functionName)
+
+## InvokeFunction
+
+> InvokeResult InvokeFunction(ctx, moduleName, functionName).InvokeInput(invokeInput).Execute()
+
 Invoke function
 
-Invoke function
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    moduleName := "moduleName_example" // string | The name of the module
+    functionName := "functionName_example" // string | The name of the function
+    invokeInput := *openapiclient.NewInvokeInput() // InvokeInput | Function input
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.FunctionsApi.InvokeFunction(context.Background(), moduleName, functionName).InvokeInput(invokeInput).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.InvokeFunction``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `InvokeFunction`: InvokeResult
+    fmt.Fprintf(os.Stdout, "Response from `FunctionsApi.InvokeFunction`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**ModuleNameFunctionNameBody1**](ModuleNameFunctionNameBody1.md)| Function input | 
-  **moduleName** | **string**| The name of the module | 
-  **functionName** | **string**| The name of the function | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**moduleName** | **string** | The name of the module | 
+**functionName** | **string** | The name of the function | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInvokeFunctionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **invokeInput** | [**InvokeInput**](InvokeInput.md) | Function input | 
 
 ### Return type
 
-[**InlineResponse2003**](inline_response_200_3.md)
+[**InvokeResult**](InvokeResult.md)
 
 ### Authorization
 
@@ -95,28 +224,72 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **ShowFunctionByName**
-> InlineResponse2002 ShowFunctionByName(ctx, moduleName, functionName)
+
+## ShowFunctionByName
+
+> SingleFunctionResult ShowFunctionByName(ctx, moduleName, functionName).Execute()
+
 Show function info
 
-Get function data (name, module name, size of code)
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    moduleName := "moduleName_example" // string | The name of the module to retrieve
+    functionName := "functionName_example" // string | The name of the function
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.FunctionsApi.ShowFunctionByName(context.Background(), moduleName, functionName).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.ShowFunctionByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ShowFunctionByName`: SingleFunctionResult
+    fmt.Fprintf(os.Stdout, "Response from `FunctionsApi.ShowFunctionByName`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **moduleName** | **string**| The name of the module to retrieve | 
-  **functionName** | **string**| The name of the function | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**moduleName** | **string** | The name of the module to retrieve | 
+**functionName** | **string** | The name of the function | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiShowFunctionByNameRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
 
 ### Return type
 
-[**InlineResponse2002**](inline_response_200_2.md)
+[**SingleFunctionResult**](SingleFunctionResult.md)
 
 ### Authorization
 
@@ -124,27 +297,72 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **UpdateFunction**
-> UpdateFunction(ctx, name, code, events, moduleName, functionName)
+
+## UpdateFunction
+
+> UpdateFunction(ctx, moduleName, functionName).Name(name).Code(code).Events(events).Execute()
+
 Update function
 
-Update function
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    moduleName := "moduleName_example" // string | The name of the module
+    functionName := "functionName_example" // string | The name of the function
+    name := "name_example" // string | Name of the function (optional)
+    code := os.NewFile(1234, "some_file") // os.File | File with the code of the function (optional)
+    events := []FunctionCreateUpdateEventsInner{"TODO"} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.FunctionsApi.UpdateFunction(context.Background(), moduleName, functionName).Name(name).Code(code).Events(events).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.UpdateFunction``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **name** | **string**|  | 
-  **code** | ***os.File*****os.File**|  | 
-  **events** | [**[]V1fnmoduleNameEvents**](V1fnmoduleNameEvents.md)|  | 
-  **moduleName** | **string**| The name of the module | 
-  **functionName** | **string**| The name of the function | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**moduleName** | **string** | The name of the module | 
+**functionName** | **string** | The name of the function | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateFunctionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **name** | **string** | Name of the function | 
+ **code** | **os.File** | File with the code of the function | 
+ **events** | [**[]FunctionCreateUpdateEventsInner**](FunctionCreateUpdateEventsInner.md) | Events that can trigger the function | 
 
 ### Return type
 
@@ -156,8 +374,10 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
- - **Accept**: application/json
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 

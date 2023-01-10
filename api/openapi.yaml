@@ -1,0 +1,533 @@
+openapi: 3.0.2
+info:
+  description: The API for the FunLess Platform
+  license:
+    name: Apache 2.0
+  title: FunLess Platfom API
+  version: "0.5"
+servers:
+- description: The dev server for the FunLess API
+  url: http://localhost:4000
+tags:
+- name: modules
+- name: functions
+paths:
+  /v1/fn:
+    get:
+      description: List all modules
+      operationId: list_modules
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/module_names_result'
+          description: An array of modules
+          headers:
+            X-Total-Count:
+              description: Total number of modules
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unexpected error
+      summary: List modules
+      tags:
+      - modules
+    post:
+      description: Create a new module
+      operationId: create_module
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/module_name'
+        description: Module to create
+        required: true
+      responses:
+        "201":
+          description: Null response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unexpected error
+      summary: Create
+      tags:
+      - modules
+  /v1/fn/{module_name}:
+    delete:
+      description: Delete module
+      operationId: delete_module
+      parameters:
+      - description: The name of the module to retrieve
+        explode: false
+        in: path
+        name: module_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Null response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unexpected error
+      summary: Delete module
+      tags:
+      - modules
+    get:
+      description: "Get module data (name, array of functions, number of functions)"
+      operationId: show_module_by_name
+      parameters:
+      - description: The name of the module to retrieve
+        explode: false
+        in: path
+        name: module_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/single_module_result'
+          description: Expected response to a valid request
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unexpected error
+      summary: Show module info
+      tags:
+      - modules
+    post:
+      description: Create a new function in the specified module
+      operationId: create_function
+      parameters:
+      - description: The name of the module to retrieve
+        explode: false
+        in: path
+        name: module_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              code:
+                contentType: application/octet-stream
+                style: form
+            schema:
+              $ref: '#/components/schemas/function_create_update'
+        description: Object containing the function's name and code
+        required: true
+      responses:
+        "201":
+          description: Null response
+        "207":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/mixed_event_results'
+          description: Mixed response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unexpected error
+      summary: Create new function
+      tags:
+      - functions
+    put:
+      description: Update module name
+      operationId: update_module
+      parameters:
+      - description: The name of the module to retrieve
+        explode: false
+        in: path
+        name: module_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/module_name'
+        description: New module name to use
+        required: true
+      responses:
+        "200":
+          description: Null response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unexpected error
+      summary: Update module name
+      tags:
+      - modules
+  /v1/fn/{module_name}/{function_name}:
+    delete:
+      description: Delete single function in module
+      operationId: delete_function
+      parameters:
+      - description: The name of the module
+        explode: false
+        in: path
+        name: module_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the function
+        explode: false
+        in: path
+        name: function_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Null response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unexpected error
+      summary: Delete function
+      tags:
+      - functions
+    get:
+      description: "Get function data (name, module name, size of code)"
+      operationId: show_function_by_name
+      parameters:
+      - description: The name of the module to retrieve
+        explode: false
+        in: path
+        name: module_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the function
+        explode: false
+        in: path
+        name: function_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/single_function_result'
+          description: Expected response to a valid request
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unexpected error
+      summary: Show function info
+      tags:
+      - functions
+    post:
+      description: Invoke function
+      operationId: invoke_function
+      parameters:
+      - description: The name of the module
+        explode: false
+        in: path
+        name: module_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the function
+        explode: false
+        in: path
+        name: function_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/invoke_input'
+        description: Function input
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/invoke_result'
+          description: Expected response to a valid request
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unexpected error
+      summary: Invoke function
+      tags:
+      - functions
+    put:
+      description: Update function
+      operationId: update_function
+      parameters:
+      - description: The name of the module
+        explode: false
+        in: path
+        name: module_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the function
+        explode: false
+        in: path
+        name: function_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              code:
+                contentType: application/octet-stream
+                style: form
+            schema:
+              $ref: '#/components/schemas/function_create_update'
+        description: New function code to use
+        required: true
+      responses:
+        "200":
+          description: Null response
+        "207":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/mixed_event_results'
+          description: Mixed response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unexpected error
+      summary: Update function
+      tags:
+      - functions
+components:
+  parameters:
+    module_name:
+      description: The name of the module to retrieve
+      explode: false
+      in: path
+      name: module_name
+      required: true
+      schema:
+        type: string
+      style: simple
+    function_name:
+      description: The name of the function
+      explode: false
+      in: path
+      name: function_name
+      required: true
+      schema:
+        type: string
+      style: simple
+  responses:
+    unexpected_error:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unexpected error
+    null_response:
+      description: Null response
+    mixed_response_events:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/mixed_event_results'
+      description: Mixed response
+  schemas:
+    module_name:
+      properties:
+        module:
+          $ref: '#/components/schemas/module_name_module'
+      type: object
+    single_module_result:
+      example:
+        data:
+          functions:
+          - name: name
+          - name: name
+          name: name
+      properties:
+        data:
+          $ref: '#/components/schemas/single_module_result_data'
+      type: object
+    module_names_result:
+      example:
+        data:
+        - name: name
+        - name: name
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/module_name_module'
+          type: array
+      type: object
+    single_function_result:
+      example:
+        data:
+          name: name
+      properties:
+        data:
+          $ref: '#/components/schemas/module_name_module'
+      type: object
+    invoke_input:
+      properties:
+        args:
+          type: object
+      type: object
+    invoke_result:
+      example:
+        data: "{}"
+      properties:
+        data:
+          type: object
+      type: object
+    function_create_update:
+      properties:
+        name:
+          description: Name of the function
+          type: string
+        code:
+          description: File with the code of the function
+          format: binary
+          type: string
+        events:
+          description: Events that can trigger the function
+          items:
+            $ref: '#/components/schemas/function_create_update_events_inner'
+          type: array
+      type: object
+    mixed_event_results:
+      properties:
+        data:
+          $ref: '#/components/schemas/mixed_event_results_data'
+      type: object
+    error:
+      properties:
+        errors:
+          $ref: '#/components/schemas/error_errors'
+      required:
+      - errors
+      type: object
+    module_name_module:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+      type: object
+    single_module_result_data:
+      example:
+        functions:
+        - name: name
+        - name: name
+        name: name
+      properties:
+        name:
+          type: string
+        functions:
+          items:
+            $ref: '#/components/schemas/module_name_module'
+          type: array
+      type: object
+    function_create_update_events_inner:
+      properties:
+        type:
+          description: Type of the event
+          enum:
+          - mqtt
+          type: string
+        params:
+          description: Additional parameters of the event
+          type: object
+      type: object
+    mixed_event_results_data_events_inner:
+      properties:
+        status:
+          description: Whether the corresponding event was connected successfully
+          enum:
+          - success
+          - error
+          type: string
+        message:
+          description: Additional information on the error
+          type: string
+      type: object
+    mixed_event_results_data_metadata:
+      properties:
+        successful:
+          description: The amount of events that was successfully connected
+          type: integer
+        failed:
+          description: The amount of events that wasn't successfully connected
+          type: integer
+        total:
+          description: The total amount of events that was passed
+          type: integer
+      type: object
+    mixed_event_results_data:
+      properties:
+        name:
+          description: The name of the function
+          type: string
+        events:
+          description: "The results of event connection, both successful and failed"
+          items:
+            $ref: '#/components/schemas/mixed_event_results_data_events_inner'
+          type: array
+        metadata:
+          $ref: '#/components/schemas/mixed_event_results_data_metadata'
+      type: object
+    error_errors:
+      properties:
+        detail:
+          type: string
+      type: object
