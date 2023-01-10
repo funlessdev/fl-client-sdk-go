@@ -1,0 +1,652 @@
+openapi: 3.0.2
+info:
+  title: FunLess Platfom API
+  description: The API for the FunLess Platform
+  license:
+    name: Apache 2.0
+  version: "0.5"
+servers:
+- url: http://localhost:4000
+  description: The dev server for the FunLess API
+tags:
+- name: modules
+- name: functions
+paths:
+  /v1/fn:
+    get:
+      tags:
+      - modules
+      summary: List modules
+      description: List all modules
+      operationId: list_modules
+      responses:
+        "200":
+          description: An array of modules
+          headers:
+            X-Total-Count:
+              description: Total number of modules
+              style: simple
+              explode: false
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_default'
+    post:
+      tags:
+      - modules
+      summary: Create
+      description: Create a new module
+      operationId: create_module
+      requestBody:
+        description: Module to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1_fn_body'
+        required: true
+      responses:
+        "201":
+          description: Null response
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_default'
+  /v1/fn/{module_name}:
+    get:
+      tags:
+      - modules
+      summary: Show module info
+      description: "Get module data (name, array of functions, number of functions)"
+      operationId: show_module_by_name
+      parameters:
+      - name: module_name
+        in: path
+        description: The name of the module to retrieve
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_default'
+    put:
+      tags:
+      - modules
+      summary: Update module name
+      description: Update module name
+      operationId: update_module
+      parameters:
+      - name: module_name
+        in: path
+        description: The name of the module to retrieve
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: New module name to use
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/fn_module_name_body'
+        required: true
+      responses:
+        "200":
+          description: Null response
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_default'
+    post:
+      tags:
+      - functions
+      summary: Create new function
+      description: Create a new function in the specified module
+      operationId: create_function
+      parameters:
+      - name: module_name
+        in: path
+        description: The name of the module to retrieve
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Object containing the function's name and code
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/fn_module_name_body_1'
+            encoding:
+              code:
+                contentType: application/octet-stream
+                style: form
+        required: true
+      responses:
+        "201":
+          description: Null response
+        "207":
+          description: Mixed response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_207'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_default'
+    delete:
+      tags:
+      - modules
+      summary: Delete module
+      description: Delete module
+      operationId: delete_module
+      parameters:
+      - name: module_name
+        in: path
+        description: The name of the module to retrieve
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: Null response
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_default'
+  /v1/fn/{module_name}/{function_name}:
+    get:
+      tags:
+      - functions
+      summary: Show function info
+      description: "Get function data (name, module name, size of code)"
+      operationId: show_function_by_name
+      parameters:
+      - name: module_name
+        in: path
+        description: The name of the module to retrieve
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: function_name
+        in: path
+        description: The name of the function
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_default'
+    put:
+      tags:
+      - functions
+      summary: Update function
+      description: Update function
+      operationId: update_function
+      parameters:
+      - name: module_name
+        in: path
+        description: The name of the module
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: function_name
+        in: path
+        description: The name of the function
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: New function code to use
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/module_name_function_name_body'
+            encoding:
+              code:
+                contentType: application/octet-stream
+                style: form
+        required: true
+      responses:
+        "200":
+          description: Null response
+        "207":
+          description: Mixed response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_207'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_default'
+    post:
+      tags:
+      - functions
+      summary: Invoke function
+      description: Invoke function
+      operationId: invoke_function
+      parameters:
+      - name: module_name
+        in: path
+        description: The name of the module
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: function_name
+        in: path
+        description: The name of the function
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Function input
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/module_name_function_name_body_1'
+        required: true
+      responses:
+        "200":
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_3'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_default'
+    delete:
+      tags:
+      - functions
+      summary: Delete function
+      description: Delete single function in module
+      operationId: delete_function
+      parameters:
+      - name: module_name
+        in: path
+        description: The name of the module
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: function_name
+        in: path
+        description: The name of the function
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Null response
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_default'
+components:
+  schemas:
+    module_name:
+      type: object
+      properties:
+        name:
+          type: string
+    single_module_result:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/single_module_result_data'
+    module_names_result:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: string
+    single_function_result:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/fn_module_name_body'
+    invoke_input:
+      type: object
+      properties:
+        args:
+          type: object
+    invoke_result:
+      type: object
+      properties:
+        data:
+          type: object
+    function_create_update:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the function
+        code:
+          type: string
+          description: File with the code of the function
+          format: binary
+        events:
+          type: array
+          description: Events that can trigger the function
+          items:
+            $ref: '#/components/schemas/v1fnmodule_name_events'
+    mixed_event_results:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/mixed_event_results_data'
+    error:
+      required:
+      - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/error_errors'
+    inline_response_200:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: string
+      example:
+        data:
+        - data
+        - data
+    inline_response_default:
+      required:
+      - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/error_errors'
+    v1_fn_body:
+      type: object
+      properties:
+        name:
+          type: string
+    inline_response_200_1:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/single_module_result_data'
+      example:
+        data:
+          functions:
+          - functions
+          - functions
+          name: name
+    fn_module_name_body:
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: name
+    v1fnmodule_name_events:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of the event
+          enum:
+          - mqtt
+        params:
+          type: object
+          description: Additional parameters of the event
+    fn_module_name_body_1:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the function
+        code:
+          type: string
+          description: File with the code of the function
+          format: binary
+        events:
+          type: array
+          description: Events that can trigger the function
+          items:
+            $ref: '#/components/schemas/v1fnmodule_name_events'
+    inline_response_207:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/mixed_event_results_data'
+    inline_response_200_2:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/fn_module_name_body'
+      example:
+        data:
+          name: name
+    module_name_function_name_body:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the function
+        code:
+          type: string
+          description: File with the code of the function
+          format: binary
+        events:
+          type: array
+          description: Events that can trigger the function
+          items:
+            $ref: '#/components/schemas/v1fnmodule_name_events'
+    module_name_function_name_body_1:
+      type: object
+      properties:
+        args:
+          type: object
+    inline_response_200_3:
+      type: object
+      properties:
+        data:
+          type: object
+      example:
+        data: {}
+    single_module_result_data:
+      type: object
+      properties:
+        name:
+          type: string
+        functions:
+          type: array
+          items:
+            type: string
+      example:
+        functions:
+        - functions
+        - functions
+        name: name
+    mixed_event_results_data_events:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Whether the corresponding event was connected successfully
+          enum:
+          - success
+          - error
+        message:
+          type: string
+          description: Additional information on the error
+    mixed_event_results_data_metadata:
+      type: object
+      properties:
+        successful:
+          type: integer
+          description: The amount of events that was successfully connected
+        failed:
+          type: integer
+          description: The amount of events that wasn't successfully connected
+        total:
+          type: integer
+          description: The total amount of events that was passed
+    mixed_event_results_data:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the function
+        events:
+          type: array
+          description: "The results of event connection, both successful and failed"
+          items:
+            $ref: '#/components/schemas/mixed_event_results_data_events'
+        metadata:
+          $ref: '#/components/schemas/mixed_event_results_data_metadata'
+    error_errors:
+      type: object
+      properties:
+        detail:
+          type: string
+  responses:
+    unexpected_error:
+      description: Unexpected error
+      content:
+        application/json:
+          schema:
+            required:
+            - errors
+            type: object
+            properties:
+              errors:
+                type: object
+                properties:
+                  detail:
+                    type: string
+    null_response:
+      description: Null response
+    mixed_response_events:
+      description: Mixed response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: The name of the function
+                  events:
+                    type: array
+                    description: "The results of event connection, both successful\
+                      \ and failed"
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                          description: Whether the corresponding event was connected
+                            successfully
+                          enum:
+                          - success
+                          - error
+                        message:
+                          type: string
+                          description: Additional information on the error
+                  metadata:
+                    type: object
+                    properties:
+                      successful:
+                        type: integer
+                        description: The amount of events that was successfully connected
+                      failed:
+                        type: integer
+                        description: The amount of events that wasn't successfully
+                          connected
+                      total:
+                        type: integer
+                        description: The total amount of events that was passed
+  parameters:
+    module_name:
+      name: module_name
+      in: path
+      description: The name of the module to retrieve
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    function_name:
+      name: function_name
+      in: path
+      description: The name of the function
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
