@@ -97,7 +97,7 @@ import (
 )
 
 func main() {
-    moduleName := "moduleName_example" // string | The name of the module to retrieve
+    moduleName := TODO // interface{} | The name of the module to retrieve
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -115,7 +115,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**moduleName** | **string** | The name of the module to retrieve | 
+**moduleName** | [**interface{}**](.md) | The name of the module to retrieve | 
 
 ### Other Parameters
 
@@ -226,7 +226,7 @@ import (
 )
 
 func main() {
-    moduleName := "moduleName_example" // string | The name of the module to retrieve
+    moduleName := TODO // interface{} | The name of the module to retrieve
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -246,7 +246,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**moduleName** | **string** | The name of the module to retrieve | 
+**moduleName** | [**interface{}**](.md) | The name of the module to retrieve | 
 
 ### Other Parameters
 
@@ -296,7 +296,7 @@ import (
 )
 
 func main() {
-    moduleName := "moduleName_example" // string | The name of the module to retrieve
+    moduleName := TODO // interface{} | The name of the module to retrieve
     moduleName2 := *openapiclient.NewModuleName() // ModuleName | New module name to use
 
     configuration := openapiclient.NewConfiguration()
@@ -315,7 +315,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**moduleName** | **string** | The name of the module to retrieve | 
+**moduleName** | [**interface{}**](.md) | The name of the module to retrieve | 
 
 ### Other Parameters
 

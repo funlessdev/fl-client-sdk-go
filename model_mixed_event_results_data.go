@@ -20,9 +20,9 @@ var _ MappedNullable = &MixedEventResultsData{}
 // MixedEventResultsData struct for MixedEventResultsData
 type MixedEventResultsData struct {
 	// The name of the function
-	Name *string `json:"name,omitempty"`
+	Name interface{} `json:"name,omitempty"`
 	// The results of event connection, both successful and failed
-	Events []MixedEventResultsDataEventsInner `json:"events,omitempty"`
+	Events interface{} `json:"events,omitempty"`
 	Metadata *MixedEventResultsDataMetadata `json:"metadata,omitempty"`
 }
 
@@ -43,42 +43,43 @@ func NewMixedEventResultsDataWithDefaults() *MixedEventResultsData {
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *MixedEventResultsData) GetName() string {
-	if o == nil || isNil(o.Name) {
-		var ret string
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MixedEventResultsData) GetName() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Name
+	return o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MixedEventResultsData) GetNameOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MixedEventResultsData) GetNameOk() (*interface{}, bool) {
 	if o == nil || isNil(o.Name) {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *MixedEventResultsData) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && isNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *MixedEventResultsData) SetName(v string) {
-	o.Name = &v
+// SetName gets a reference to the given interface{} and assigns it to the Name field.
+func (o *MixedEventResultsData) SetName(v interface{}) {
+	o.Name = v
 }
 
-// GetEvents returns the Events field value if set, zero value otherwise.
-func (o *MixedEventResultsData) GetEvents() []MixedEventResultsDataEventsInner {
-	if o == nil || isNil(o.Events) {
-		var ret []MixedEventResultsDataEventsInner
+// GetEvents returns the Events field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MixedEventResultsData) GetEvents() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Events
@@ -86,24 +87,25 @@ func (o *MixedEventResultsData) GetEvents() []MixedEventResultsDataEventsInner {
 
 // GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MixedEventResultsData) GetEventsOk() ([]MixedEventResultsDataEventsInner, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MixedEventResultsData) GetEventsOk() (*interface{}, bool) {
 	if o == nil || isNil(o.Events) {
 		return nil, false
 	}
-	return o.Events, true
+	return &o.Events, true
 }
 
 // HasEvents returns a boolean if a field has been set.
 func (o *MixedEventResultsData) HasEvents() bool {
-	if o != nil && !isNil(o.Events) {
+	if o != nil && isNil(o.Events) {
 		return true
 	}
 
 	return false
 }
 
-// SetEvents gets a reference to the given []MixedEventResultsDataEventsInner and assigns it to the Events field.
-func (o *MixedEventResultsData) SetEvents(v []MixedEventResultsDataEventsInner) {
+// SetEvents gets a reference to the given interface{} and assigns it to the Events field.
+func (o *MixedEventResultsData) SetEvents(v interface{}) {
 	o.Events = v
 }
 
@@ -149,10 +151,10 @@ func (o MixedEventResultsData) MarshalJSON() ([]byte, error) {
 
 func (o MixedEventResultsData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
+	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Events) {
+	if o.Events != nil {
 		toSerialize["events"] = o.Events
 	}
 	if !isNil(o.Metadata) {

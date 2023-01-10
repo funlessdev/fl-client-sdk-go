@@ -19,7 +19,7 @@ var _ MappedNullable = &ErrorErrors{}
 
 // ErrorErrors struct for ErrorErrors
 type ErrorErrors struct {
-	Detail *string `json:"detail,omitempty"`
+	Detail interface{} `json:"detail,omitempty"`
 }
 
 // NewErrorErrors instantiates a new ErrorErrors object
@@ -39,36 +39,37 @@ func NewErrorErrorsWithDefaults() *ErrorErrors {
 	return &this
 }
 
-// GetDetail returns the Detail field value if set, zero value otherwise.
-func (o *ErrorErrors) GetDetail() string {
-	if o == nil || isNil(o.Detail) {
-		var ret string
+// GetDetail returns the Detail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ErrorErrors) GetDetail() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Detail
+	return o.Detail
 }
 
 // GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorErrors) GetDetailOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ErrorErrors) GetDetailOk() (*interface{}, bool) {
 	if o == nil || isNil(o.Detail) {
 		return nil, false
 	}
-	return o.Detail, true
+	return &o.Detail, true
 }
 
 // HasDetail returns a boolean if a field has been set.
 func (o *ErrorErrors) HasDetail() bool {
-	if o != nil && !isNil(o.Detail) {
+	if o != nil && isNil(o.Detail) {
 		return true
 	}
 
 	return false
 }
 
-// SetDetail gets a reference to the given string and assigns it to the Detail field.
-func (o *ErrorErrors) SetDetail(v string) {
-	o.Detail = &v
+// SetDetail gets a reference to the given interface{} and assigns it to the Detail field.
+func (o *ErrorErrors) SetDetail(v interface{}) {
+	o.Detail = v
 }
 
 func (o ErrorErrors) MarshalJSON() ([]byte, error) {
@@ -81,7 +82,7 @@ func (o ErrorErrors) MarshalJSON() ([]byte, error) {
 
 func (o ErrorErrors) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Detail) {
+	if o.Detail != nil {
 		toSerialize["detail"] = o.Detail
 	}
 	return toSerialize, nil

@@ -117,14 +117,6 @@ func (a *ModulesApiService) CreateModuleExecute(r ApiCreateModuleRequest) (*http
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -134,7 +126,7 @@ func (a *ModulesApiService) CreateModuleExecute(r ApiCreateModuleRequest) (*http
 type ApiDeleteModuleRequest struct {
 	ctx context.Context
 	ApiService *ModulesApiService
-	moduleName string
+	moduleName interface{}
 }
 
 func (r ApiDeleteModuleRequest) Execute() (*http.Response, error) {
@@ -150,7 +142,7 @@ Delete module
  @param moduleName The name of the module to retrieve
  @return ApiDeleteModuleRequest
 */
-func (a *ModulesApiService) DeleteModule(ctx context.Context, moduleName string) ApiDeleteModuleRequest {
+func (a *ModulesApiService) DeleteModule(ctx context.Context, moduleName interface{}) ApiDeleteModuleRequest {
 	return ApiDeleteModuleRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -217,14 +209,6 @@ func (a *ModulesApiService) DeleteModuleExecute(r ApiDeleteModuleRequest) (*http
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -315,14 +299,6 @@ func (a *ModulesApiService) ListModulesExecute(r ApiListModulesRequest) (*Module
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -341,7 +317,7 @@ func (a *ModulesApiService) ListModulesExecute(r ApiListModulesRequest) (*Module
 type ApiShowModuleByNameRequest struct {
 	ctx context.Context
 	ApiService *ModulesApiService
-	moduleName string
+	moduleName interface{}
 }
 
 func (r ApiShowModuleByNameRequest) Execute() (*SingleModuleResult, *http.Response, error) {
@@ -357,7 +333,7 @@ Get module data (name, array of functions, number of functions)
  @param moduleName The name of the module to retrieve
  @return ApiShowModuleByNameRequest
 */
-func (a *ModulesApiService) ShowModuleByName(ctx context.Context, moduleName string) ApiShowModuleByNameRequest {
+func (a *ModulesApiService) ShowModuleByName(ctx context.Context, moduleName interface{}) ApiShowModuleByNameRequest {
 	return ApiShowModuleByNameRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -426,14 +402,6 @@ func (a *ModulesApiService) ShowModuleByNameExecute(r ApiShowModuleByNameRequest
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -452,7 +420,7 @@ func (a *ModulesApiService) ShowModuleByNameExecute(r ApiShowModuleByNameRequest
 type ApiUpdateModuleRequest struct {
 	ctx context.Context
 	ApiService *ModulesApiService
-	moduleName string
+	moduleName interface{}
 	moduleName2 *ModuleName
 }
 
@@ -475,7 +443,7 @@ Update module name
  @param moduleName The name of the module to retrieve
  @return ApiUpdateModuleRequest
 */
-func (a *ModulesApiService) UpdateModule(ctx context.Context, moduleName string) ApiUpdateModuleRequest {
+func (a *ModulesApiService) UpdateModule(ctx context.Context, moduleName interface{}) ApiUpdateModuleRequest {
 	return ApiUpdateModuleRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -547,14 +515,6 @@ func (a *ModulesApiService) UpdateModuleExecute(r ApiUpdateModuleRequest) (*http
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 

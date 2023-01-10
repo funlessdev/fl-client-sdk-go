@@ -19,7 +19,7 @@ var _ MappedNullable = &InvokeInput{}
 
 // InvokeInput struct for InvokeInput
 type InvokeInput struct {
-	Args map[string]interface{} `json:"args,omitempty"`
+	Args interface{} `json:"args,omitempty"`
 }
 
 // NewInvokeInput instantiates a new InvokeInput object
@@ -39,10 +39,10 @@ func NewInvokeInputWithDefaults() *InvokeInput {
 	return &this
 }
 
-// GetArgs returns the Args field value if set, zero value otherwise.
-func (o *InvokeInput) GetArgs() map[string]interface{} {
-	if o == nil || isNil(o.Args) {
-		var ret map[string]interface{}
+// GetArgs returns the Args field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *InvokeInput) GetArgs() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Args
@@ -50,24 +50,25 @@ func (o *InvokeInput) GetArgs() map[string]interface{} {
 
 // GetArgsOk returns a tuple with the Args field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InvokeInput) GetArgsOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InvokeInput) GetArgsOk() (*interface{}, bool) {
 	if o == nil || isNil(o.Args) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Args, true
+	return &o.Args, true
 }
 
 // HasArgs returns a boolean if a field has been set.
 func (o *InvokeInput) HasArgs() bool {
-	if o != nil && !isNil(o.Args) {
+	if o != nil && isNil(o.Args) {
 		return true
 	}
 
 	return false
 }
 
-// SetArgs gets a reference to the given map[string]interface{} and assigns it to the Args field.
-func (o *InvokeInput) SetArgs(v map[string]interface{}) {
+// SetArgs gets a reference to the given interface{} and assigns it to the Args field.
+func (o *InvokeInput) SetArgs(v interface{}) {
 	o.Args = v
 }
 
@@ -81,7 +82,7 @@ func (o InvokeInput) MarshalJSON() ([]byte, error) {
 
 func (o InvokeInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Args) {
+	if o.Args != nil {
 		toSerialize["args"] = o.Args
 	}
 	return toSerialize, nil

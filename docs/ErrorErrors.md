@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Detail** | Pointer to **string** |  | [optional] 
+**Detail** | Pointer to **interface{}** |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDetail
 
-`func (o *ErrorErrors) GetDetail() string`
+`func (o *ErrorErrors) GetDetail() interface{}`
 
 GetDetail returns the Detail field if non-nil, zero value otherwise.
 
 ### GetDetailOk
 
-`func (o *ErrorErrors) GetDetailOk() (*string, bool)`
+`func (o *ErrorErrors) GetDetailOk() (*interface{}, bool)`
 
 GetDetailOk returns a tuple with the Detail field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDetail
 
-`func (o *ErrorErrors) SetDetail(v string)`
+`func (o *ErrorErrors) SetDetail(v interface{})`
 
 SetDetail sets Detail field to given value.
 
@@ -50,6 +50,16 @@ SetDetail sets Detail field to given value.
 
 HasDetail returns a boolean if a field has been set.
 
+### SetDetailNil
+
+`func (o *ErrorErrors) SetDetailNil(b bool)`
+
+ SetDetailNil sets the value for Detail to be an explicit nil
+
+### UnsetDetail
+`func (o *ErrorErrors) UnsetDetail()`
+
+UnsetDetail ensures that no value is present for Detail, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

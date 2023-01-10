@@ -20,11 +20,11 @@ var _ MappedNullable = &MixedEventResultsDataMetadata{}
 // MixedEventResultsDataMetadata struct for MixedEventResultsDataMetadata
 type MixedEventResultsDataMetadata struct {
 	// The amount of events that was successfully connected
-	Successful *int32 `json:"successful,omitempty"`
+	Successful interface{} `json:"successful,omitempty"`
 	// The amount of events that wasn't successfully connected
-	Failed *int32 `json:"failed,omitempty"`
+	Failed interface{} `json:"failed,omitempty"`
 	// The total amount of events that was passed
-	Total *int32 `json:"total,omitempty"`
+	Total interface{} `json:"total,omitempty"`
 }
 
 // NewMixedEventResultsDataMetadata instantiates a new MixedEventResultsDataMetadata object
@@ -44,100 +44,103 @@ func NewMixedEventResultsDataMetadataWithDefaults() *MixedEventResultsDataMetada
 	return &this
 }
 
-// GetSuccessful returns the Successful field value if set, zero value otherwise.
-func (o *MixedEventResultsDataMetadata) GetSuccessful() int32 {
-	if o == nil || isNil(o.Successful) {
-		var ret int32
+// GetSuccessful returns the Successful field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MixedEventResultsDataMetadata) GetSuccessful() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Successful
+	return o.Successful
 }
 
 // GetSuccessfulOk returns a tuple with the Successful field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MixedEventResultsDataMetadata) GetSuccessfulOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MixedEventResultsDataMetadata) GetSuccessfulOk() (*interface{}, bool) {
 	if o == nil || isNil(o.Successful) {
 		return nil, false
 	}
-	return o.Successful, true
+	return &o.Successful, true
 }
 
 // HasSuccessful returns a boolean if a field has been set.
 func (o *MixedEventResultsDataMetadata) HasSuccessful() bool {
-	if o != nil && !isNil(o.Successful) {
+	if o != nil && isNil(o.Successful) {
 		return true
 	}
 
 	return false
 }
 
-// SetSuccessful gets a reference to the given int32 and assigns it to the Successful field.
-func (o *MixedEventResultsDataMetadata) SetSuccessful(v int32) {
-	o.Successful = &v
+// SetSuccessful gets a reference to the given interface{} and assigns it to the Successful field.
+func (o *MixedEventResultsDataMetadata) SetSuccessful(v interface{}) {
+	o.Successful = v
 }
 
-// GetFailed returns the Failed field value if set, zero value otherwise.
-func (o *MixedEventResultsDataMetadata) GetFailed() int32 {
-	if o == nil || isNil(o.Failed) {
-		var ret int32
+// GetFailed returns the Failed field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MixedEventResultsDataMetadata) GetFailed() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Failed
+	return o.Failed
 }
 
 // GetFailedOk returns a tuple with the Failed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MixedEventResultsDataMetadata) GetFailedOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MixedEventResultsDataMetadata) GetFailedOk() (*interface{}, bool) {
 	if o == nil || isNil(o.Failed) {
 		return nil, false
 	}
-	return o.Failed, true
+	return &o.Failed, true
 }
 
 // HasFailed returns a boolean if a field has been set.
 func (o *MixedEventResultsDataMetadata) HasFailed() bool {
-	if o != nil && !isNil(o.Failed) {
+	if o != nil && isNil(o.Failed) {
 		return true
 	}
 
 	return false
 }
 
-// SetFailed gets a reference to the given int32 and assigns it to the Failed field.
-func (o *MixedEventResultsDataMetadata) SetFailed(v int32) {
-	o.Failed = &v
+// SetFailed gets a reference to the given interface{} and assigns it to the Failed field.
+func (o *MixedEventResultsDataMetadata) SetFailed(v interface{}) {
+	o.Failed = v
 }
 
-// GetTotal returns the Total field value if set, zero value otherwise.
-func (o *MixedEventResultsDataMetadata) GetTotal() int32 {
-	if o == nil || isNil(o.Total) {
-		var ret int32
+// GetTotal returns the Total field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MixedEventResultsDataMetadata) GetTotal() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Total
+	return o.Total
 }
 
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MixedEventResultsDataMetadata) GetTotalOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MixedEventResultsDataMetadata) GetTotalOk() (*interface{}, bool) {
 	if o == nil || isNil(o.Total) {
 		return nil, false
 	}
-	return o.Total, true
+	return &o.Total, true
 }
 
 // HasTotal returns a boolean if a field has been set.
 func (o *MixedEventResultsDataMetadata) HasTotal() bool {
-	if o != nil && !isNil(o.Total) {
+	if o != nil && isNil(o.Total) {
 		return true
 	}
 
 	return false
 }
 
-// SetTotal gets a reference to the given int32 and assigns it to the Total field.
-func (o *MixedEventResultsDataMetadata) SetTotal(v int32) {
-	o.Total = &v
+// SetTotal gets a reference to the given interface{} and assigns it to the Total field.
+func (o *MixedEventResultsDataMetadata) SetTotal(v interface{}) {
+	o.Total = v
 }
 
 func (o MixedEventResultsDataMetadata) MarshalJSON() ([]byte, error) {
@@ -150,13 +153,13 @@ func (o MixedEventResultsDataMetadata) MarshalJSON() ([]byte, error) {
 
 func (o MixedEventResultsDataMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Successful) {
+	if o.Successful != nil {
 		toSerialize["successful"] = o.Successful
 	}
-	if !isNil(o.Failed) {
+	if o.Failed != nil {
 		toSerialize["failed"] = o.Failed
 	}
-	if !isNil(o.Total) {
+	if o.Total != nil {
 		toSerialize["total"] = o.Total
 	}
 	return toSerialize, nil
