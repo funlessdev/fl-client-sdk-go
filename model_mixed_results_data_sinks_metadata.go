@@ -14,38 +14,38 @@ import (
 	"encoding/json"
 )
 
-// checks if the MixedEventResultsDataMetadata type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &MixedEventResultsDataMetadata{}
+// checks if the MixedResultsDataSinksMetadata type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MixedResultsDataSinksMetadata{}
 
-// MixedEventResultsDataMetadata struct for MixedEventResultsDataMetadata
-type MixedEventResultsDataMetadata struct {
-	// The amount of events that was successfully connected
+// MixedResultsDataSinksMetadata struct for MixedResultsDataSinksMetadata
+type MixedResultsDataSinksMetadata struct {
+	// The amount of data sinks that was successfully connected
 	Successful *int32 `json:"successful,omitempty"`
-	// The amount of events that wasn't successfully connected
+	// The amount of data sinks that wasn't successfully connected
 	Failed *int32 `json:"failed,omitempty"`
-	// The total amount of events that was passed
+	// The total amount of data sinks that was passed
 	Total *int32 `json:"total,omitempty"`
 }
 
-// NewMixedEventResultsDataMetadata instantiates a new MixedEventResultsDataMetadata object
+// NewMixedResultsDataSinksMetadata instantiates a new MixedResultsDataSinksMetadata object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMixedEventResultsDataMetadata() *MixedEventResultsDataMetadata {
-	this := MixedEventResultsDataMetadata{}
+func NewMixedResultsDataSinksMetadata() *MixedResultsDataSinksMetadata {
+	this := MixedResultsDataSinksMetadata{}
 	return &this
 }
 
-// NewMixedEventResultsDataMetadataWithDefaults instantiates a new MixedEventResultsDataMetadata object
+// NewMixedResultsDataSinksMetadataWithDefaults instantiates a new MixedResultsDataSinksMetadata object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMixedEventResultsDataMetadataWithDefaults() *MixedEventResultsDataMetadata {
-	this := MixedEventResultsDataMetadata{}
+func NewMixedResultsDataSinksMetadataWithDefaults() *MixedResultsDataSinksMetadata {
+	this := MixedResultsDataSinksMetadata{}
 	return &this
 }
 
 // GetSuccessful returns the Successful field value if set, zero value otherwise.
-func (o *MixedEventResultsDataMetadata) GetSuccessful() int32 {
+func (o *MixedResultsDataSinksMetadata) GetSuccessful() int32 {
 	if o == nil || isNil(o.Successful) {
 		var ret int32
 		return ret
@@ -55,7 +55,7 @@ func (o *MixedEventResultsDataMetadata) GetSuccessful() int32 {
 
 // GetSuccessfulOk returns a tuple with the Successful field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MixedEventResultsDataMetadata) GetSuccessfulOk() (*int32, bool) {
+func (o *MixedResultsDataSinksMetadata) GetSuccessfulOk() (*int32, bool) {
 	if o == nil || isNil(o.Successful) {
 		return nil, false
 	}
@@ -63,7 +63,7 @@ func (o *MixedEventResultsDataMetadata) GetSuccessfulOk() (*int32, bool) {
 }
 
 // HasSuccessful returns a boolean if a field has been set.
-func (o *MixedEventResultsDataMetadata) HasSuccessful() bool {
+func (o *MixedResultsDataSinksMetadata) HasSuccessful() bool {
 	if o != nil && !isNil(o.Successful) {
 		return true
 	}
@@ -72,12 +72,12 @@ func (o *MixedEventResultsDataMetadata) HasSuccessful() bool {
 }
 
 // SetSuccessful gets a reference to the given int32 and assigns it to the Successful field.
-func (o *MixedEventResultsDataMetadata) SetSuccessful(v int32) {
+func (o *MixedResultsDataSinksMetadata) SetSuccessful(v int32) {
 	o.Successful = &v
 }
 
 // GetFailed returns the Failed field value if set, zero value otherwise.
-func (o *MixedEventResultsDataMetadata) GetFailed() int32 {
+func (o *MixedResultsDataSinksMetadata) GetFailed() int32 {
 	if o == nil || isNil(o.Failed) {
 		var ret int32
 		return ret
@@ -87,7 +87,7 @@ func (o *MixedEventResultsDataMetadata) GetFailed() int32 {
 
 // GetFailedOk returns a tuple with the Failed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MixedEventResultsDataMetadata) GetFailedOk() (*int32, bool) {
+func (o *MixedResultsDataSinksMetadata) GetFailedOk() (*int32, bool) {
 	if o == nil || isNil(o.Failed) {
 		return nil, false
 	}
@@ -95,7 +95,7 @@ func (o *MixedEventResultsDataMetadata) GetFailedOk() (*int32, bool) {
 }
 
 // HasFailed returns a boolean if a field has been set.
-func (o *MixedEventResultsDataMetadata) HasFailed() bool {
+func (o *MixedResultsDataSinksMetadata) HasFailed() bool {
 	if o != nil && !isNil(o.Failed) {
 		return true
 	}
@@ -104,12 +104,12 @@ func (o *MixedEventResultsDataMetadata) HasFailed() bool {
 }
 
 // SetFailed gets a reference to the given int32 and assigns it to the Failed field.
-func (o *MixedEventResultsDataMetadata) SetFailed(v int32) {
+func (o *MixedResultsDataSinksMetadata) SetFailed(v int32) {
 	o.Failed = &v
 }
 
 // GetTotal returns the Total field value if set, zero value otherwise.
-func (o *MixedEventResultsDataMetadata) GetTotal() int32 {
+func (o *MixedResultsDataSinksMetadata) GetTotal() int32 {
 	if o == nil || isNil(o.Total) {
 		var ret int32
 		return ret
@@ -119,7 +119,7 @@ func (o *MixedEventResultsDataMetadata) GetTotal() int32 {
 
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MixedEventResultsDataMetadata) GetTotalOk() (*int32, bool) {
+func (o *MixedResultsDataSinksMetadata) GetTotalOk() (*int32, bool) {
 	if o == nil || isNil(o.Total) {
 		return nil, false
 	}
@@ -127,7 +127,7 @@ func (o *MixedEventResultsDataMetadata) GetTotalOk() (*int32, bool) {
 }
 
 // HasTotal returns a boolean if a field has been set.
-func (o *MixedEventResultsDataMetadata) HasTotal() bool {
+func (o *MixedResultsDataSinksMetadata) HasTotal() bool {
 	if o != nil && !isNil(o.Total) {
 		return true
 	}
@@ -136,11 +136,11 @@ func (o *MixedEventResultsDataMetadata) HasTotal() bool {
 }
 
 // SetTotal gets a reference to the given int32 and assigns it to the Total field.
-func (o *MixedEventResultsDataMetadata) SetTotal(v int32) {
+func (o *MixedResultsDataSinksMetadata) SetTotal(v int32) {
 	o.Total = &v
 }
 
-func (o MixedEventResultsDataMetadata) MarshalJSON() ([]byte, error) {
+func (o MixedResultsDataSinksMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -148,7 +148,7 @@ func (o MixedEventResultsDataMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o MixedEventResultsDataMetadata) ToMap() (map[string]interface{}, error) {
+func (o MixedResultsDataSinksMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Successful) {
 		toSerialize["successful"] = o.Successful
@@ -162,38 +162,38 @@ func (o MixedEventResultsDataMetadata) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableMixedEventResultsDataMetadata struct {
-	value *MixedEventResultsDataMetadata
+type NullableMixedResultsDataSinksMetadata struct {
+	value *MixedResultsDataSinksMetadata
 	isSet bool
 }
 
-func (v NullableMixedEventResultsDataMetadata) Get() *MixedEventResultsDataMetadata {
+func (v NullableMixedResultsDataSinksMetadata) Get() *MixedResultsDataSinksMetadata {
 	return v.value
 }
 
-func (v *NullableMixedEventResultsDataMetadata) Set(val *MixedEventResultsDataMetadata) {
+func (v *NullableMixedResultsDataSinksMetadata) Set(val *MixedResultsDataSinksMetadata) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMixedEventResultsDataMetadata) IsSet() bool {
+func (v NullableMixedResultsDataSinksMetadata) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMixedEventResultsDataMetadata) Unset() {
+func (v *NullableMixedResultsDataSinksMetadata) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMixedEventResultsDataMetadata(val *MixedEventResultsDataMetadata) *NullableMixedEventResultsDataMetadata {
-	return &NullableMixedEventResultsDataMetadata{value: val, isSet: true}
+func NewNullableMixedResultsDataSinksMetadata(val *MixedResultsDataSinksMetadata) *NullableMixedResultsDataSinksMetadata {
+	return &NullableMixedResultsDataSinksMetadata{value: val, isSet: true}
 }
 
-func (v NullableMixedEventResultsDataMetadata) MarshalJSON() ([]byte, error) {
+func (v NullableMixedResultsDataSinksMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMixedEventResultsDataMetadata) UnmarshalJSON(src []byte) error {
+func (v *NullableMixedResultsDataSinksMetadata) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -1,52 +1,52 @@
-# MixedEventResults
+# MixedResults
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**MixedEventResultsData**](MixedEventResultsData.md) |  | [optional] 
+**Data** | Pointer to [**MixedResultsData**](MixedResultsData.md) |  | [optional] 
 
 ## Methods
 
-### NewMixedEventResults
+### NewMixedResults
 
-`func NewMixedEventResults() *MixedEventResults`
+`func NewMixedResults() *MixedResults`
 
-NewMixedEventResults instantiates a new MixedEventResults object
+NewMixedResults instantiates a new MixedResults object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewMixedEventResultsWithDefaults
+### NewMixedResultsWithDefaults
 
-`func NewMixedEventResultsWithDefaults() *MixedEventResults`
+`func NewMixedResultsWithDefaults() *MixedResults`
 
-NewMixedEventResultsWithDefaults instantiates a new MixedEventResults object
+NewMixedResultsWithDefaults instantiates a new MixedResults object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *MixedEventResults) GetData() MixedEventResultsData`
+`func (o *MixedResults) GetData() MixedResultsData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *MixedEventResults) GetDataOk() (*MixedEventResultsData, bool)`
+`func (o *MixedResults) GetDataOk() (*MixedResultsData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *MixedEventResults) SetData(v MixedEventResultsData)`
+`func (o *MixedResults) SetData(v MixedResultsData)`
 
 SetData sets Data field to given value.
 
 ### HasData
 
-`func (o *MixedEventResults) HasData() bool`
+`func (o *MixedResults) HasData() bool`
 
 HasData returns a boolean if a field has been set.
 

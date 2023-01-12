@@ -26,6 +26,8 @@ type FunctionCreateUpdate struct {
 	Code *os.File `json:"code,omitempty"`
 	// Events that can trigger the function
 	Events []FunctionCreateUpdateEventsInner `json:"events,omitempty"`
+	// Data sinks that receive invocation's results
+	Sinks []FunctionCreateUpdateSinksInner `json:"sinks,omitempty"`
 }
 
 // NewFunctionCreateUpdate instantiates a new FunctionCreateUpdate object
@@ -141,6 +143,38 @@ func (o *FunctionCreateUpdate) SetEvents(v []FunctionCreateUpdateEventsInner) {
 	o.Events = v
 }
 
+// GetSinks returns the Sinks field value if set, zero value otherwise.
+func (o *FunctionCreateUpdate) GetSinks() []FunctionCreateUpdateSinksInner {
+	if o == nil || isNil(o.Sinks) {
+		var ret []FunctionCreateUpdateSinksInner
+		return ret
+	}
+	return o.Sinks
+}
+
+// GetSinksOk returns a tuple with the Sinks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FunctionCreateUpdate) GetSinksOk() ([]FunctionCreateUpdateSinksInner, bool) {
+	if o == nil || isNil(o.Sinks) {
+		return nil, false
+	}
+	return o.Sinks, true
+}
+
+// HasSinks returns a boolean if a field has been set.
+func (o *FunctionCreateUpdate) HasSinks() bool {
+	if o != nil && !isNil(o.Sinks) {
+		return true
+	}
+
+	return false
+}
+
+// SetSinks gets a reference to the given []FunctionCreateUpdateSinksInner and assigns it to the Sinks field.
+func (o *FunctionCreateUpdate) SetSinks(v []FunctionCreateUpdateSinksInner) {
+	o.Sinks = v
+}
+
 func (o FunctionCreateUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -159,6 +193,9 @@ func (o FunctionCreateUpdate) ToMap() (map[string]interface{}, error) {
 	}
 	if !isNil(o.Events) {
 		toSerialize["events"] = o.Events
+	}
+	if !isNil(o.Sinks) {
+		toSerialize["sinks"] = o.Sinks
 	}
 	return toSerialize, nil
 }

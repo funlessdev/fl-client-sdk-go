@@ -144,7 +144,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/mixed_event_results'
+                $ref: '#/components/schemas/mixed_results'
           description: Mixed response
         default:
           content:
@@ -336,7 +336,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/mixed_event_results'
+                $ref: '#/components/schemas/mixed_results'
           description: Mixed response
         default:
           content:
@@ -380,7 +380,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/mixed_event_results'
+            $ref: '#/components/schemas/mixed_results'
       description: Mixed response
   schemas:
     module_name:
@@ -444,11 +444,16 @@ components:
           items:
             $ref: '#/components/schemas/function_create_update_events_inner'
           type: array
+        sinks:
+          description: Data sinks that receive invocation's results
+          items:
+            $ref: '#/components/schemas/function_create_update_sinks_inner'
+          type: array
       type: object
-    mixed_event_results:
+    mixed_results:
       properties:
         data:
-          $ref: '#/components/schemas/mixed_event_results_data'
+          $ref: '#/components/schemas/mixed_results_data'
       type: object
     error:
       properties:
@@ -489,7 +494,19 @@ components:
           description: Additional parameters of the event
           type: object
       type: object
-    mixed_event_results_data_events_inner:
+    function_create_update_sinks_inner:
+      properties:
+        type:
+          description: Type of the data sink
+          enum:
+          - mongodb
+          type: string
+        params:
+          description: Additional parameters for the data sink (usually connection
+            params)
+          type: object
+      type: object
+    mixed_results_data_events_inner:
       properties:
         status:
           description: Whether the corresponding event was connected successfully
@@ -501,7 +518,31 @@ components:
           description: Additional information on the error
           type: string
       type: object
-    mixed_event_results_data_metadata:
+    mixed_results_data_sinks_inner:
+      properties:
+        status:
+          description: Whether the corresponding sink was connected successfully
+          enum:
+          - success
+          - error
+          type: string
+        message:
+          description: Additional information on the error
+          type: string
+      type: object
+    mixed_results_data_sinks_metadata:
+      properties:
+        successful:
+          description: The amount of data sinks that was successfully connected
+          type: integer
+        failed:
+          description: The amount of data sinks that wasn't successfully connected
+          type: integer
+        total:
+          description: The total amount of data sinks that was passed
+          type: integer
+      type: object
+    mixed_results_data_events_metadata:
       properties:
         successful:
           description: The amount of events that was successfully connected
@@ -513,7 +554,7 @@ components:
           description: The total amount of events that was passed
           type: integer
       type: object
-    mixed_event_results_data:
+    mixed_results_data:
       properties:
         name:
           description: The name of the function
@@ -521,10 +562,17 @@ components:
         events:
           description: "The results of event connection, both successful and failed"
           items:
-            $ref: '#/components/schemas/mixed_event_results_data_events_inner'
+            $ref: '#/components/schemas/mixed_results_data_events_inner'
           type: array
-        metadata:
-          $ref: '#/components/schemas/mixed_event_results_data_metadata'
+        sinks:
+          description: "The results of sink connection, both successful and failed"
+          items:
+            $ref: '#/components/schemas/mixed_results_data_sinks_inner'
+          type: array
+        sinks_metadata:
+          $ref: '#/components/schemas/mixed_results_data_sinks_metadata'
+        events_metadata:
+          $ref: '#/components/schemas/mixed_results_data_events_metadata'
       type: object
     error_errors:
       properties:

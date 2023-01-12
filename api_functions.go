@@ -31,6 +31,7 @@ type ApiCreateFunctionRequest struct {
 	name *string
 	code *os.File
 	events *[]FunctionCreateUpdateEventsInner
+	sinks *[]FunctionCreateUpdateSinksInner
 }
 
 // Name of the function
@@ -48,6 +49,12 @@ func (r ApiCreateFunctionRequest) Code(code os.File) ApiCreateFunctionRequest {
 // Events that can trigger the function
 func (r ApiCreateFunctionRequest) Events(events []FunctionCreateUpdateEventsInner) ApiCreateFunctionRequest {
 	r.events = &events
+	return r
+}
+
+// Data sinks that receive invocation&#39;s results
+func (r ApiCreateFunctionRequest) Sinks(sinks []FunctionCreateUpdateSinksInner) ApiCreateFunctionRequest {
+	r.sinks = &sinks
 	return r
 }
 
@@ -131,6 +138,9 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 	formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
 	if r.events != nil {
 		parameterAddToQuery(localVarFormParams, "events", r.events, "csv")
+	}
+	if r.sinks != nil {
+		parameterAddToQuery(localVarFormParams, "sinks", r.sinks, "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -522,6 +532,7 @@ type ApiUpdateFunctionRequest struct {
 	name *string
 	code *os.File
 	events *[]FunctionCreateUpdateEventsInner
+	sinks *[]FunctionCreateUpdateSinksInner
 }
 
 // Name of the function
@@ -539,6 +550,12 @@ func (r ApiUpdateFunctionRequest) Code(code os.File) ApiUpdateFunctionRequest {
 // Events that can trigger the function
 func (r ApiUpdateFunctionRequest) Events(events []FunctionCreateUpdateEventsInner) ApiUpdateFunctionRequest {
 	r.events = &events
+	return r
+}
+
+// Data sinks that receive invocation&#39;s results
+func (r ApiUpdateFunctionRequest) Sinks(sinks []FunctionCreateUpdateSinksInner) ApiUpdateFunctionRequest {
+	r.sinks = &sinks
 	return r
 }
 
@@ -625,6 +642,9 @@ func (a *FunctionsApiService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 	formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
 	if r.events != nil {
 		parameterAddToQuery(localVarFormParams, "events", r.events, "csv")
+	}
+	if r.sinks != nil {
+		parameterAddToQuery(localVarFormParams, "sinks", r.sinks, "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

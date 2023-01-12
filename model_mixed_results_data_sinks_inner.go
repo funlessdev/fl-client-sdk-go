@@ -14,36 +14,36 @@ import (
 	"encoding/json"
 )
 
-// checks if the MixedEventResultsDataEventsInner type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &MixedEventResultsDataEventsInner{}
+// checks if the MixedResultsDataSinksInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MixedResultsDataSinksInner{}
 
-// MixedEventResultsDataEventsInner struct for MixedEventResultsDataEventsInner
-type MixedEventResultsDataEventsInner struct {
-	// Whether the corresponding event was connected successfully
+// MixedResultsDataSinksInner struct for MixedResultsDataSinksInner
+type MixedResultsDataSinksInner struct {
+	// Whether the corresponding sink was connected successfully
 	Status *string `json:"status,omitempty"`
 	// Additional information on the error
 	Message *string `json:"message,omitempty"`
 }
 
-// NewMixedEventResultsDataEventsInner instantiates a new MixedEventResultsDataEventsInner object
+// NewMixedResultsDataSinksInner instantiates a new MixedResultsDataSinksInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMixedEventResultsDataEventsInner() *MixedEventResultsDataEventsInner {
-	this := MixedEventResultsDataEventsInner{}
+func NewMixedResultsDataSinksInner() *MixedResultsDataSinksInner {
+	this := MixedResultsDataSinksInner{}
 	return &this
 }
 
-// NewMixedEventResultsDataEventsInnerWithDefaults instantiates a new MixedEventResultsDataEventsInner object
+// NewMixedResultsDataSinksInnerWithDefaults instantiates a new MixedResultsDataSinksInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMixedEventResultsDataEventsInnerWithDefaults() *MixedEventResultsDataEventsInner {
-	this := MixedEventResultsDataEventsInner{}
+func NewMixedResultsDataSinksInnerWithDefaults() *MixedResultsDataSinksInner {
+	this := MixedResultsDataSinksInner{}
 	return &this
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *MixedEventResultsDataEventsInner) GetStatus() string {
+func (o *MixedResultsDataSinksInner) GetStatus() string {
 	if o == nil || isNil(o.Status) {
 		var ret string
 		return ret
@@ -53,7 +53,7 @@ func (o *MixedEventResultsDataEventsInner) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MixedEventResultsDataEventsInner) GetStatusOk() (*string, bool) {
+func (o *MixedResultsDataSinksInner) GetStatusOk() (*string, bool) {
 	if o == nil || isNil(o.Status) {
 		return nil, false
 	}
@@ -61,7 +61,7 @@ func (o *MixedEventResultsDataEventsInner) GetStatusOk() (*string, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *MixedEventResultsDataEventsInner) HasStatus() bool {
+func (o *MixedResultsDataSinksInner) HasStatus() bool {
 	if o != nil && !isNil(o.Status) {
 		return true
 	}
@@ -70,12 +70,12 @@ func (o *MixedEventResultsDataEventsInner) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *MixedEventResultsDataEventsInner) SetStatus(v string) {
+func (o *MixedResultsDataSinksInner) SetStatus(v string) {
 	o.Status = &v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *MixedEventResultsDataEventsInner) GetMessage() string {
+func (o *MixedResultsDataSinksInner) GetMessage() string {
 	if o == nil || isNil(o.Message) {
 		var ret string
 		return ret
@@ -85,7 +85,7 @@ func (o *MixedEventResultsDataEventsInner) GetMessage() string {
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MixedEventResultsDataEventsInner) GetMessageOk() (*string, bool) {
+func (o *MixedResultsDataSinksInner) GetMessageOk() (*string, bool) {
 	if o == nil || isNil(o.Message) {
 		return nil, false
 	}
@@ -93,7 +93,7 @@ func (o *MixedEventResultsDataEventsInner) GetMessageOk() (*string, bool) {
 }
 
 // HasMessage returns a boolean if a field has been set.
-func (o *MixedEventResultsDataEventsInner) HasMessage() bool {
+func (o *MixedResultsDataSinksInner) HasMessage() bool {
 	if o != nil && !isNil(o.Message) {
 		return true
 	}
@@ -102,11 +102,11 @@ func (o *MixedEventResultsDataEventsInner) HasMessage() bool {
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *MixedEventResultsDataEventsInner) SetMessage(v string) {
+func (o *MixedResultsDataSinksInner) SetMessage(v string) {
 	o.Message = &v
 }
 
-func (o MixedEventResultsDataEventsInner) MarshalJSON() ([]byte, error) {
+func (o MixedResultsDataSinksInner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -114,7 +114,7 @@ func (o MixedEventResultsDataEventsInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o MixedEventResultsDataEventsInner) ToMap() (map[string]interface{}, error) {
+func (o MixedResultsDataSinksInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Status) {
 		toSerialize["status"] = o.Status
@@ -125,38 +125,38 @@ func (o MixedEventResultsDataEventsInner) ToMap() (map[string]interface{}, error
 	return toSerialize, nil
 }
 
-type NullableMixedEventResultsDataEventsInner struct {
-	value *MixedEventResultsDataEventsInner
+type NullableMixedResultsDataSinksInner struct {
+	value *MixedResultsDataSinksInner
 	isSet bool
 }
 
-func (v NullableMixedEventResultsDataEventsInner) Get() *MixedEventResultsDataEventsInner {
+func (v NullableMixedResultsDataSinksInner) Get() *MixedResultsDataSinksInner {
 	return v.value
 }
 
-func (v *NullableMixedEventResultsDataEventsInner) Set(val *MixedEventResultsDataEventsInner) {
+func (v *NullableMixedResultsDataSinksInner) Set(val *MixedResultsDataSinksInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMixedEventResultsDataEventsInner) IsSet() bool {
+func (v NullableMixedResultsDataSinksInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMixedEventResultsDataEventsInner) Unset() {
+func (v *NullableMixedResultsDataSinksInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMixedEventResultsDataEventsInner(val *MixedEventResultsDataEventsInner) *NullableMixedEventResultsDataEventsInner {
-	return &NullableMixedEventResultsDataEventsInner{value: val, isSet: true}
+func NewNullableMixedResultsDataSinksInner(val *MixedResultsDataSinksInner) *NullableMixedResultsDataSinksInner {
+	return &NullableMixedResultsDataSinksInner{value: val, isSet: true}
 }
 
-func (v NullableMixedEventResultsDataEventsInner) MarshalJSON() ([]byte, error) {
+func (v NullableMixedResultsDataSinksInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMixedEventResultsDataEventsInner) UnmarshalJSON(src []byte) error {
+func (v *NullableMixedResultsDataSinksInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

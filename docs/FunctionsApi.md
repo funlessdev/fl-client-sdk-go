@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateFunction
 
-> CreateFunction(ctx, moduleName).Name(name).Code(code).Events(events).Execute()
+> CreateFunction(ctx, moduleName).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
 
 Create new function
 
@@ -37,10 +37,11 @@ func main() {
     name := "name_example" // string | Name of the function (optional)
     code := os.NewFile(1234, "some_file") // os.File | File with the code of the function (optional)
     events := []openapiclient.FunctionCreateUpdateEventsInner{*openapiclient.NewFunctionCreateUpdateEventsInner()} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
+    sinks := []openapiclient.FunctionCreateUpdateSinksInner{*openapiclient.NewFunctionCreateUpdateSinksInner()} // []FunctionCreateUpdateSinksInner | Data sinks that receive invocation's results (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FunctionsApi.CreateFunction(context.Background(), moduleName).Name(name).Code(code).Events(events).Execute()
+    resp, r, err := apiClient.FunctionsApi.CreateFunction(context.Background(), moduleName).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.CreateFunction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -67,6 +68,7 @@ Name | Type | Description  | Notes
  **name** | **string** | Name of the function | 
  **code** | **os.File** | File with the code of the function | 
  **events** | [**[]FunctionCreateUpdateEventsInner**](FunctionCreateUpdateEventsInner.md) | Events that can trigger the function | 
+ **sinks** | [**[]FunctionCreateUpdateSinksInner**](FunctionCreateUpdateSinksInner.md) | Data sinks that receive invocation&#39;s results | 
 
 ### Return type
 
@@ -307,7 +309,7 @@ No authorization required
 
 ## UpdateFunction
 
-> UpdateFunction(ctx, moduleName, functionName).Name(name).Code(code).Events(events).Execute()
+> UpdateFunction(ctx, moduleName, functionName).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
 
 Update function
 
@@ -331,10 +333,11 @@ func main() {
     name := "name_example" // string | Name of the function (optional)
     code := os.NewFile(1234, "some_file") // os.File | File with the code of the function (optional)
     events := []openapiclient.FunctionCreateUpdateEventsInner{*openapiclient.NewFunctionCreateUpdateEventsInner()} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
+    sinks := []openapiclient.FunctionCreateUpdateSinksInner{*openapiclient.NewFunctionCreateUpdateSinksInner()} // []FunctionCreateUpdateSinksInner | Data sinks that receive invocation's results (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FunctionsApi.UpdateFunction(context.Background(), moduleName, functionName).Name(name).Code(code).Events(events).Execute()
+    resp, r, err := apiClient.FunctionsApi.UpdateFunction(context.Background(), moduleName, functionName).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.UpdateFunction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -363,6 +366,7 @@ Name | Type | Description  | Notes
  **name** | **string** | Name of the function | 
  **code** | **os.File** | File with the code of the function | 
  **events** | [**[]FunctionCreateUpdateEventsInner**](FunctionCreateUpdateEventsInner.md) | Events that can trigger the function | 
+ **sinks** | [**[]FunctionCreateUpdateSinksInner**](FunctionCreateUpdateSinksInner.md) | Data sinks that receive invocation&#39;s results | 
 
 ### Return type
 
