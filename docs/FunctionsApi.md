@@ -35,7 +35,7 @@ import (
 func main() {
     moduleName := "moduleName_example" // string | The name of the module to retrieve
     name := "name_example" // string | Name of the function (optional)
-    code := os.NewFile(1234, "some_file") // os.File | File with the code of the function (optional)
+    code := os.NewFile(1234, "some_file") // *os.File | File with the code of the function (optional)
     events := []openapiclient.FunctionCreateUpdateEventsInner{*openapiclient.NewFunctionCreateUpdateEventsInner()} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
     sinks := []openapiclient.FunctionCreateUpdateSinksInner{*openapiclient.NewFunctionCreateUpdateSinksInner()} // []FunctionCreateUpdateSinksInner | Data sinks that receive invocation's results (optional)
 
@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **name** | **string** | Name of the function | 
- **code** | **os.File** | File with the code of the function | 
+ **code** | ***os.File** | File with the code of the function | 
  **events** | [**[]FunctionCreateUpdateEventsInner**](FunctionCreateUpdateEventsInner.md) | Events that can trigger the function | 
  **sinks** | [**[]FunctionCreateUpdateSinksInner**](FunctionCreateUpdateSinksInner.md) | Data sinks that receive invocation&#39;s results | 
 
@@ -331,7 +331,7 @@ func main() {
     moduleName := "moduleName_example" // string | The name of the module
     functionName := "functionName_example" // string | The name of the function
     name := "name_example" // string | Name of the function (optional)
-    code := os.NewFile(1234, "some_file") // os.File | File with the code of the function (optional)
+    code := os.NewFile(1234, "some_file") // *os.File | File with the code of the function (optional)
     events := []openapiclient.FunctionCreateUpdateEventsInner{*openapiclient.NewFunctionCreateUpdateEventsInner()} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
     sinks := []openapiclient.FunctionCreateUpdateSinksInner{*openapiclient.NewFunctionCreateUpdateSinksInner()} // []FunctionCreateUpdateSinksInner | Data sinks that receive invocation's results (optional)
 
@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 
 
  **name** | **string** | Name of the function | 
- **code** | **os.File** | File with the code of the function | 
+ **code** | ***os.File** | File with the code of the function | 
  **events** | [**[]FunctionCreateUpdateEventsInner**](FunctionCreateUpdateEventsInner.md) | Events that can trigger the function | 
  **sinks** | [**[]FunctionCreateUpdateSinksInner**](FunctionCreateUpdateSinksInner.md) | Data sinks that receive invocation&#39;s results | 
 

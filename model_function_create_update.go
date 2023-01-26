@@ -23,7 +23,7 @@ type FunctionCreateUpdate struct {
 	// Name of the function
 	Name *string `json:"name,omitempty"`
 	// File with the code of the function
-	Code *os.File `json:"code,omitempty"`
+	Code **os.File `json:"code,omitempty"`
 	// Events that can trigger the function
 	Events []FunctionCreateUpdateEventsInner `json:"events,omitempty"`
 	// Data sinks that receive invocation's results
@@ -80,9 +80,9 @@ func (o *FunctionCreateUpdate) SetName(v string) {
 }
 
 // GetCode returns the Code field value if set, zero value otherwise.
-func (o *FunctionCreateUpdate) GetCode() os.File {
+func (o *FunctionCreateUpdate) GetCode() *os.File {
 	if o == nil || isNil(o.Code) {
-		var ret os.File
+		var ret *os.File
 		return ret
 	}
 	return *o.Code
@@ -90,7 +90,7 @@ func (o *FunctionCreateUpdate) GetCode() os.File {
 
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FunctionCreateUpdate) GetCodeOk() (*os.File, bool) {
+func (o *FunctionCreateUpdate) GetCodeOk() (**os.File, bool) {
 	if o == nil || isNil(o.Code) {
 		return nil, false
 	}
@@ -106,8 +106,8 @@ func (o *FunctionCreateUpdate) HasCode() bool {
 	return false
 }
 
-// SetCode gets a reference to the given os.File and assigns it to the Code field.
-func (o *FunctionCreateUpdate) SetCode(v os.File) {
+// SetCode gets a reference to the given *os.File and assigns it to the Code field.
+func (o *FunctionCreateUpdate) SetCode(v *os.File) {
 	o.Code = &v
 }
 

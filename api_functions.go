@@ -41,8 +41,8 @@ func (r ApiCreateFunctionRequest) Name(name string) ApiCreateFunctionRequest {
 }
 
 // File with the code of the function
-func (r ApiCreateFunctionRequest) Code(code os.File) ApiCreateFunctionRequest {
-	r.code = &code
+func (r ApiCreateFunctionRequest) Code(code *os.File) ApiCreateFunctionRequest {
+	r.code = code
 	return r
 }
 
@@ -125,17 +125,17 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 
 	codeLocalVarFormFileName = "code"
 
-	var codeLocalVarFile *os.File
-	if r.code != nil {
-		codeLocalVarFile = r.code
-	}
+
+	codeLocalVarFile := r.code
+
 	if codeLocalVarFile != nil {
 		fbs, _ := ioutil.ReadAll(codeLocalVarFile)
+
 		codeLocalVarFileBytes = fbs
 		codeLocalVarFileName = codeLocalVarFile.Name()
 		codeLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
 	}
-	formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
 	if r.events != nil {
 		parameterAddToQuery(localVarFormParams, "events", r.events, "csv")
 	}
@@ -542,8 +542,8 @@ func (r ApiUpdateFunctionRequest) Name(name string) ApiUpdateFunctionRequest {
 }
 
 // File with the code of the function
-func (r ApiUpdateFunctionRequest) Code(code os.File) ApiUpdateFunctionRequest {
-	r.code = &code
+func (r ApiUpdateFunctionRequest) Code(code *os.File) ApiUpdateFunctionRequest {
+	r.code = code
 	return r
 }
 
@@ -629,17 +629,17 @@ func (a *FunctionsApiService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 
 	codeLocalVarFormFileName = "code"
 
-	var codeLocalVarFile *os.File
-	if r.code != nil {
-		codeLocalVarFile = r.code
-	}
+
+	codeLocalVarFile := r.code
+
 	if codeLocalVarFile != nil {
 		fbs, _ := ioutil.ReadAll(codeLocalVarFile)
+
 		codeLocalVarFileBytes = fbs
 		codeLocalVarFileName = codeLocalVarFile.Name()
 		codeLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
 	}
-	formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
 	if r.events != nil {
 		parameterAddToQuery(localVarFormParams, "events", r.events, "csv")
 	}
