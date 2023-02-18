@@ -29,7 +29,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
@@ -41,7 +41,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FunctionsApi.CreateFunction(context.Background(), moduleName).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
+    r, err := apiClient.FunctionsApi.CreateFunction(context.Background(), moduleName).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.CreateFunction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -105,7 +105,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
@@ -114,7 +114,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FunctionsApi.DeleteFunction(context.Background(), moduleName, functionName).Execute()
+    r, err := apiClient.FunctionsApi.DeleteFunction(context.Background(), moduleName, functionName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.DeleteFunction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -176,7 +176,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
@@ -251,7 +251,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
@@ -324,7 +324,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
@@ -337,7 +337,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FunctionsApi.UpdateFunction(context.Background(), moduleName, functionName).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
+    r, err := apiClient.FunctionsApi.UpdateFunction(context.Background(), moduleName, functionName).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.UpdateFunction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

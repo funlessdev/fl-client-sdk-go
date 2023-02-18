@@ -48,7 +48,7 @@ func NewMixedResultsDataWithDefaults() *MixedResultsData {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MixedResultsData) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *MixedResultsData) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MixedResultsData) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -66,7 +66,7 @@ func (o *MixedResultsData) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *MixedResultsData) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *MixedResultsData) SetName(v string) {
 
 // GetEvents returns the Events field value if set, zero value otherwise.
 func (o *MixedResultsData) GetEvents() []MixedResultsDataEventsInner {
-	if o == nil || isNil(o.Events) {
+	if o == nil || IsNil(o.Events) {
 		var ret []MixedResultsDataEventsInner
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *MixedResultsData) GetEvents() []MixedResultsDataEventsInner {
 // GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MixedResultsData) GetEventsOk() ([]MixedResultsDataEventsInner, bool) {
-	if o == nil || isNil(o.Events) {
+	if o == nil || IsNil(o.Events) {
 		return nil, false
 	}
 	return o.Events, true
@@ -98,7 +98,7 @@ func (o *MixedResultsData) GetEventsOk() ([]MixedResultsDataEventsInner, bool) {
 
 // HasEvents returns a boolean if a field has been set.
 func (o *MixedResultsData) HasEvents() bool {
-	if o != nil && !isNil(o.Events) {
+	if o != nil && !IsNil(o.Events) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *MixedResultsData) SetEvents(v []MixedResultsDataEventsInner) {
 
 // GetSinks returns the Sinks field value if set, zero value otherwise.
 func (o *MixedResultsData) GetSinks() []MixedResultsDataSinksInner {
-	if o == nil || isNil(o.Sinks) {
+	if o == nil || IsNil(o.Sinks) {
 		var ret []MixedResultsDataSinksInner
 		return ret
 	}
@@ -122,7 +122,7 @@ func (o *MixedResultsData) GetSinks() []MixedResultsDataSinksInner {
 // GetSinksOk returns a tuple with the Sinks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MixedResultsData) GetSinksOk() ([]MixedResultsDataSinksInner, bool) {
-	if o == nil || isNil(o.Sinks) {
+	if o == nil || IsNil(o.Sinks) {
 		return nil, false
 	}
 	return o.Sinks, true
@@ -130,7 +130,7 @@ func (o *MixedResultsData) GetSinksOk() ([]MixedResultsDataSinksInner, bool) {
 
 // HasSinks returns a boolean if a field has been set.
 func (o *MixedResultsData) HasSinks() bool {
-	if o != nil && !isNil(o.Sinks) {
+	if o != nil && !IsNil(o.Sinks) {
 		return true
 	}
 
@@ -144,7 +144,7 @@ func (o *MixedResultsData) SetSinks(v []MixedResultsDataSinksInner) {
 
 // GetSinksMetadata returns the SinksMetadata field value if set, zero value otherwise.
 func (o *MixedResultsData) GetSinksMetadata() MixedResultsDataSinksMetadata {
-	if o == nil || isNil(o.SinksMetadata) {
+	if o == nil || IsNil(o.SinksMetadata) {
 		var ret MixedResultsDataSinksMetadata
 		return ret
 	}
@@ -154,7 +154,7 @@ func (o *MixedResultsData) GetSinksMetadata() MixedResultsDataSinksMetadata {
 // GetSinksMetadataOk returns a tuple with the SinksMetadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MixedResultsData) GetSinksMetadataOk() (*MixedResultsDataSinksMetadata, bool) {
-	if o == nil || isNil(o.SinksMetadata) {
+	if o == nil || IsNil(o.SinksMetadata) {
 		return nil, false
 	}
 	return o.SinksMetadata, true
@@ -162,7 +162,7 @@ func (o *MixedResultsData) GetSinksMetadataOk() (*MixedResultsDataSinksMetadata,
 
 // HasSinksMetadata returns a boolean if a field has been set.
 func (o *MixedResultsData) HasSinksMetadata() bool {
-	if o != nil && !isNil(o.SinksMetadata) {
+	if o != nil && !IsNil(o.SinksMetadata) {
 		return true
 	}
 
@@ -176,7 +176,7 @@ func (o *MixedResultsData) SetSinksMetadata(v MixedResultsDataSinksMetadata) {
 
 // GetEventsMetadata returns the EventsMetadata field value if set, zero value otherwise.
 func (o *MixedResultsData) GetEventsMetadata() MixedResultsDataEventsMetadata {
-	if o == nil || isNil(o.EventsMetadata) {
+	if o == nil || IsNil(o.EventsMetadata) {
 		var ret MixedResultsDataEventsMetadata
 		return ret
 	}
@@ -186,7 +186,7 @@ func (o *MixedResultsData) GetEventsMetadata() MixedResultsDataEventsMetadata {
 // GetEventsMetadataOk returns a tuple with the EventsMetadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MixedResultsData) GetEventsMetadataOk() (*MixedResultsDataEventsMetadata, bool) {
-	if o == nil || isNil(o.EventsMetadata) {
+	if o == nil || IsNil(o.EventsMetadata) {
 		return nil, false
 	}
 	return o.EventsMetadata, true
@@ -194,7 +194,7 @@ func (o *MixedResultsData) GetEventsMetadataOk() (*MixedResultsDataEventsMetadat
 
 // HasEventsMetadata returns a boolean if a field has been set.
 func (o *MixedResultsData) HasEventsMetadata() bool {
-	if o != nil && !isNil(o.EventsMetadata) {
+	if o != nil && !IsNil(o.EventsMetadata) {
 		return true
 	}
 
@@ -216,19 +216,19 @@ func (o MixedResultsData) MarshalJSON() ([]byte, error) {
 
 func (o MixedResultsData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Events) {
+	if !IsNil(o.Events) {
 		toSerialize["events"] = o.Events
 	}
-	if !isNil(o.Sinks) {
+	if !IsNil(o.Sinks) {
 		toSerialize["sinks"] = o.Sinks
 	}
-	if !isNil(o.SinksMetadata) {
+	if !IsNil(o.SinksMetadata) {
 		toSerialize["sinks_metadata"] = o.SinksMetadata
 	}
-	if !isNil(o.EventsMetadata) {
+	if !IsNil(o.EventsMetadata) {
 		toSerialize["events_metadata"] = o.EventsMetadata
 	}
 	return toSerialize, nil

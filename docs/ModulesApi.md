@@ -29,7 +29,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
@@ -37,7 +37,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ModulesApi.CreateModule(context.Background()).ModuleName(moduleName).Execute()
+    r, err := apiClient.ModulesApi.CreateModule(context.Background()).ModuleName(moduleName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ModulesApi.CreateModule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -93,7 +93,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
@@ -101,7 +101,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ModulesApi.DeleteModule(context.Background(), moduleName).Execute()
+    r, err := apiClient.ModulesApi.DeleteModule(context.Background(), moduleName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ModulesApi.DeleteModule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -161,7 +161,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
@@ -222,7 +222,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
@@ -292,7 +292,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
@@ -301,7 +301,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ModulesApi.UpdateModule(context.Background(), moduleName).ModuleName2(moduleName2).Execute()
+    r, err := apiClient.ModulesApi.UpdateModule(context.Background(), moduleName).ModuleName2(moduleName2).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ModulesApi.UpdateModule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

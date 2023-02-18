@@ -12,6 +12,52 @@ tags:
 - name: modules
 - name: functions
 paths:
+  /v1/admin/subjects:
+    get:
+      description: List all subjects
+      operationId: list_subjects
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/module_names_result'
+          description: An array of subject names
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unexpected error
+      summary: List all subjects
+      tags:
+      - subjects
+    post:
+      description: "Create a new subject (name, token)"
+      operationId: create_subject
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/subject_name'
+        description: Subject to create
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/single_module_result'
+          description: The created subject
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unexpected error
+      summary: Create subject
+      tags:
+      - subjects
   /v1/fn:
     get:
       description: List all modules
@@ -383,10 +429,20 @@ components:
             $ref: '#/components/schemas/mixed_results'
       description: Mixed response
   schemas:
+    subject_name:
+      properties:
+        subject:
+          $ref: '#/components/schemas/subject_name_subject'
+      type: object
+    single_subject_result:
+      properties:
+        data:
+          $ref: '#/components/schemas/single_subject_result_data'
+      type: object
     module_name:
       properties:
         module:
-          $ref: '#/components/schemas/module_name_module'
+          $ref: '#/components/schemas/subject_name_subject'
       type: object
     single_module_result:
       example:
@@ -407,7 +463,7 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/module_name_module'
+            $ref: '#/components/schemas/subject_name_subject'
           type: array
       type: object
     single_function_result:
@@ -416,7 +472,7 @@ components:
           name: name
       properties:
         data:
-          $ref: '#/components/schemas/module_name_module'
+          $ref: '#/components/schemas/subject_name_subject'
       type: object
     invoke_input:
       properties:
@@ -462,11 +518,18 @@ components:
       required:
       - errors
       type: object
-    module_name_module:
+    subject_name_subject:
       example:
         name: name
       properties:
         name:
+          type: string
+      type: object
+    single_subject_result_data:
+      properties:
+        name:
+          type: string
+        token:
           type: string
       type: object
     single_module_result_data:
@@ -480,7 +543,7 @@ components:
           type: string
         functions:
           items:
-            $ref: '#/components/schemas/module_name_module'
+            $ref: '#/components/schemas/subject_name_subject'
           type: array
       type: object
     function_create_update_events_inner:

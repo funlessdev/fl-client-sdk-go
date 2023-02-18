@@ -13,7 +13,7 @@ package openapi
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -117,7 +117,7 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.name != nil {
-		parameterAddToQuery(localVarFormParams, "name", r.name, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "")
 	}
 	var codeLocalVarFormFileName string
 	var codeLocalVarFileName     string
@@ -129,7 +129,7 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 	codeLocalVarFile := r.code
 
 	if codeLocalVarFile != nil {
-		fbs, _ := ioutil.ReadAll(codeLocalVarFile)
+		fbs, _ := io.ReadAll(codeLocalVarFile)
 
 		codeLocalVarFileBytes = fbs
 		codeLocalVarFileName = codeLocalVarFile.Name()
@@ -137,10 +137,10 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 		formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
 	}
 	if r.events != nil {
-		parameterAddToQuery(localVarFormParams, "events", r.events, "csv")
+		parameterAddToHeaderOrQuery(localVarFormParams, "events", r.events, "csv")
 	}
 	if r.sinks != nil {
-		parameterAddToQuery(localVarFormParams, "sinks", r.sinks, "csv")
+		parameterAddToHeaderOrQuery(localVarFormParams, "sinks", r.sinks, "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -152,9 +152,9 @@ func (a *FunctionsApiService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -256,9 +256,9 @@ func (a *FunctionsApiService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) 
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -374,9 +374,9 @@ func (a *FunctionsApiService) InvokeFunctionExecute(r ApiInvokeFunctionRequest) 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -489,9 +489,9 @@ func (a *FunctionsApiService) ShowFunctionByNameExecute(r ApiShowFunctionByNameR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -621,7 +621,7 @@ func (a *FunctionsApiService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.name != nil {
-		parameterAddToQuery(localVarFormParams, "name", r.name, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "")
 	}
 	var codeLocalVarFormFileName string
 	var codeLocalVarFileName     string
@@ -633,7 +633,7 @@ func (a *FunctionsApiService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 	codeLocalVarFile := r.code
 
 	if codeLocalVarFile != nil {
-		fbs, _ := ioutil.ReadAll(codeLocalVarFile)
+		fbs, _ := io.ReadAll(codeLocalVarFile)
 
 		codeLocalVarFileBytes = fbs
 		codeLocalVarFileName = codeLocalVarFile.Name()
@@ -641,10 +641,10 @@ func (a *FunctionsApiService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 		formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
 	}
 	if r.events != nil {
-		parameterAddToQuery(localVarFormParams, "events", r.events, "csv")
+		parameterAddToHeaderOrQuery(localVarFormParams, "events", r.events, "csv")
 	}
 	if r.sinks != nil {
-		parameterAddToQuery(localVarFormParams, "sinks", r.sinks, "csv")
+		parameterAddToHeaderOrQuery(localVarFormParams, "sinks", r.sinks, "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -656,9 +656,9 @@ func (a *FunctionsApiService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}

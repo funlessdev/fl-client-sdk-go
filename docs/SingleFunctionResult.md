@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**ModuleNameModule**](ModuleNameModule.md) |  | [optional] 
+**Data** | Pointer to [**SubjectNameSubject**](SubjectNameSubject.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *SingleFunctionResult) GetData() ModuleNameModule`
+`func (o *SingleFunctionResult) GetData() SubjectNameSubject`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *SingleFunctionResult) GetDataOk() (*ModuleNameModule, bool)`
+`func (o *SingleFunctionResult) GetDataOk() (*SubjectNameSubject, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *SingleFunctionResult) SetData(v ModuleNameModule)`
+`func (o *SingleFunctionResult) SetData(v SubjectNameSubject)`
 
 SetData sets Data field to given value.
 

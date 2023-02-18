@@ -41,7 +41,7 @@ func NewErrorErrorsWithDefaults() *ErrorErrors {
 
 // GetDetail returns the Detail field value if set, zero value otherwise.
 func (o *ErrorErrors) GetDetail() string {
-	if o == nil || isNil(o.Detail) {
+	if o == nil || IsNil(o.Detail) {
 		var ret string
 		return ret
 	}
@@ -51,7 +51,7 @@ func (o *ErrorErrors) GetDetail() string {
 // GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorErrors) GetDetailOk() (*string, bool) {
-	if o == nil || isNil(o.Detail) {
+	if o == nil || IsNil(o.Detail) {
 		return nil, false
 	}
 	return o.Detail, true
@@ -59,7 +59,7 @@ func (o *ErrorErrors) GetDetailOk() (*string, bool) {
 
 // HasDetail returns a boolean if a field has been set.
 func (o *ErrorErrors) HasDetail() bool {
-	if o != nil && !isNil(o.Detail) {
+	if o != nil && !IsNil(o.Detail) {
 		return true
 	}
 
@@ -81,7 +81,7 @@ func (o ErrorErrors) MarshalJSON() ([]byte, error) {
 
 func (o ErrorErrors) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Detail) {
+	if !IsNil(o.Detail) {
 		toSerialize["detail"] = o.Detail
 	}
 	return toSerialize, nil

@@ -44,7 +44,7 @@ func NewMixedResultsDataSinksInnerWithDefaults() *MixedResultsDataSinksInner {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *MixedResultsDataSinksInner) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -54,7 +54,7 @@ func (o *MixedResultsDataSinksInner) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MixedResultsDataSinksInner) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -62,7 +62,7 @@ func (o *MixedResultsDataSinksInner) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *MixedResultsDataSinksInner) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -76,7 +76,7 @@ func (o *MixedResultsDataSinksInner) SetStatus(v string) {
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *MixedResultsDataSinksInner) GetMessage() string {
-	if o == nil || isNil(o.Message) {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
@@ -86,7 +86,7 @@ func (o *MixedResultsDataSinksInner) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MixedResultsDataSinksInner) GetMessageOk() (*string, bool) {
-	if o == nil || isNil(o.Message) {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
 	return o.Message, true
@@ -94,7 +94,7 @@ func (o *MixedResultsDataSinksInner) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *MixedResultsDataSinksInner) HasMessage() bool {
-	if o != nil && !isNil(o.Message) {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
@@ -116,10 +116,10 @@ func (o MixedResultsDataSinksInner) MarshalJSON() ([]byte, error) {
 
 func (o MixedResultsDataSinksInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Status) {
+	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
-	if !isNil(o.Message) {
+	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
 	return toSerialize, nil

@@ -19,7 +19,7 @@ var _ MappedNullable = &ModuleName{}
 
 // ModuleName struct for ModuleName
 type ModuleName struct {
-	Module *ModuleNameModule `json:"module,omitempty"`
+	Module *SubjectNameSubject `json:"module,omitempty"`
 }
 
 // NewModuleName instantiates a new ModuleName object
@@ -40,9 +40,9 @@ func NewModuleNameWithDefaults() *ModuleName {
 }
 
 // GetModule returns the Module field value if set, zero value otherwise.
-func (o *ModuleName) GetModule() ModuleNameModule {
-	if o == nil || isNil(o.Module) {
-		var ret ModuleNameModule
+func (o *ModuleName) GetModule() SubjectNameSubject {
+	if o == nil || IsNil(o.Module) {
+		var ret SubjectNameSubject
 		return ret
 	}
 	return *o.Module
@@ -50,8 +50,8 @@ func (o *ModuleName) GetModule() ModuleNameModule {
 
 // GetModuleOk returns a tuple with the Module field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModuleName) GetModuleOk() (*ModuleNameModule, bool) {
-	if o == nil || isNil(o.Module) {
+func (o *ModuleName) GetModuleOk() (*SubjectNameSubject, bool) {
+	if o == nil || IsNil(o.Module) {
 		return nil, false
 	}
 	return o.Module, true
@@ -59,15 +59,15 @@ func (o *ModuleName) GetModuleOk() (*ModuleNameModule, bool) {
 
 // HasModule returns a boolean if a field has been set.
 func (o *ModuleName) HasModule() bool {
-	if o != nil && !isNil(o.Module) {
+	if o != nil && !IsNil(o.Module) {
 		return true
 	}
 
 	return false
 }
 
-// SetModule gets a reference to the given ModuleNameModule and assigns it to the Module field.
-func (o *ModuleName) SetModule(v ModuleNameModule) {
+// SetModule gets a reference to the given SubjectNameSubject and assigns it to the Module field.
+func (o *ModuleName) SetModule(v SubjectNameSubject) {
 	o.Module = &v
 }
 
@@ -81,7 +81,7 @@ func (o ModuleName) MarshalJSON() ([]byte, error) {
 
 func (o ModuleName) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Module) {
+	if !IsNil(o.Module) {
 		toSerialize["module"] = o.Module
 	}
 	return toSerialize, nil

@@ -41,7 +41,7 @@ func NewMixedResultsWithDefaults() *MixedResults {
 
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *MixedResults) GetData() MixedResultsData {
-	if o == nil || isNil(o.Data) {
+	if o == nil || IsNil(o.Data) {
 		var ret MixedResultsData
 		return ret
 	}
@@ -51,7 +51,7 @@ func (o *MixedResults) GetData() MixedResultsData {
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MixedResults) GetDataOk() (*MixedResultsData, bool) {
-	if o == nil || isNil(o.Data) {
+	if o == nil || IsNil(o.Data) {
 		return nil, false
 	}
 	return o.Data, true
@@ -59,7 +59,7 @@ func (o *MixedResults) GetDataOk() (*MixedResultsData, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *MixedResults) HasData() bool {
-	if o != nil && !isNil(o.Data) {
+	if o != nil && !IsNil(o.Data) {
 		return true
 	}
 
@@ -81,7 +81,7 @@ func (o MixedResults) MarshalJSON() ([]byte, error) {
 
 func (o MixedResults) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Data) {
+	if !IsNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
 	return toSerialize, nil

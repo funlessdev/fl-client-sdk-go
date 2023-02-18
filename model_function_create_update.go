@@ -49,7 +49,7 @@ func NewFunctionCreateUpdateWithDefaults() *FunctionCreateUpdate {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *FunctionCreateUpdate) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -59,7 +59,7 @@ func (o *FunctionCreateUpdate) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionCreateUpdate) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -67,7 +67,7 @@ func (o *FunctionCreateUpdate) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *FunctionCreateUpdate) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -81,7 +81,7 @@ func (o *FunctionCreateUpdate) SetName(v string) {
 
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *FunctionCreateUpdate) GetCode() *os.File {
-	if o == nil || isNil(o.Code) {
+	if o == nil || IsNil(o.Code) {
 		var ret *os.File
 		return ret
 	}
@@ -91,7 +91,7 @@ func (o *FunctionCreateUpdate) GetCode() *os.File {
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionCreateUpdate) GetCodeOk() (**os.File, bool) {
-	if o == nil || isNil(o.Code) {
+	if o == nil || IsNil(o.Code) {
 		return nil, false
 	}
 	return o.Code, true
@@ -99,7 +99,7 @@ func (o *FunctionCreateUpdate) GetCodeOk() (**os.File, bool) {
 
 // HasCode returns a boolean if a field has been set.
 func (o *FunctionCreateUpdate) HasCode() bool {
-	if o != nil && !isNil(o.Code) {
+	if o != nil && !IsNil(o.Code) {
 		return true
 	}
 
@@ -113,7 +113,7 @@ func (o *FunctionCreateUpdate) SetCode(v *os.File) {
 
 // GetEvents returns the Events field value if set, zero value otherwise.
 func (o *FunctionCreateUpdate) GetEvents() []FunctionCreateUpdateEventsInner {
-	if o == nil || isNil(o.Events) {
+	if o == nil || IsNil(o.Events) {
 		var ret []FunctionCreateUpdateEventsInner
 		return ret
 	}
@@ -123,7 +123,7 @@ func (o *FunctionCreateUpdate) GetEvents() []FunctionCreateUpdateEventsInner {
 // GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionCreateUpdate) GetEventsOk() ([]FunctionCreateUpdateEventsInner, bool) {
-	if o == nil || isNil(o.Events) {
+	if o == nil || IsNil(o.Events) {
 		return nil, false
 	}
 	return o.Events, true
@@ -131,7 +131,7 @@ func (o *FunctionCreateUpdate) GetEventsOk() ([]FunctionCreateUpdateEventsInner,
 
 // HasEvents returns a boolean if a field has been set.
 func (o *FunctionCreateUpdate) HasEvents() bool {
-	if o != nil && !isNil(o.Events) {
+	if o != nil && !IsNil(o.Events) {
 		return true
 	}
 
@@ -145,7 +145,7 @@ func (o *FunctionCreateUpdate) SetEvents(v []FunctionCreateUpdateEventsInner) {
 
 // GetSinks returns the Sinks field value if set, zero value otherwise.
 func (o *FunctionCreateUpdate) GetSinks() []FunctionCreateUpdateSinksInner {
-	if o == nil || isNil(o.Sinks) {
+	if o == nil || IsNil(o.Sinks) {
 		var ret []FunctionCreateUpdateSinksInner
 		return ret
 	}
@@ -155,7 +155,7 @@ func (o *FunctionCreateUpdate) GetSinks() []FunctionCreateUpdateSinksInner {
 // GetSinksOk returns a tuple with the Sinks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionCreateUpdate) GetSinksOk() ([]FunctionCreateUpdateSinksInner, bool) {
-	if o == nil || isNil(o.Sinks) {
+	if o == nil || IsNil(o.Sinks) {
 		return nil, false
 	}
 	return o.Sinks, true
@@ -163,7 +163,7 @@ func (o *FunctionCreateUpdate) GetSinksOk() ([]FunctionCreateUpdateSinksInner, b
 
 // HasSinks returns a boolean if a field has been set.
 func (o *FunctionCreateUpdate) HasSinks() bool {
-	if o != nil && !isNil(o.Sinks) {
+	if o != nil && !IsNil(o.Sinks) {
 		return true
 	}
 
@@ -185,16 +185,16 @@ func (o FunctionCreateUpdate) MarshalJSON() ([]byte, error) {
 
 func (o FunctionCreateUpdate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Code) {
+	if !IsNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
-	if !isNil(o.Events) {
+	if !IsNil(o.Events) {
 		toSerialize["events"] = o.Events
 	}
-	if !isNil(o.Sinks) {
+	if !IsNil(o.Sinks) {
 		toSerialize["sinks"] = o.Sinks
 	}
 	return toSerialize, nil

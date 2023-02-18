@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Module** | Pointer to [**ModuleNameModule**](ModuleNameModule.md) |  | [optional] 
+**Module** | Pointer to [**SubjectNameSubject**](SubjectNameSubject.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetModule
 
-`func (o *ModuleName) GetModule() ModuleNameModule`
+`func (o *ModuleName) GetModule() SubjectNameSubject`
 
 GetModule returns the Module field if non-nil, zero value otherwise.
 
 ### GetModuleOk
 
-`func (o *ModuleName) GetModuleOk() (*ModuleNameModule, bool)`
+`func (o *ModuleName) GetModuleOk() (*SubjectNameSubject, bool)`
 
 GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetModule
 
-`func (o *ModuleName) SetModule(v ModuleNameModule)`
+`func (o *ModuleName) SetModule(v SubjectNameSubject)`
 
 SetModule sets Module field to given value.
 

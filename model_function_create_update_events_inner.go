@@ -44,7 +44,7 @@ func NewFunctionCreateUpdateEventsInnerWithDefaults() *FunctionCreateUpdateEvent
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *FunctionCreateUpdateEventsInner) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -54,7 +54,7 @@ func (o *FunctionCreateUpdateEventsInner) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionCreateUpdateEventsInner) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -62,7 +62,7 @@ func (o *FunctionCreateUpdateEventsInner) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *FunctionCreateUpdateEventsInner) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -76,7 +76,7 @@ func (o *FunctionCreateUpdateEventsInner) SetType(v string) {
 
 // GetParams returns the Params field value if set, zero value otherwise.
 func (o *FunctionCreateUpdateEventsInner) GetParams() map[string]interface{} {
-	if o == nil || isNil(o.Params) {
+	if o == nil || IsNil(o.Params) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -86,7 +86,7 @@ func (o *FunctionCreateUpdateEventsInner) GetParams() map[string]interface{} {
 // GetParamsOk returns a tuple with the Params field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionCreateUpdateEventsInner) GetParamsOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Params) {
+	if o == nil || IsNil(o.Params) {
 		return map[string]interface{}{}, false
 	}
 	return o.Params, true
@@ -94,7 +94,7 @@ func (o *FunctionCreateUpdateEventsInner) GetParamsOk() (map[string]interface{},
 
 // HasParams returns a boolean if a field has been set.
 func (o *FunctionCreateUpdateEventsInner) HasParams() bool {
-	if o != nil && !isNil(o.Params) {
+	if o != nil && !IsNil(o.Params) {
 		return true
 	}
 
@@ -116,10 +116,10 @@ func (o FunctionCreateUpdateEventsInner) MarshalJSON() ([]byte, error) {
 
 func (o FunctionCreateUpdateEventsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Type) {
+	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	if !isNil(o.Params) {
+	if !IsNil(o.Params) {
 		toSerialize["params"] = o.Params
 	}
 	return toSerialize, nil

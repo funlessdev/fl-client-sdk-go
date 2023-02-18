@@ -87,6 +87,8 @@ Class | Method | HTTP request | Description
 *ModulesApi* | [**ListModules**](docs/ModulesApi.md#listmodules) | **Get** /v1/fn | List modules
 *ModulesApi* | [**ShowModuleByName**](docs/ModulesApi.md#showmodulebyname) | **Get** /v1/fn/{module_name} | Show module info
 *ModulesApi* | [**UpdateModule**](docs/ModulesApi.md#updatemodule) | **Put** /v1/fn/{module_name} | Update module name
+*SubjectsApi* | [**CreateSubject**](docs/SubjectsApi.md#createsubject) | **Post** /v1/admin/subjects | Create subject
+*SubjectsApi* | [**ListSubjects**](docs/SubjectsApi.md#listsubjects) | **Get** /v1/admin/subjects | List all subjects
 
 
 ## Documentation For Models
@@ -105,11 +107,14 @@ Class | Method | HTTP request | Description
  - [MixedResultsDataSinksMetadata](docs/MixedResultsDataSinksMetadata.md)
  - [ModelError](docs/ModelError.md)
  - [ModuleName](docs/ModuleName.md)
- - [ModuleNameModule](docs/ModuleNameModule.md)
  - [ModuleNamesResult](docs/ModuleNamesResult.md)
  - [SingleFunctionResult](docs/SingleFunctionResult.md)
  - [SingleModuleResult](docs/SingleModuleResult.md)
  - [SingleModuleResultData](docs/SingleModuleResultData.md)
+ - [SingleSubjectResult](docs/SingleSubjectResult.md)
+ - [SingleSubjectResultData](docs/SingleSubjectResultData.md)
+ - [SubjectName](docs/SubjectName.md)
+ - [SubjectNameSubject](docs/SubjectNameSubject.md)
 
 
 ## Documentation For Authorization

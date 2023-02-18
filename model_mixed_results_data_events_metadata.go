@@ -46,7 +46,7 @@ func NewMixedResultsDataEventsMetadataWithDefaults() *MixedResultsDataEventsMeta
 
 // GetSuccessful returns the Successful field value if set, zero value otherwise.
 func (o *MixedResultsDataEventsMetadata) GetSuccessful() int32 {
-	if o == nil || isNil(o.Successful) {
+	if o == nil || IsNil(o.Successful) {
 		var ret int32
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *MixedResultsDataEventsMetadata) GetSuccessful() int32 {
 // GetSuccessfulOk returns a tuple with the Successful field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MixedResultsDataEventsMetadata) GetSuccessfulOk() (*int32, bool) {
-	if o == nil || isNil(o.Successful) {
+	if o == nil || IsNil(o.Successful) {
 		return nil, false
 	}
 	return o.Successful, true
@@ -64,7 +64,7 @@ func (o *MixedResultsDataEventsMetadata) GetSuccessfulOk() (*int32, bool) {
 
 // HasSuccessful returns a boolean if a field has been set.
 func (o *MixedResultsDataEventsMetadata) HasSuccessful() bool {
-	if o != nil && !isNil(o.Successful) {
+	if o != nil && !IsNil(o.Successful) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *MixedResultsDataEventsMetadata) SetSuccessful(v int32) {
 
 // GetFailed returns the Failed field value if set, zero value otherwise.
 func (o *MixedResultsDataEventsMetadata) GetFailed() int32 {
-	if o == nil || isNil(o.Failed) {
+	if o == nil || IsNil(o.Failed) {
 		var ret int32
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *MixedResultsDataEventsMetadata) GetFailed() int32 {
 // GetFailedOk returns a tuple with the Failed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MixedResultsDataEventsMetadata) GetFailedOk() (*int32, bool) {
-	if o == nil || isNil(o.Failed) {
+	if o == nil || IsNil(o.Failed) {
 		return nil, false
 	}
 	return o.Failed, true
@@ -96,7 +96,7 @@ func (o *MixedResultsDataEventsMetadata) GetFailedOk() (*int32, bool) {
 
 // HasFailed returns a boolean if a field has been set.
 func (o *MixedResultsDataEventsMetadata) HasFailed() bool {
-	if o != nil && !isNil(o.Failed) {
+	if o != nil && !IsNil(o.Failed) {
 		return true
 	}
 
@@ -110,7 +110,7 @@ func (o *MixedResultsDataEventsMetadata) SetFailed(v int32) {
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *MixedResultsDataEventsMetadata) GetTotal() int32 {
-	if o == nil || isNil(o.Total) {
+	if o == nil || IsNil(o.Total) {
 		var ret int32
 		return ret
 	}
@@ -120,7 +120,7 @@ func (o *MixedResultsDataEventsMetadata) GetTotal() int32 {
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MixedResultsDataEventsMetadata) GetTotalOk() (*int32, bool) {
-	if o == nil || isNil(o.Total) {
+	if o == nil || IsNil(o.Total) {
 		return nil, false
 	}
 	return o.Total, true
@@ -128,7 +128,7 @@ func (o *MixedResultsDataEventsMetadata) GetTotalOk() (*int32, bool) {
 
 // HasTotal returns a boolean if a field has been set.
 func (o *MixedResultsDataEventsMetadata) HasTotal() bool {
-	if o != nil && !isNil(o.Total) {
+	if o != nil && !IsNil(o.Total) {
 		return true
 	}
 
@@ -150,13 +150,13 @@ func (o MixedResultsDataEventsMetadata) MarshalJSON() ([]byte, error) {
 
 func (o MixedResultsDataEventsMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Successful) {
+	if !IsNil(o.Successful) {
 		toSerialize["successful"] = o.Successful
 	}
-	if !isNil(o.Failed) {
+	if !IsNil(o.Failed) {
 		toSerialize["failed"] = o.Failed
 	}
-	if !isNil(o.Total) {
+	if !IsNil(o.Total) {
 		toSerialize["total"] = o.Total
 	}
 	return toSerialize, nil

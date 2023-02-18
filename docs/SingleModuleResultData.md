@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
-**Functions** | Pointer to [**[]ModuleNameModule**](ModuleNameModule.md) |  | [optional] 
+**Functions** | Pointer to [**[]SubjectNameSubject**](SubjectNameSubject.md) |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetFunctions
 
-`func (o *SingleModuleResultData) GetFunctions() []ModuleNameModule`
+`func (o *SingleModuleResultData) GetFunctions() []SubjectNameSubject`
 
 GetFunctions returns the Functions field if non-nil, zero value otherwise.
 
 ### GetFunctionsOk
 
-`func (o *SingleModuleResultData) GetFunctionsOk() (*[]ModuleNameModule, bool)`
+`func (o *SingleModuleResultData) GetFunctionsOk() (*[]SubjectNameSubject, bool)`
 
 GetFunctionsOk returns a tuple with the Functions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFunctions
 
-`func (o *SingleModuleResultData) SetFunctions(v []ModuleNameModule)`
+`func (o *SingleModuleResultData) SetFunctions(v []SubjectNameSubject)`
 
 SetFunctions sets Functions field to given value.
 

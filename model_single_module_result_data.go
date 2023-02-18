@@ -20,7 +20,7 @@ var _ MappedNullable = &SingleModuleResultData{}
 // SingleModuleResultData struct for SingleModuleResultData
 type SingleModuleResultData struct {
 	Name *string `json:"name,omitempty"`
-	Functions []ModuleNameModule `json:"functions,omitempty"`
+	Functions []SubjectNameSubject `json:"functions,omitempty"`
 }
 
 // NewSingleModuleResultData instantiates a new SingleModuleResultData object
@@ -42,7 +42,7 @@ func NewSingleModuleResultDataWithDefaults() *SingleModuleResultData {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SingleModuleResultData) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -52,7 +52,7 @@ func (o *SingleModuleResultData) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SingleModuleResultData) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -60,7 +60,7 @@ func (o *SingleModuleResultData) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SingleModuleResultData) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -73,9 +73,9 @@ func (o *SingleModuleResultData) SetName(v string) {
 }
 
 // GetFunctions returns the Functions field value if set, zero value otherwise.
-func (o *SingleModuleResultData) GetFunctions() []ModuleNameModule {
-	if o == nil || isNil(o.Functions) {
-		var ret []ModuleNameModule
+func (o *SingleModuleResultData) GetFunctions() []SubjectNameSubject {
+	if o == nil || IsNil(o.Functions) {
+		var ret []SubjectNameSubject
 		return ret
 	}
 	return o.Functions
@@ -83,8 +83,8 @@ func (o *SingleModuleResultData) GetFunctions() []ModuleNameModule {
 
 // GetFunctionsOk returns a tuple with the Functions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SingleModuleResultData) GetFunctionsOk() ([]ModuleNameModule, bool) {
-	if o == nil || isNil(o.Functions) {
+func (o *SingleModuleResultData) GetFunctionsOk() ([]SubjectNameSubject, bool) {
+	if o == nil || IsNil(o.Functions) {
 		return nil, false
 	}
 	return o.Functions, true
@@ -92,15 +92,15 @@ func (o *SingleModuleResultData) GetFunctionsOk() ([]ModuleNameModule, bool) {
 
 // HasFunctions returns a boolean if a field has been set.
 func (o *SingleModuleResultData) HasFunctions() bool {
-	if o != nil && !isNil(o.Functions) {
+	if o != nil && !IsNil(o.Functions) {
 		return true
 	}
 
 	return false
 }
 
-// SetFunctions gets a reference to the given []ModuleNameModule and assigns it to the Functions field.
-func (o *SingleModuleResultData) SetFunctions(v []ModuleNameModule) {
+// SetFunctions gets a reference to the given []SubjectNameSubject and assigns it to the Functions field.
+func (o *SingleModuleResultData) SetFunctions(v []SubjectNameSubject) {
 	o.Functions = v
 }
 
@@ -114,10 +114,10 @@ func (o SingleModuleResultData) MarshalJSON() ([]byte, error) {
 
 func (o SingleModuleResultData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Functions) {
+	if !IsNil(o.Functions) {
 		toSerialize["functions"] = o.Functions
 	}
 	return toSerialize, nil

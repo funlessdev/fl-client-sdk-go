@@ -41,7 +41,7 @@ func NewInvokeInputWithDefaults() *InvokeInput {
 
 // GetArgs returns the Args field value if set, zero value otherwise.
 func (o *InvokeInput) GetArgs() map[string]interface{} {
-	if o == nil || isNil(o.Args) {
+	if o == nil || IsNil(o.Args) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -51,7 +51,7 @@ func (o *InvokeInput) GetArgs() map[string]interface{} {
 // GetArgsOk returns a tuple with the Args field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InvokeInput) GetArgsOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Args) {
+	if o == nil || IsNil(o.Args) {
 		return map[string]interface{}{}, false
 	}
 	return o.Args, true
@@ -59,7 +59,7 @@ func (o *InvokeInput) GetArgsOk() (map[string]interface{}, bool) {
 
 // HasArgs returns a boolean if a field has been set.
 func (o *InvokeInput) HasArgs() bool {
-	if o != nil && !isNil(o.Args) {
+	if o != nil && !IsNil(o.Args) {
 		return true
 	}
 
@@ -81,7 +81,7 @@ func (o InvokeInput) MarshalJSON() ([]byte, error) {
 
 func (o InvokeInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Args) {
+	if !IsNil(o.Args) {
 		toSerialize["args"] = o.Args
 	}
 	return toSerialize, nil
