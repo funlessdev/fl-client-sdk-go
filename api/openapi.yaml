@@ -47,7 +47,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/single_module_result'
+                $ref: '#/components/schemas/single_subject_result'
           description: The created subject
         default:
           content:
@@ -435,6 +435,10 @@ components:
           $ref: '#/components/schemas/subject_name_subject'
       type: object
     single_subject_result:
+      example:
+        data:
+          name: name
+          token: token
       properties:
         data:
           $ref: '#/components/schemas/single_subject_result_data'
@@ -526,6 +530,9 @@ components:
           type: string
       type: object
     single_subject_result_data:
+      example:
+        name: name
+        token: token
       properties:
         name:
           type: string

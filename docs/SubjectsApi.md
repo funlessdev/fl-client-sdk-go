@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## CreateSubject
 
-> SingleModuleResult CreateSubject(ctx).SubjectName(subjectName).Execute()
+> SingleSubjectResult CreateSubject(ctx).SubjectName(subjectName).Execute()
 
 Create subject
 
@@ -39,7 +39,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SubjectsApi.CreateSubject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateSubject`: SingleModuleResult
+    // response from `CreateSubject`: SingleSubjectResult
     fmt.Fprintf(os.Stdout, "Response from `SubjectsApi.CreateSubject`: %v\n", resp)
 }
 ```
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SingleModuleResult**](SingleModuleResult.md)
+[**SingleSubjectResult**](SingleSubjectResult.md)
 
 ### Authorization
 

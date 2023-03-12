@@ -34,7 +34,7 @@ func (r ApiCreateSubjectRequest) SubjectName(subjectName SubjectName) ApiCreateS
 	return r
 }
 
-func (r ApiCreateSubjectRequest) Execute() (*SingleModuleResult, *http.Response, error) {
+func (r ApiCreateSubjectRequest) Execute() (*SingleSubjectResult, *http.Response, error) {
 	return r.ApiService.CreateSubjectExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *SubjectsApiService) CreateSubject(ctx context.Context) ApiCreateSubject
 }
 
 // Execute executes the request
-//  @return SingleModuleResult
-func (a *SubjectsApiService) CreateSubjectExecute(r ApiCreateSubjectRequest) (*SingleModuleResult, *http.Response, error) {
+//  @return SingleSubjectResult
+func (a *SubjectsApiService) CreateSubjectExecute(r ApiCreateSubjectRequest) (*SingleSubjectResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SingleModuleResult
+		localVarReturnValue  *SingleSubjectResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubjectsApiService.CreateSubject")
