@@ -1,7 +1,7 @@
 /*
 FunLess Platfom API
 
-Testing SubjectsApiService
+Testing SubjectsAPIService
 
 */
 
@@ -17,16 +17,16 @@ import (
 	openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
-func Test_openapi_SubjectsApiService(t *testing.T) {
+func Test_openapi_SubjectsAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test SubjectsApiService CreateSubject", func(t *testing.T) {
+	t.Run("Test SubjectsAPIService CreateSubject", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SubjectsApi.CreateSubject(context.Background()).Execute()
+		resp, httpRes, err := apiClient.SubjectsAPI.CreateSubject(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,11 +34,11 @@ func Test_openapi_SubjectsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test SubjectsApiService ListSubjects", func(t *testing.T) {
+	t.Run("Test SubjectsAPIService ListSubjects", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SubjectsApi.ListSubjects(context.Background()).Execute()
+		resp, httpRes, err := apiClient.SubjectsAPI.ListSubjects(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

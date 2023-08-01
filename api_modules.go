@@ -20,12 +20,12 @@ import (
 )
 
 
-// ModulesApiService ModulesApi service
-type ModulesApiService service
+// ModulesAPIService ModulesAPI service
+type ModulesAPIService service
 
 type ApiCreateModuleRequest struct {
 	ctx context.Context
-	ApiService *ModulesApiService
+	ApiService *ModulesAPIService
 	moduleName *ModuleName
 }
 
@@ -47,7 +47,7 @@ Create a new module
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateModuleRequest
 */
-func (a *ModulesApiService) CreateModule(ctx context.Context) ApiCreateModuleRequest {
+func (a *ModulesAPIService) CreateModule(ctx context.Context) ApiCreateModuleRequest {
 	return ApiCreateModuleRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -55,14 +55,14 @@ func (a *ModulesApiService) CreateModule(ctx context.Context) ApiCreateModuleReq
 }
 
 // Execute executes the request
-func (a *ModulesApiService) CreateModuleExecute(r ApiCreateModuleRequest) (*http.Response, error) {
+func (a *ModulesAPIService) CreateModuleExecute(r ApiCreateModuleRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ModulesApiService.CreateModule")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ModulesAPIService.CreateModule")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -133,7 +133,7 @@ func (a *ModulesApiService) CreateModuleExecute(r ApiCreateModuleRequest) (*http
 
 type ApiDeleteModuleRequest struct {
 	ctx context.Context
-	ApiService *ModulesApiService
+	ApiService *ModulesAPIService
 	moduleName string
 }
 
@@ -150,7 +150,7 @@ Delete module
  @param moduleName The name of the module to retrieve
  @return ApiDeleteModuleRequest
 */
-func (a *ModulesApiService) DeleteModule(ctx context.Context, moduleName string) ApiDeleteModuleRequest {
+func (a *ModulesAPIService) DeleteModule(ctx context.Context, moduleName string) ApiDeleteModuleRequest {
 	return ApiDeleteModuleRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -159,14 +159,14 @@ func (a *ModulesApiService) DeleteModule(ctx context.Context, moduleName string)
 }
 
 // Execute executes the request
-func (a *ModulesApiService) DeleteModuleExecute(r ApiDeleteModuleRequest) (*http.Response, error) {
+func (a *ModulesAPIService) DeleteModuleExecute(r ApiDeleteModuleRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ModulesApiService.DeleteModule")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ModulesAPIService.DeleteModule")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -233,7 +233,7 @@ func (a *ModulesApiService) DeleteModuleExecute(r ApiDeleteModuleRequest) (*http
 
 type ApiListModulesRequest struct {
 	ctx context.Context
-	ApiService *ModulesApiService
+	ApiService *ModulesAPIService
 }
 
 func (r ApiListModulesRequest) Execute() (*ModuleNamesResult, *http.Response, error) {
@@ -248,7 +248,7 @@ List all modules
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListModulesRequest
 */
-func (a *ModulesApiService) ListModules(ctx context.Context) ApiListModulesRequest {
+func (a *ModulesAPIService) ListModules(ctx context.Context) ApiListModulesRequest {
 	return ApiListModulesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -257,7 +257,7 @@ func (a *ModulesApiService) ListModules(ctx context.Context) ApiListModulesReque
 
 // Execute executes the request
 //  @return ModuleNamesResult
-func (a *ModulesApiService) ListModulesExecute(r ApiListModulesRequest) (*ModuleNamesResult, *http.Response, error) {
+func (a *ModulesAPIService) ListModulesExecute(r ApiListModulesRequest) (*ModuleNamesResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -265,7 +265,7 @@ func (a *ModulesApiService) ListModulesExecute(r ApiListModulesRequest) (*Module
 		localVarReturnValue  *ModuleNamesResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ModulesApiService.ListModules")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ModulesAPIService.ListModules")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -340,7 +340,7 @@ func (a *ModulesApiService) ListModulesExecute(r ApiListModulesRequest) (*Module
 
 type ApiShowModuleByNameRequest struct {
 	ctx context.Context
-	ApiService *ModulesApiService
+	ApiService *ModulesAPIService
 	moduleName string
 }
 
@@ -357,7 +357,7 @@ Get module data (name, array of functions, number of functions)
  @param moduleName The name of the module to retrieve
  @return ApiShowModuleByNameRequest
 */
-func (a *ModulesApiService) ShowModuleByName(ctx context.Context, moduleName string) ApiShowModuleByNameRequest {
+func (a *ModulesAPIService) ShowModuleByName(ctx context.Context, moduleName string) ApiShowModuleByNameRequest {
 	return ApiShowModuleByNameRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -367,7 +367,7 @@ func (a *ModulesApiService) ShowModuleByName(ctx context.Context, moduleName str
 
 // Execute executes the request
 //  @return SingleModuleResult
-func (a *ModulesApiService) ShowModuleByNameExecute(r ApiShowModuleByNameRequest) (*SingleModuleResult, *http.Response, error) {
+func (a *ModulesAPIService) ShowModuleByNameExecute(r ApiShowModuleByNameRequest) (*SingleModuleResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -375,7 +375,7 @@ func (a *ModulesApiService) ShowModuleByNameExecute(r ApiShowModuleByNameRequest
 		localVarReturnValue  *SingleModuleResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ModulesApiService.ShowModuleByName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ModulesAPIService.ShowModuleByName")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -451,7 +451,7 @@ func (a *ModulesApiService) ShowModuleByNameExecute(r ApiShowModuleByNameRequest
 
 type ApiUpdateModuleRequest struct {
 	ctx context.Context
-	ApiService *ModulesApiService
+	ApiService *ModulesAPIService
 	moduleName string
 	moduleName2 *ModuleName
 }
@@ -475,7 +475,7 @@ Update module name
  @param moduleName The name of the module to retrieve
  @return ApiUpdateModuleRequest
 */
-func (a *ModulesApiService) UpdateModule(ctx context.Context, moduleName string) ApiUpdateModuleRequest {
+func (a *ModulesAPIService) UpdateModule(ctx context.Context, moduleName string) ApiUpdateModuleRequest {
 	return ApiUpdateModuleRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -484,14 +484,14 @@ func (a *ModulesApiService) UpdateModule(ctx context.Context, moduleName string)
 }
 
 // Execute executes the request
-func (a *ModulesApiService) UpdateModuleExecute(r ApiUpdateModuleRequest) (*http.Response, error) {
+func (a *ModulesAPIService) UpdateModuleExecute(r ApiUpdateModuleRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ModulesApiService.UpdateModule")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ModulesAPIService.UpdateModule")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}

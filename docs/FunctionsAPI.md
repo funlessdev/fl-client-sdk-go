@@ -1,14 +1,14 @@
-# \FunctionsApi
+# \FunctionsAPI
 
 All URIs are relative to *http://localhost:4000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateFunction**](FunctionsApi.md#CreateFunction) | **Post** /v1/fn/{module_name} | Create new function
-[**DeleteFunction**](FunctionsApi.md#DeleteFunction) | **Delete** /v1/fn/{module_name}/{function_name} | Delete function
-[**InvokeFunction**](FunctionsApi.md#InvokeFunction) | **Post** /v1/fn/{module_name}/{function_name} | Invoke function
-[**ShowFunctionByName**](FunctionsApi.md#ShowFunctionByName) | **Get** /v1/fn/{module_name}/{function_name} | Show function info
-[**UpdateFunction**](FunctionsApi.md#UpdateFunction) | **Put** /v1/fn/{module_name}/{function_name} | Update function
+[**CreateFunction**](FunctionsAPI.md#CreateFunction) | **Post** /v1/fn/{module_name} | Create new function
+[**DeleteFunction**](FunctionsAPI.md#DeleteFunction) | **Delete** /v1/fn/{module_name}/{function_name} | Delete function
+[**InvokeFunction**](FunctionsAPI.md#InvokeFunction) | **Post** /v1/fn/{module_name}/{function_name} | Invoke function
+[**ShowFunctionByName**](FunctionsAPI.md#ShowFunctionByName) | **Get** /v1/fn/{module_name}/{function_name} | Show function info
+[**UpdateFunction**](FunctionsAPI.md#UpdateFunction) | **Put** /v1/fn/{module_name}/{function_name} | Update function
 
 
 
@@ -41,9 +41,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.FunctionsApi.CreateFunction(context.Background(), moduleName).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
+    r, err := apiClient.FunctionsAPI.CreateFunction(context.Background(), moduleName).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.CreateFunction``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.CreateFunction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -114,9 +114,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.FunctionsApi.DeleteFunction(context.Background(), moduleName, functionName).Execute()
+    r, err := apiClient.FunctionsAPI.DeleteFunction(context.Background(), moduleName, functionName).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.DeleteFunction``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.DeleteFunction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -186,13 +186,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FunctionsApi.InvokeFunction(context.Background(), moduleName, functionName).InvokeInput(invokeInput).Execute()
+    resp, r, err := apiClient.FunctionsAPI.InvokeFunction(context.Background(), moduleName, functionName).InvokeInput(invokeInput).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.InvokeFunction``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.InvokeFunction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `InvokeFunction`: InvokeResult
-    fmt.Fprintf(os.Stdout, "Response from `FunctionsApi.InvokeFunction`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FunctionsAPI.InvokeFunction`: %v\n", resp)
 }
 ```
 
@@ -260,13 +260,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FunctionsApi.ShowFunctionByName(context.Background(), moduleName, functionName).Execute()
+    resp, r, err := apiClient.FunctionsAPI.ShowFunctionByName(context.Background(), moduleName, functionName).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.ShowFunctionByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.ShowFunctionByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ShowFunctionByName`: SingleFunctionResult
-    fmt.Fprintf(os.Stdout, "Response from `FunctionsApi.ShowFunctionByName`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `FunctionsAPI.ShowFunctionByName`: %v\n", resp)
 }
 ```
 
@@ -337,9 +337,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.FunctionsApi.UpdateFunction(context.Background(), moduleName, functionName).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
+    r, err := apiClient.FunctionsAPI.UpdateFunction(context.Background(), moduleName, functionName).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsApi.UpdateFunction``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.UpdateFunction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }

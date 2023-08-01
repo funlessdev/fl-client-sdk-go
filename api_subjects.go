@@ -19,12 +19,12 @@ import (
 )
 
 
-// SubjectsApiService SubjectsApi service
-type SubjectsApiService service
+// SubjectsAPIService SubjectsAPI service
+type SubjectsAPIService service
 
 type ApiCreateSubjectRequest struct {
 	ctx context.Context
-	ApiService *SubjectsApiService
+	ApiService *SubjectsAPIService
 	subjectName *SubjectName
 }
 
@@ -46,7 +46,7 @@ Create a new subject (name, token)
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateSubjectRequest
 */
-func (a *SubjectsApiService) CreateSubject(ctx context.Context) ApiCreateSubjectRequest {
+func (a *SubjectsAPIService) CreateSubject(ctx context.Context) ApiCreateSubjectRequest {
 	return ApiCreateSubjectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -55,7 +55,7 @@ func (a *SubjectsApiService) CreateSubject(ctx context.Context) ApiCreateSubject
 
 // Execute executes the request
 //  @return SingleSubjectResult
-func (a *SubjectsApiService) CreateSubjectExecute(r ApiCreateSubjectRequest) (*SingleSubjectResult, *http.Response, error) {
+func (a *SubjectsAPIService) CreateSubjectExecute(r ApiCreateSubjectRequest) (*SingleSubjectResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -63,7 +63,7 @@ func (a *SubjectsApiService) CreateSubjectExecute(r ApiCreateSubjectRequest) (*S
 		localVarReturnValue  *SingleSubjectResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubjectsApiService.CreateSubject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubjectsAPIService.CreateSubject")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -143,7 +143,7 @@ func (a *SubjectsApiService) CreateSubjectExecute(r ApiCreateSubjectRequest) (*S
 
 type ApiListSubjectsRequest struct {
 	ctx context.Context
-	ApiService *SubjectsApiService
+	ApiService *SubjectsAPIService
 }
 
 func (r ApiListSubjectsRequest) Execute() (*ModuleNamesResult, *http.Response, error) {
@@ -158,7 +158,7 @@ List all subjects
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListSubjectsRequest
 */
-func (a *SubjectsApiService) ListSubjects(ctx context.Context) ApiListSubjectsRequest {
+func (a *SubjectsAPIService) ListSubjects(ctx context.Context) ApiListSubjectsRequest {
 	return ApiListSubjectsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -167,7 +167,7 @@ func (a *SubjectsApiService) ListSubjects(ctx context.Context) ApiListSubjectsRe
 
 // Execute executes the request
 //  @return ModuleNamesResult
-func (a *SubjectsApiService) ListSubjectsExecute(r ApiListSubjectsRequest) (*ModuleNamesResult, *http.Response, error) {
+func (a *SubjectsAPIService) ListSubjectsExecute(r ApiListSubjectsRequest) (*ModuleNamesResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -175,7 +175,7 @@ func (a *SubjectsApiService) ListSubjectsExecute(r ApiListSubjectsRequest) (*Mod
 		localVarReturnValue  *ModuleNamesResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubjectsApiService.ListSubjects")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubjectsAPIService.ListSubjects")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

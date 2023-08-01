@@ -1,14 +1,14 @@
-# \ModulesApi
+# \ModulesAPI
 
 All URIs are relative to *http://localhost:4000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateModule**](ModulesApi.md#CreateModule) | **Post** /v1/fn | Create
-[**DeleteModule**](ModulesApi.md#DeleteModule) | **Delete** /v1/fn/{module_name} | Delete module
-[**ListModules**](ModulesApi.md#ListModules) | **Get** /v1/fn | List modules
-[**ShowModuleByName**](ModulesApi.md#ShowModuleByName) | **Get** /v1/fn/{module_name} | Show module info
-[**UpdateModule**](ModulesApi.md#UpdateModule) | **Put** /v1/fn/{module_name} | Update module name
+[**CreateModule**](ModulesAPI.md#CreateModule) | **Post** /v1/fn | Create
+[**DeleteModule**](ModulesAPI.md#DeleteModule) | **Delete** /v1/fn/{module_name} | Delete module
+[**ListModules**](ModulesAPI.md#ListModules) | **Get** /v1/fn | List modules
+[**ShowModuleByName**](ModulesAPI.md#ShowModuleByName) | **Get** /v1/fn/{module_name} | Show module info
+[**UpdateModule**](ModulesAPI.md#UpdateModule) | **Put** /v1/fn/{module_name} | Update module name
 
 
 
@@ -37,9 +37,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ModulesApi.CreateModule(context.Background()).ModuleName(moduleName).Execute()
+    r, err := apiClient.ModulesAPI.CreateModule(context.Background()).ModuleName(moduleName).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ModulesApi.CreateModule``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ModulesAPI.CreateModule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -101,9 +101,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ModulesApi.DeleteModule(context.Background(), moduleName).Execute()
+    r, err := apiClient.ModulesAPI.DeleteModule(context.Background(), moduleName).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ModulesApi.DeleteModule``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ModulesAPI.DeleteModule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -168,13 +168,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ModulesApi.ListModules(context.Background()).Execute()
+    resp, r, err := apiClient.ModulesAPI.ListModules(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ModulesApi.ListModules``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ModulesAPI.ListModules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListModules`: ModuleNamesResult
-    fmt.Fprintf(os.Stdout, "Response from `ModulesApi.ListModules`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ModulesAPI.ListModules`: %v\n", resp)
 }
 ```
 
@@ -230,13 +230,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ModulesApi.ShowModuleByName(context.Background(), moduleName).Execute()
+    resp, r, err := apiClient.ModulesAPI.ShowModuleByName(context.Background(), moduleName).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ModulesApi.ShowModuleByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ModulesAPI.ShowModuleByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ShowModuleByName`: SingleModuleResult
-    fmt.Fprintf(os.Stdout, "Response from `ModulesApi.ShowModuleByName`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ModulesAPI.ShowModuleByName`: %v\n", resp)
 }
 ```
 
@@ -301,9 +301,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ModulesApi.UpdateModule(context.Background(), moduleName).ModuleName2(moduleName2).Execute()
+    r, err := apiClient.ModulesAPI.UpdateModule(context.Background(), moduleName).ModuleName2(moduleName2).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ModulesApi.UpdateModule``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ModulesAPI.UpdateModule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }

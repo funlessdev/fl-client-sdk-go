@@ -21,13 +21,12 @@ import (
 )
 
 
-// FunctionsAPIService FunctionsAPI service
-type FunctionsAPIService service
+// AppAPIService AppAPI service
+type AppAPIService service
 
-type ApiCreateFunctionRequest struct {
+type ApiCreateAppRequest struct {
 	ctx context.Context
-	ApiService *FunctionsAPIService
-	moduleName string
+	ApiService *AppAPIService
 	name *string
 	code *os.File
 	events *[]FunctionCreateUpdateEventsInner
@@ -35,65 +34,62 @@ type ApiCreateFunctionRequest struct {
 }
 
 // Name of the function
-func (r ApiCreateFunctionRequest) Name(name string) ApiCreateFunctionRequest {
+func (r ApiCreateAppRequest) Name(name string) ApiCreateAppRequest {
 	r.name = &name
 	return r
 }
 
 // File with the code of the function
-func (r ApiCreateFunctionRequest) Code(code *os.File) ApiCreateFunctionRequest {
+func (r ApiCreateAppRequest) Code(code *os.File) ApiCreateAppRequest {
 	r.code = code
 	return r
 }
 
 // Events that can trigger the function
-func (r ApiCreateFunctionRequest) Events(events []FunctionCreateUpdateEventsInner) ApiCreateFunctionRequest {
+func (r ApiCreateAppRequest) Events(events []FunctionCreateUpdateEventsInner) ApiCreateAppRequest {
 	r.events = &events
 	return r
 }
 
 // Data sinks that receive invocation&#39;s results
-func (r ApiCreateFunctionRequest) Sinks(sinks []FunctionCreateUpdateSinksInner) ApiCreateFunctionRequest {
+func (r ApiCreateAppRequest) Sinks(sinks []FunctionCreateUpdateSinksInner) ApiCreateAppRequest {
 	r.sinks = &sinks
 	return r
 }
 
-func (r ApiCreateFunctionRequest) Execute() (*http.Response, error) {
-	return r.ApiService.CreateFunctionExecute(r)
+func (r ApiCreateAppRequest) Execute() (*http.Response, error) {
+	return r.ApiService.CreateAppExecute(r)
 }
 
 /*
-CreateFunction Create new function
+CreateApp Create new APP script
 
-Create a new function in the specified module
+Create a new APP script
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param moduleName The name of the module to retrieve
- @return ApiCreateFunctionRequest
+ @return ApiCreateAppRequest
 */
-func (a *FunctionsAPIService) CreateFunction(ctx context.Context, moduleName string) ApiCreateFunctionRequest {
-	return ApiCreateFunctionRequest{
+func (a *AppAPIService) CreateApp(ctx context.Context) ApiCreateAppRequest {
+	return ApiCreateAppRequest{
 		ApiService: a,
 		ctx: ctx,
-		moduleName: moduleName,
 	}
 }
 
 // Execute executes the request
-func (a *FunctionsAPIService) CreateFunctionExecute(r ApiCreateFunctionRequest) (*http.Response, error) {
+func (a *AppAPIService) CreateAppExecute(r ApiCreateAppRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionsAPIService.CreateFunction")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppAPIService.CreateApp")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/fn/{module_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterValueToString(r.moduleName, "moduleName")), -1)
+	localVarPath := localBasePath + "/v1/app"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -178,52 +174,48 @@ func (a *FunctionsAPIService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 	return localVarHTTPResponse, nil
 }
 
-type ApiDeleteFunctionRequest struct {
+type ApiDeleteAppRequest struct {
 	ctx context.Context
-	ApiService *FunctionsAPIService
+	ApiService *AppAPIService
 	moduleName string
-	functionName string
 }
 
-func (r ApiDeleteFunctionRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteFunctionExecute(r)
+func (r ApiDeleteAppRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteAppExecute(r)
 }
 
 /*
-DeleteFunction Delete function
+DeleteApp Delete APP
 
-Delete single function in module
+Delete single APP
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param moduleName The name of the module
- @param functionName The name of the function
- @return ApiDeleteFunctionRequest
+ @param moduleName The name of the module to retrieve
+ @return ApiDeleteAppRequest
 */
-func (a *FunctionsAPIService) DeleteFunction(ctx context.Context, moduleName string, functionName string) ApiDeleteFunctionRequest {
-	return ApiDeleteFunctionRequest{
+func (a *AppAPIService) DeleteApp(ctx context.Context, moduleName string) ApiDeleteAppRequest {
+	return ApiDeleteAppRequest{
 		ApiService: a,
 		ctx: ctx,
 		moduleName: moduleName,
-		functionName: functionName,
 	}
 }
 
 // Execute executes the request
-func (a *FunctionsAPIService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) (*http.Response, error) {
+func (a *AppAPIService) DeleteAppExecute(r ApiDeleteAppRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionsAPIService.DeleteFunction")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppAPIService.DeleteApp")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/fn/{module_name}/{function_name}"
+	localVarPath := localBasePath + "/v1/app/{app_name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterValueToString(r.moduleName, "moduleName")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"function_name"+"}", url.PathEscape(parameterValueToString(r.functionName, "functionName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -282,181 +274,46 @@ func (a *FunctionsAPIService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) 
 	return localVarHTTPResponse, nil
 }
 
-type ApiInvokeFunctionRequest struct {
+type ApiListAppRequest struct {
 	ctx context.Context
-	ApiService *FunctionsAPIService
-	moduleName string
-	functionName string
-	invokeInput *InvokeInput
+	ApiService *AppAPIService
 }
 
-// Function input
-func (r ApiInvokeFunctionRequest) InvokeInput(invokeInput InvokeInput) ApiInvokeFunctionRequest {
-	r.invokeInput = &invokeInput
-	return r
-}
-
-func (r ApiInvokeFunctionRequest) Execute() (*InvokeResult, *http.Response, error) {
-	return r.ApiService.InvokeFunctionExecute(r)
+func (r ApiListAppRequest) Execute() (*ModuleNamesResult, *http.Response, error) {
+	return r.ApiService.ListAppExecute(r)
 }
 
 /*
-InvokeFunction Invoke function
+ListApp List current APP scripts
 
-Invoke function
+List all APP scripts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param moduleName The name of the module
- @param functionName The name of the function
- @return ApiInvokeFunctionRequest
+ @return ApiListAppRequest
 */
-func (a *FunctionsAPIService) InvokeFunction(ctx context.Context, moduleName string, functionName string) ApiInvokeFunctionRequest {
-	return ApiInvokeFunctionRequest{
+func (a *AppAPIService) ListApp(ctx context.Context) ApiListAppRequest {
+	return ApiListAppRequest{
 		ApiService: a,
 		ctx: ctx,
-		moduleName: moduleName,
-		functionName: functionName,
 	}
 }
 
 // Execute executes the request
-//  @return InvokeResult
-func (a *FunctionsAPIService) InvokeFunctionExecute(r ApiInvokeFunctionRequest) (*InvokeResult, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *InvokeResult
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionsAPIService.InvokeFunction")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/fn/{module_name}/{function_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterValueToString(r.moduleName, "moduleName")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"function_name"+"}", url.PathEscape(parameterValueToString(r.functionName, "functionName")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.invokeInput == nil {
-		return localVarReturnValue, nil, reportError("invokeInput is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.invokeInput
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-			var v ModelError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiShowFunctionByNameRequest struct {
-	ctx context.Context
-	ApiService *FunctionsAPIService
-	moduleName string
-	functionName string
-}
-
-func (r ApiShowFunctionByNameRequest) Execute() (*SingleFunctionResult, *http.Response, error) {
-	return r.ApiService.ShowFunctionByNameExecute(r)
-}
-
-/*
-ShowFunctionByName Show function info
-
-Get function data (name, module name, size of code)
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param moduleName The name of the module to retrieve
- @param functionName The name of the function
- @return ApiShowFunctionByNameRequest
-*/
-func (a *FunctionsAPIService) ShowFunctionByName(ctx context.Context, moduleName string, functionName string) ApiShowFunctionByNameRequest {
-	return ApiShowFunctionByNameRequest{
-		ApiService: a,
-		ctx: ctx,
-		moduleName: moduleName,
-		functionName: functionName,
-	}
-}
-
-// Execute executes the request
-//  @return SingleFunctionResult
-func (a *FunctionsAPIService) ShowFunctionByNameExecute(r ApiShowFunctionByNameRequest) (*SingleFunctionResult, *http.Response, error) {
+//  @return ModuleNamesResult
+func (a *AppAPIService) ListAppExecute(r ApiListAppRequest) (*ModuleNamesResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SingleFunctionResult
+		localVarReturnValue  *ModuleNamesResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionsAPIService.ShowFunctionByName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppAPIService.ListApp")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/fn/{module_name}/{function_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterValueToString(r.moduleName, "moduleName")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"function_name"+"}", url.PathEscape(parameterValueToString(r.functionName, "functionName")), -1)
+	localVarPath := localBasePath + "/v1/app"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -524,87 +381,57 @@ func (a *FunctionsAPIService) ShowFunctionByNameExecute(r ApiShowFunctionByNameR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateFunctionRequest struct {
+type ApiShowAppByNameRequest struct {
 	ctx context.Context
-	ApiService *FunctionsAPIService
+	ApiService *AppAPIService
 	moduleName string
-	functionName string
-	name *string
-	code *os.File
-	events *[]FunctionCreateUpdateEventsInner
-	sinks *[]FunctionCreateUpdateSinksInner
 }
 
-// Name of the function
-func (r ApiUpdateFunctionRequest) Name(name string) ApiUpdateFunctionRequest {
-	r.name = &name
-	return r
-}
-
-// File with the code of the function
-func (r ApiUpdateFunctionRequest) Code(code *os.File) ApiUpdateFunctionRequest {
-	r.code = code
-	return r
-}
-
-// Events that can trigger the function
-func (r ApiUpdateFunctionRequest) Events(events []FunctionCreateUpdateEventsInner) ApiUpdateFunctionRequest {
-	r.events = &events
-	return r
-}
-
-// Data sinks that receive invocation&#39;s results
-func (r ApiUpdateFunctionRequest) Sinks(sinks []FunctionCreateUpdateSinksInner) ApiUpdateFunctionRequest {
-	r.sinks = &sinks
-	return r
-}
-
-func (r ApiUpdateFunctionRequest) Execute() (*http.Response, error) {
-	return r.ApiService.UpdateFunctionExecute(r)
+func (r ApiShowAppByNameRequest) Execute() (*SingleAppResult, *http.Response, error) {
+	return r.ApiService.ShowAppByNameExecute(r)
 }
 
 /*
-UpdateFunction Update function
+ShowAppByName Show APP info
 
-Update function
+Get APP data (name, content of script)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param moduleName The name of the module
- @param functionName The name of the function
- @return ApiUpdateFunctionRequest
+ @param moduleName The name of the module to retrieve
+ @return ApiShowAppByNameRequest
 */
-func (a *FunctionsAPIService) UpdateFunction(ctx context.Context, moduleName string, functionName string) ApiUpdateFunctionRequest {
-	return ApiUpdateFunctionRequest{
+func (a *AppAPIService) ShowAppByName(ctx context.Context, moduleName string) ApiShowAppByNameRequest {
+	return ApiShowAppByNameRequest{
 		ApiService: a,
 		ctx: ctx,
 		moduleName: moduleName,
-		functionName: functionName,
 	}
 }
 
 // Execute executes the request
-func (a *FunctionsAPIService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) (*http.Response, error) {
+//  @return SingleAppResult
+func (a *AppAPIService) ShowAppByNameExecute(r ApiShowAppByNameRequest) (*SingleAppResult, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *SingleAppResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionsAPIService.UpdateFunction")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppAPIService.ShowAppByName")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/fn/{module_name}/{function_name}"
+	localVarPath := localBasePath + "/v1/app/{app_name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"module_name"+"}", url.PathEscape(parameterValueToString(r.moduleName, "moduleName")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"function_name"+"}", url.PathEscape(parameterValueToString(r.functionName, "functionName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"multipart/form-data"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -620,47 +447,21 @@ func (a *FunctionsAPIService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.name != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "")
-	}
-	var codeLocalVarFormFileName string
-	var codeLocalVarFileName     string
-	var codeLocalVarFileBytes    []byte
-
-	codeLocalVarFormFileName = "code"
-
-
-	codeLocalVarFile := r.code
-
-	if codeLocalVarFile != nil {
-		fbs, _ := io.ReadAll(codeLocalVarFile)
-
-		codeLocalVarFileBytes = fbs
-		codeLocalVarFileName = codeLocalVarFile.Name()
-		codeLocalVarFile.Close()
-		formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
-	}
-	if r.events != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "events", r.events, "csv")
-	}
-	if r.sinks != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "sinks", r.sinks, "csv")
-	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -672,12 +473,21 @@ func (a *FunctionsAPIService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

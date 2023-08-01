@@ -1,11 +1,11 @@
-# \SubjectsApi
+# \SubjectsAPI
 
 All URIs are relative to *http://localhost:4000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateSubject**](SubjectsApi.md#CreateSubject) | **Post** /v1/admin/subjects | Create subject
-[**ListSubjects**](SubjectsApi.md#ListSubjects) | **Get** /v1/admin/subjects | List all subjects
+[**CreateSubject**](SubjectsAPI.md#CreateSubject) | **Post** /v1/admin/subjects | Create subject
+[**ListSubjects**](SubjectsAPI.md#ListSubjects) | **Get** /v1/admin/subjects | List all subjects
 
 
 
@@ -34,13 +34,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubjectsApi.CreateSubject(context.Background()).SubjectName(subjectName).Execute()
+    resp, r, err := apiClient.SubjectsAPI.CreateSubject(context.Background()).SubjectName(subjectName).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubjectsApi.CreateSubject``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SubjectsAPI.CreateSubject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateSubject`: SingleSubjectResult
-    fmt.Fprintf(os.Stdout, "Response from `SubjectsApi.CreateSubject`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `SubjectsAPI.CreateSubject`: %v\n", resp)
 }
 ```
 
@@ -99,13 +99,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubjectsApi.ListSubjects(context.Background()).Execute()
+    resp, r, err := apiClient.SubjectsAPI.ListSubjects(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubjectsApi.ListSubjects``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SubjectsAPI.ListSubjects``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListSubjects`: ModuleNamesResult
-    fmt.Fprintf(os.Stdout, "Response from `SubjectsApi.ListSubjects`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `SubjectsAPI.ListSubjects`: %v\n", resp)
 }
 ```
 

@@ -393,6 +393,105 @@ paths:
       summary: Update function
       tags:
       - functions
+  /v1/app:
+    get:
+      description: List all APP scripts
+      operationId: list_app
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/module_names_result'
+          description: An array of APP scripts names
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unexpected error
+      summary: List current APP scripts
+      tags:
+      - app
+    post:
+      description: Create a new APP script
+      operationId: create_app
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              code:
+                contentType: application/octet-stream
+                style: form
+            schema:
+              $ref: '#/components/schemas/function_create_update'
+        description: APP to create
+        required: true
+      responses:
+        "201":
+          description: Null response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unexpected error
+      summary: Create new APP script
+      tags:
+      - app
+  /v1/app/{app_name}:
+    delete:
+      description: Delete single APP
+      operationId: delete_app
+      parameters:
+      - description: The name of the module to retrieve
+        explode: false
+        in: path
+        name: module_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Null response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unexpected error
+      summary: Delete APP
+      tags:
+      - app
+    get:
+      description: "Get APP data (name, content of script)"
+      operationId: show_app_by_name
+      parameters:
+      - description: The name of the module to retrieve
+        explode: false
+        in: path
+        name: module_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/single_app_result'
+          description: Expected response to a valid request
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unexpected error
+      summary: Show APP info
+      tags:
+      - app
 components:
   parameters:
     module_name:
@@ -514,6 +613,25 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/mixed_results_data'
+      type: object
+    app_create_update:
+      properties:
+        name:
+          description: Name of the APP script
+          type: string
+        file:
+          description: File with the APP script
+          format: binary
+          type: string
+      type: object
+    single_app_result:
+      example:
+        data:
+          name: name
+          content: content
+      properties:
+        data:
+          $ref: '#/components/schemas/single_app_result_data'
       type: object
     error:
       properties:
@@ -643,6 +761,16 @@ components:
           $ref: '#/components/schemas/mixed_results_data_sinks_metadata'
         events_metadata:
           $ref: '#/components/schemas/mixed_results_data_events_metadata'
+      type: object
+    single_app_result_data:
+      example:
+        name: name
+        content: content
+      properties:
+        name:
+          type: string
+        content:
+          type: string
       type: object
     error_errors:
       properties:

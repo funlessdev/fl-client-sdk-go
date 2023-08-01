@@ -77,22 +77,27 @@ All URIs are relative to *http://localhost:4000*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*FunctionsApi* | [**CreateFunction**](docs/FunctionsApi.md#createfunction) | **Post** /v1/fn/{module_name} | Create new function
-*FunctionsApi* | [**DeleteFunction**](docs/FunctionsApi.md#deletefunction) | **Delete** /v1/fn/{module_name}/{function_name} | Delete function
-*FunctionsApi* | [**InvokeFunction**](docs/FunctionsApi.md#invokefunction) | **Post** /v1/fn/{module_name}/{function_name} | Invoke function
-*FunctionsApi* | [**ShowFunctionByName**](docs/FunctionsApi.md#showfunctionbyname) | **Get** /v1/fn/{module_name}/{function_name} | Show function info
-*FunctionsApi* | [**UpdateFunction**](docs/FunctionsApi.md#updatefunction) | **Put** /v1/fn/{module_name}/{function_name} | Update function
-*ModulesApi* | [**CreateModule**](docs/ModulesApi.md#createmodule) | **Post** /v1/fn | Create
-*ModulesApi* | [**DeleteModule**](docs/ModulesApi.md#deletemodule) | **Delete** /v1/fn/{module_name} | Delete module
-*ModulesApi* | [**ListModules**](docs/ModulesApi.md#listmodules) | **Get** /v1/fn | List modules
-*ModulesApi* | [**ShowModuleByName**](docs/ModulesApi.md#showmodulebyname) | **Get** /v1/fn/{module_name} | Show module info
-*ModulesApi* | [**UpdateModule**](docs/ModulesApi.md#updatemodule) | **Put** /v1/fn/{module_name} | Update module name
-*SubjectsApi* | [**CreateSubject**](docs/SubjectsApi.md#createsubject) | **Post** /v1/admin/subjects | Create subject
-*SubjectsApi* | [**ListSubjects**](docs/SubjectsApi.md#listsubjects) | **Get** /v1/admin/subjects | List all subjects
+*AppAPI* | [**CreateApp**](docs/AppAPI.md#createapp) | **Post** /v1/app | Create new APP script
+*AppAPI* | [**DeleteApp**](docs/AppAPI.md#deleteapp) | **Delete** /v1/app/{app_name} | Delete APP
+*AppAPI* | [**ListApp**](docs/AppAPI.md#listapp) | **Get** /v1/app | List current APP scripts
+*AppAPI* | [**ShowAppByName**](docs/AppAPI.md#showappbyname) | **Get** /v1/app/{app_name} | Show APP info
+*FunctionsAPI* | [**CreateFunction**](docs/FunctionsAPI.md#createfunction) | **Post** /v1/fn/{module_name} | Create new function
+*FunctionsAPI* | [**DeleteFunction**](docs/FunctionsAPI.md#deletefunction) | **Delete** /v1/fn/{module_name}/{function_name} | Delete function
+*FunctionsAPI* | [**InvokeFunction**](docs/FunctionsAPI.md#invokefunction) | **Post** /v1/fn/{module_name}/{function_name} | Invoke function
+*FunctionsAPI* | [**ShowFunctionByName**](docs/FunctionsAPI.md#showfunctionbyname) | **Get** /v1/fn/{module_name}/{function_name} | Show function info
+*FunctionsAPI* | [**UpdateFunction**](docs/FunctionsAPI.md#updatefunction) | **Put** /v1/fn/{module_name}/{function_name} | Update function
+*ModulesAPI* | [**CreateModule**](docs/ModulesAPI.md#createmodule) | **Post** /v1/fn | Create
+*ModulesAPI* | [**DeleteModule**](docs/ModulesAPI.md#deletemodule) | **Delete** /v1/fn/{module_name} | Delete module
+*ModulesAPI* | [**ListModules**](docs/ModulesAPI.md#listmodules) | **Get** /v1/fn | List modules
+*ModulesAPI* | [**ShowModuleByName**](docs/ModulesAPI.md#showmodulebyname) | **Get** /v1/fn/{module_name} | Show module info
+*ModulesAPI* | [**UpdateModule**](docs/ModulesAPI.md#updatemodule) | **Put** /v1/fn/{module_name} | Update module name
+*SubjectsAPI* | [**CreateSubject**](docs/SubjectsAPI.md#createsubject) | **Post** /v1/admin/subjects | Create subject
+*SubjectsAPI* | [**ListSubjects**](docs/SubjectsAPI.md#listsubjects) | **Get** /v1/admin/subjects | List all subjects
 
 
 ## Documentation For Models
 
+ - [AppCreateUpdate](docs/AppCreateUpdate.md)
  - [ErrorErrors](docs/ErrorErrors.md)
  - [FunctionCreateUpdate](docs/FunctionCreateUpdate.md)
  - [FunctionCreateUpdateEventsInner](docs/FunctionCreateUpdateEventsInner.md)
@@ -108,6 +113,8 @@ Class | Method | HTTP request | Description
  - [ModelError](docs/ModelError.md)
  - [ModuleName](docs/ModuleName.md)
  - [ModuleNamesResult](docs/ModuleNamesResult.md)
+ - [SingleAppResult](docs/SingleAppResult.md)
+ - [SingleAppResultData](docs/SingleAppResultData.md)
  - [SingleFunctionResult](docs/SingleFunctionResult.md)
  - [SingleModuleResult](docs/SingleModuleResult.md)
  - [SingleModuleResultData](docs/SingleModuleResultData.md)
@@ -119,7 +126,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Authorization
 
- Endpoints do not require authorization.
+Endpoints do not require authorization.
 
 
 ## Documentation for Utility Methods
