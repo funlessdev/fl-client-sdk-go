@@ -24,6 +24,8 @@ type FunctionCreateUpdate struct {
 	Name *string `json:"name,omitempty"`
 	// File with the code of the function
 	Code **os.File `json:"code,omitempty"`
+	// Whether to wait for all workers to receive the code of the function. If false, the request returns as soon as the creation request terminates.
+	WaitForWorkers *bool `json:"wait_for_workers,omitempty"`
 	// Events that can trigger the function
 	Events []FunctionCreateUpdateEventsInner `json:"events,omitempty"`
 	// Data sinks that receive invocation's results
@@ -36,6 +38,8 @@ type FunctionCreateUpdate struct {
 // will change when the set of required properties is changed
 func NewFunctionCreateUpdate() *FunctionCreateUpdate {
 	this := FunctionCreateUpdate{}
+	var waitForWorkers bool = true
+	this.WaitForWorkers = &waitForWorkers
 	return &this
 }
 
@@ -44,6 +48,8 @@ func NewFunctionCreateUpdate() *FunctionCreateUpdate {
 // but it doesn't guarantee that properties required by API are set
 func NewFunctionCreateUpdateWithDefaults() *FunctionCreateUpdate {
 	this := FunctionCreateUpdate{}
+	var waitForWorkers bool = true
+	this.WaitForWorkers = &waitForWorkers
 	return &this
 }
 
@@ -109,6 +115,38 @@ func (o *FunctionCreateUpdate) HasCode() bool {
 // SetCode gets a reference to the given *os.File and assigns it to the Code field.
 func (o *FunctionCreateUpdate) SetCode(v *os.File) {
 	o.Code = &v
+}
+
+// GetWaitForWorkers returns the WaitForWorkers field value if set, zero value otherwise.
+func (o *FunctionCreateUpdate) GetWaitForWorkers() bool {
+	if o == nil || IsNil(o.WaitForWorkers) {
+		var ret bool
+		return ret
+	}
+	return *o.WaitForWorkers
+}
+
+// GetWaitForWorkersOk returns a tuple with the WaitForWorkers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FunctionCreateUpdate) GetWaitForWorkersOk() (*bool, bool) {
+	if o == nil || IsNil(o.WaitForWorkers) {
+		return nil, false
+	}
+	return o.WaitForWorkers, true
+}
+
+// HasWaitForWorkers returns a boolean if a field has been set.
+func (o *FunctionCreateUpdate) HasWaitForWorkers() bool {
+	if o != nil && !IsNil(o.WaitForWorkers) {
+		return true
+	}
+
+	return false
+}
+
+// SetWaitForWorkers gets a reference to the given bool and assigns it to the WaitForWorkers field.
+func (o *FunctionCreateUpdate) SetWaitForWorkers(v bool) {
+	o.WaitForWorkers = &v
 }
 
 // GetEvents returns the Events field value if set, zero value otherwise.
@@ -190,6 +228,9 @@ func (o FunctionCreateUpdate) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Code) {
 		toSerialize["code"] = o.Code
+	}
+	if !IsNil(o.WaitForWorkers) {
+		toSerialize["wait_for_workers"] = o.WaitForWorkers
 	}
 	if !IsNil(o.Events) {
 		toSerialize["events"] = o.Events

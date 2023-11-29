@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateFunction
 
-> CreateFunction(ctx, moduleName).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
+> CreateFunction(ctx, moduleName).Name(name).Code(code).WaitForWorkers(waitForWorkers).Events(events).Sinks(sinks).Execute()
 
 Create new function
 
@@ -36,12 +36,13 @@ func main() {
     moduleName := "moduleName_example" // string | The name of the module to retrieve
     name := "name_example" // string | Name of the function (optional)
     code := os.NewFile(1234, "some_file") // *os.File | File with the code of the function (optional)
+    waitForWorkers := true // bool | Whether to wait for all workers to receive the code of the function. If false, the request returns as soon as the creation request terminates. (optional) (default to true)
     events := []openapiclient.FunctionCreateUpdateEventsInner{*openapiclient.NewFunctionCreateUpdateEventsInner()} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
     sinks := []openapiclient.FunctionCreateUpdateSinksInner{*openapiclient.NewFunctionCreateUpdateSinksInner()} // []FunctionCreateUpdateSinksInner | Data sinks that receive invocation's results (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.FunctionsAPI.CreateFunction(context.Background(), moduleName).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
+    r, err := apiClient.FunctionsAPI.CreateFunction(context.Background(), moduleName).Name(name).Code(code).WaitForWorkers(waitForWorkers).Events(events).Sinks(sinks).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.CreateFunction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -67,6 +68,7 @@ Name | Type | Description  | Notes
 
  **name** | **string** | Name of the function | 
  **code** | ***os.File** | File with the code of the function | 
+ **waitForWorkers** | **bool** | Whether to wait for all workers to receive the code of the function. If false, the request returns as soon as the creation request terminates. | [default to true]
  **events** | [**[]FunctionCreateUpdateEventsInner**](FunctionCreateUpdateEventsInner.md) | Events that can trigger the function | 
  **sinks** | [**[]FunctionCreateUpdateSinksInner**](FunctionCreateUpdateSinksInner.md) | Data sinks that receive invocation&#39;s results | 
 
@@ -309,7 +311,7 @@ No authorization required
 
 ## UpdateFunction
 
-> UpdateFunction(ctx, moduleName, functionName).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
+> UpdateFunction(ctx, moduleName, functionName).Name(name).Code(code).WaitForWorkers(waitForWorkers).Events(events).Sinks(sinks).Execute()
 
 Update function
 
@@ -332,12 +334,13 @@ func main() {
     functionName := "functionName_example" // string | The name of the function
     name := "name_example" // string | Name of the function (optional)
     code := os.NewFile(1234, "some_file") // *os.File | File with the code of the function (optional)
+    waitForWorkers := true // bool | Whether to wait for all workers to receive the code of the function. If false, the request returns as soon as the creation request terminates. (optional) (default to true)
     events := []openapiclient.FunctionCreateUpdateEventsInner{*openapiclient.NewFunctionCreateUpdateEventsInner()} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
     sinks := []openapiclient.FunctionCreateUpdateSinksInner{*openapiclient.NewFunctionCreateUpdateSinksInner()} // []FunctionCreateUpdateSinksInner | Data sinks that receive invocation's results (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.FunctionsAPI.UpdateFunction(context.Background(), moduleName, functionName).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
+    r, err := apiClient.FunctionsAPI.UpdateFunction(context.Background(), moduleName, functionName).Name(name).Code(code).WaitForWorkers(waitForWorkers).Events(events).Sinks(sinks).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.UpdateFunction``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -365,6 +368,7 @@ Name | Type | Description  | Notes
 
  **name** | **string** | Name of the function | 
  **code** | ***os.File** | File with the code of the function | 
+ **waitForWorkers** | **bool** | Whether to wait for all workers to receive the code of the function. If false, the request returns as soon as the creation request terminates. | [default to true]
  **events** | [**[]FunctionCreateUpdateEventsInner**](FunctionCreateUpdateEventsInner.md) | Events that can trigger the function | 
  **sinks** | [**[]FunctionCreateUpdateSinksInner**](FunctionCreateUpdateSinksInner.md) | Data sinks that receive invocation&#39;s results | 
 

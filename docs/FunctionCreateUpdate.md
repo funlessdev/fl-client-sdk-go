@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | Name of the function | [optional] 
 **Code** | Pointer to ***os.File** | File with the code of the function | [optional] 
+**WaitForWorkers** | Pointer to **bool** | Whether to wait for all workers to receive the code of the function. If false, the request returns as soon as the creation request terminates. | [optional] [default to true]
 **Events** | Pointer to [**[]FunctionCreateUpdateEventsInner**](FunctionCreateUpdateEventsInner.md) | Events that can trigger the function | [optional] 
 **Sinks** | Pointer to [**[]FunctionCreateUpdateSinksInner**](FunctionCreateUpdateSinksInner.md) | Data sinks that receive invocation&#39;s results | [optional] 
 
@@ -77,6 +78,31 @@ SetCode sets Code field to given value.
 `func (o *FunctionCreateUpdate) HasCode() bool`
 
 HasCode returns a boolean if a field has been set.
+
+### GetWaitForWorkers
+
+`func (o *FunctionCreateUpdate) GetWaitForWorkers() bool`
+
+GetWaitForWorkers returns the WaitForWorkers field if non-nil, zero value otherwise.
+
+### GetWaitForWorkersOk
+
+`func (o *FunctionCreateUpdate) GetWaitForWorkersOk() (*bool, bool)`
+
+GetWaitForWorkersOk returns a tuple with the WaitForWorkers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWaitForWorkers
+
+`func (o *FunctionCreateUpdate) SetWaitForWorkers(v bool)`
+
+SetWaitForWorkers sets WaitForWorkers field to given value.
+
+### HasWaitForWorkers
+
+`func (o *FunctionCreateUpdate) HasWaitForWorkers() bool`
+
+HasWaitForWorkers returns a boolean if a field has been set.
 
 ### GetEvents
 

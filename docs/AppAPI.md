@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateApp
 
-> CreateApp(ctx).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
+> CreateApp(ctx).Name(name).Code(code).WaitForWorkers(waitForWorkers).Events(events).Sinks(sinks).Execute()
 
 Create new APP script
 
@@ -34,12 +34,13 @@ import (
 func main() {
     name := "name_example" // string | Name of the function (optional)
     code := os.NewFile(1234, "some_file") // *os.File | File with the code of the function (optional)
+    waitForWorkers := true // bool | Whether to wait for all workers to receive the code of the function. If false, the request returns as soon as the creation request terminates. (optional) (default to true)
     events := []openapiclient.FunctionCreateUpdateEventsInner{*openapiclient.NewFunctionCreateUpdateEventsInner()} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
     sinks := []openapiclient.FunctionCreateUpdateSinksInner{*openapiclient.NewFunctionCreateUpdateSinksInner()} // []FunctionCreateUpdateSinksInner | Data sinks that receive invocation's results (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AppAPI.CreateApp(context.Background()).Name(name).Code(code).Events(events).Sinks(sinks).Execute()
+    r, err := apiClient.AppAPI.CreateApp(context.Background()).Name(name).Code(code).WaitForWorkers(waitForWorkers).Events(events).Sinks(sinks).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AppAPI.CreateApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -60,6 +61,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string** | Name of the function | 
  **code** | ***os.File** | File with the code of the function | 
+ **waitForWorkers** | **bool** | Whether to wait for all workers to receive the code of the function. If false, the request returns as soon as the creation request terminates. | [default to true]
  **events** | [**[]FunctionCreateUpdateEventsInner**](FunctionCreateUpdateEventsInner.md) | Events that can trigger the function | 
  **sinks** | [**[]FunctionCreateUpdateSinksInner**](FunctionCreateUpdateSinksInner.md) | Data sinks that receive invocation&#39;s results | 
 

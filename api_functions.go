@@ -30,6 +30,7 @@ type ApiCreateFunctionRequest struct {
 	moduleName string
 	name *string
 	code *os.File
+	waitForWorkers *bool
 	events *[]FunctionCreateUpdateEventsInner
 	sinks *[]FunctionCreateUpdateSinksInner
 }
@@ -43,6 +44,12 @@ func (r ApiCreateFunctionRequest) Name(name string) ApiCreateFunctionRequest {
 // File with the code of the function
 func (r ApiCreateFunctionRequest) Code(code *os.File) ApiCreateFunctionRequest {
 	r.code = code
+	return r
+}
+
+// Whether to wait for all workers to receive the code of the function. If false, the request returns as soon as the creation request terminates.
+func (r ApiCreateFunctionRequest) WaitForWorkers(waitForWorkers bool) ApiCreateFunctionRequest {
+	r.waitForWorkers = &waitForWorkers
 	return r
 }
 
@@ -124,8 +131,6 @@ func (a *FunctionsAPIService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 	var codeLocalVarFileBytes    []byte
 
 	codeLocalVarFormFileName = "code"
-
-
 	codeLocalVarFile := r.code
 
 	if codeLocalVarFile != nil {
@@ -135,6 +140,9 @@ func (a *FunctionsAPIService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 		codeLocalVarFileName = codeLocalVarFile.Name()
 		codeLocalVarFile.Close()
 		formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
+	}
+	if r.waitForWorkers != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "wait_for_workers", r.waitForWorkers, "")
 	}
 	if r.events != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "events", r.events, "csv")
@@ -531,6 +539,7 @@ type ApiUpdateFunctionRequest struct {
 	functionName string
 	name *string
 	code *os.File
+	waitForWorkers *bool
 	events *[]FunctionCreateUpdateEventsInner
 	sinks *[]FunctionCreateUpdateSinksInner
 }
@@ -544,6 +553,12 @@ func (r ApiUpdateFunctionRequest) Name(name string) ApiUpdateFunctionRequest {
 // File with the code of the function
 func (r ApiUpdateFunctionRequest) Code(code *os.File) ApiUpdateFunctionRequest {
 	r.code = code
+	return r
+}
+
+// Whether to wait for all workers to receive the code of the function. If false, the request returns as soon as the creation request terminates.
+func (r ApiUpdateFunctionRequest) WaitForWorkers(waitForWorkers bool) ApiUpdateFunctionRequest {
+	r.waitForWorkers = &waitForWorkers
 	return r
 }
 
@@ -628,8 +643,6 @@ func (a *FunctionsAPIService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 	var codeLocalVarFileBytes    []byte
 
 	codeLocalVarFormFileName = "code"
-
-
 	codeLocalVarFile := r.code
 
 	if codeLocalVarFile != nil {
@@ -639,6 +652,9 @@ func (a *FunctionsAPIService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 		codeLocalVarFileName = codeLocalVarFile.Name()
 		codeLocalVarFile.Close()
 		formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
+	}
+	if r.waitForWorkers != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "wait_for_workers", r.waitForWorkers, "")
 	}
 	if r.events != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "events", r.events, "csv")

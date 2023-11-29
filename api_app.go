@@ -29,6 +29,7 @@ type ApiCreateAppRequest struct {
 	ApiService *AppAPIService
 	name *string
 	code *os.File
+	waitForWorkers *bool
 	events *[]FunctionCreateUpdateEventsInner
 	sinks *[]FunctionCreateUpdateSinksInner
 }
@@ -42,6 +43,12 @@ func (r ApiCreateAppRequest) Name(name string) ApiCreateAppRequest {
 // File with the code of the function
 func (r ApiCreateAppRequest) Code(code *os.File) ApiCreateAppRequest {
 	r.code = code
+	return r
+}
+
+// Whether to wait for all workers to receive the code of the function. If false, the request returns as soon as the creation request terminates.
+func (r ApiCreateAppRequest) WaitForWorkers(waitForWorkers bool) ApiCreateAppRequest {
+	r.waitForWorkers = &waitForWorkers
 	return r
 }
 
@@ -120,8 +127,6 @@ func (a *AppAPIService) CreateAppExecute(r ApiCreateAppRequest) (*http.Response,
 	var codeLocalVarFileBytes    []byte
 
 	codeLocalVarFormFileName = "code"
-
-
 	codeLocalVarFile := r.code
 
 	if codeLocalVarFile != nil {
@@ -131,6 +136,9 @@ func (a *AppAPIService) CreateAppExecute(r ApiCreateAppRequest) (*http.Response,
 		codeLocalVarFileName = codeLocalVarFile.Name()
 		codeLocalVarFile.Close()
 		formFiles = append(formFiles, formFile{fileBytes: codeLocalVarFileBytes, fileName: codeLocalVarFileName, formFileName: codeLocalVarFormFileName})
+	}
+	if r.waitForWorkers != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "wait_for_workers", r.waitForWorkers, "")
 	}
 	if r.events != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "events", r.events, "csv")
