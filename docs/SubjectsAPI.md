@@ -23,24 +23,24 @@ Create subject
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/funlessdev/fl-client-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
-    subjectName := *openapiclient.NewSubjectName() // SubjectName | Subject to create
+	subjectName := *openapiclient.NewSubjectName() // SubjectName | Subject to create
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubjectsAPI.CreateSubject(context.Background()).SubjectName(subjectName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubjectsAPI.CreateSubject``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateSubject`: SingleSubjectResult
-    fmt.Fprintf(os.Stdout, "Response from `SubjectsAPI.CreateSubject`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubjectsAPI.CreateSubject(context.Background()).SubjectName(subjectName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubjectsAPI.CreateSubject``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateSubject`: SingleSubjectResult
+	fmt.Fprintf(os.Stdout, "Response from `SubjectsAPI.CreateSubject`: %v\n", resp)
 }
 ```
 
@@ -89,23 +89,23 @@ List all subjects
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/funlessdev/fl-client-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubjectsAPI.ListSubjects(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubjectsAPI.ListSubjects``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListSubjects`: ModuleNamesResult
-    fmt.Fprintf(os.Stdout, "Response from `SubjectsAPI.ListSubjects`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubjectsAPI.ListSubjects(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubjectsAPI.ListSubjects``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListSubjects`: ModuleNamesResult
+	fmt.Fprintf(os.Stdout, "Response from `SubjectsAPI.ListSubjects`: %v\n", resp)
 }
 ```
 

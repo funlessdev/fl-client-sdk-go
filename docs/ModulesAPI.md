@@ -26,22 +26,22 @@ Create
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/funlessdev/fl-client-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
-    moduleName := *openapiclient.NewModuleName() // ModuleName | Module to create
+	moduleName := *openapiclient.NewModuleName() // ModuleName | Module to create
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ModulesAPI.CreateModule(context.Background()).ModuleName(moduleName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ModulesAPI.CreateModule``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ModulesAPI.CreateModule(context.Background()).ModuleName(moduleName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ModulesAPI.CreateModule``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -90,22 +90,22 @@ Delete module
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/funlessdev/fl-client-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
-    moduleName := "moduleName_example" // string | The name of the module to retrieve
+	moduleName := "moduleName_example" // string | The name of the module to retrieve
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ModulesAPI.DeleteModule(context.Background(), moduleName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ModulesAPI.DeleteModule``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ModulesAPI.DeleteModule(context.Background(), moduleName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ModulesAPI.DeleteModule``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -158,23 +158,23 @@ List modules
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/funlessdev/fl-client-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ModulesAPI.ListModules(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ModulesAPI.ListModules``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListModules`: ModuleNamesResult
-    fmt.Fprintf(os.Stdout, "Response from `ModulesAPI.ListModules`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ModulesAPI.ListModules(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ModulesAPI.ListModules``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListModules`: ModuleNamesResult
+	fmt.Fprintf(os.Stdout, "Response from `ModulesAPI.ListModules`: %v\n", resp)
 }
 ```
 
@@ -219,24 +219,24 @@ Show module info
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/funlessdev/fl-client-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
-    moduleName := "moduleName_example" // string | The name of the module to retrieve
+	moduleName := "moduleName_example" // string | The name of the module to retrieve
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ModulesAPI.ShowModuleByName(context.Background(), moduleName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ModulesAPI.ShowModuleByName``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ShowModuleByName`: SingleModuleResult
-    fmt.Fprintf(os.Stdout, "Response from `ModulesAPI.ShowModuleByName`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ModulesAPI.ShowModuleByName(context.Background(), moduleName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ModulesAPI.ShowModuleByName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ShowModuleByName`: SingleModuleResult
+	fmt.Fprintf(os.Stdout, "Response from `ModulesAPI.ShowModuleByName`: %v\n", resp)
 }
 ```
 
@@ -289,23 +289,23 @@ Update module name
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/funlessdev/fl-client-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
-    moduleName := "moduleName_example" // string | The name of the module to retrieve
-    moduleName2 := *openapiclient.NewModuleName() // ModuleName | New module name to use
+	moduleName := "moduleName_example" // string | The name of the module to retrieve
+	moduleName2 := *openapiclient.NewModuleName() // ModuleName | New module name to use
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ModulesAPI.UpdateModule(context.Background(), moduleName).ModuleName2(moduleName2).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ModulesAPI.UpdateModule``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ModulesAPI.UpdateModule(context.Background(), moduleName).ModuleName2(moduleName2).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ModulesAPI.UpdateModule``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 

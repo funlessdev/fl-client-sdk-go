@@ -26,27 +26,27 @@ Create new function
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/funlessdev/fl-client-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
-    moduleName := "moduleName_example" // string | The name of the module to retrieve
-    name := "name_example" // string | Name of the function (optional)
-    code := os.NewFile(1234, "some_file") // *os.File | File with the code of the function (optional)
-    waitForWorkers := true // bool | Whether to wait for all workers to receive the code of the function. If false, the request returns as soon as the creation request terminates. (optional) (default to true)
-    events := []openapiclient.FunctionCreateUpdateEventsInner{*openapiclient.NewFunctionCreateUpdateEventsInner()} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
-    sinks := []openapiclient.FunctionCreateUpdateSinksInner{*openapiclient.NewFunctionCreateUpdateSinksInner()} // []FunctionCreateUpdateSinksInner | Data sinks that receive invocation's results (optional)
+	moduleName := "moduleName_example" // string | The name of the module to retrieve
+	name := "name_example" // string | Name of the function (optional)
+	code := os.NewFile(1234, "some_file") // *os.File | File with the code of the function (optional)
+	waitForWorkers := true // bool | Whether to wait for all workers to receive the code of the function. If false, the request returns as soon as the creation request terminates. (optional) (default to true)
+	events := []openapiclient.FunctionCreateUpdateEventsInner{*openapiclient.NewFunctionCreateUpdateEventsInner()} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
+	sinks := []openapiclient.FunctionCreateUpdateSinksInner{*openapiclient.NewFunctionCreateUpdateSinksInner()} // []FunctionCreateUpdateSinksInner | Data sinks that receive invocation's results (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.FunctionsAPI.CreateFunction(context.Background(), moduleName).Name(name).Code(code).WaitForWorkers(waitForWorkers).Events(events).Sinks(sinks).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.CreateFunction``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.FunctionsAPI.CreateFunction(context.Background(), moduleName).Name(name).Code(code).WaitForWorkers(waitForWorkers).Events(events).Sinks(sinks).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.CreateFunction``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -104,23 +104,23 @@ Delete function
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/funlessdev/fl-client-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
-    moduleName := "moduleName_example" // string | The name of the module
-    functionName := "functionName_example" // string | The name of the function
+	moduleName := "moduleName_example" // string | The name of the module
+	functionName := "functionName_example" // string | The name of the function
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.FunctionsAPI.DeleteFunction(context.Background(), moduleName, functionName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.DeleteFunction``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.FunctionsAPI.DeleteFunction(context.Background(), moduleName, functionName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.DeleteFunction``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -175,26 +175,26 @@ Invoke function
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/funlessdev/fl-client-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
-    moduleName := "moduleName_example" // string | The name of the module
-    functionName := "functionName_example" // string | The name of the function
-    invokeInput := *openapiclient.NewInvokeInput() // InvokeInput | Function input
+	moduleName := "moduleName_example" // string | The name of the module
+	functionName := "functionName_example" // string | The name of the function
+	invokeInput := *openapiclient.NewInvokeInput() // InvokeInput | Function input
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FunctionsAPI.InvokeFunction(context.Background(), moduleName, functionName).InvokeInput(invokeInput).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.InvokeFunction``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `InvokeFunction`: InvokeResult
-    fmt.Fprintf(os.Stdout, "Response from `FunctionsAPI.InvokeFunction`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FunctionsAPI.InvokeFunction(context.Background(), moduleName, functionName).InvokeInput(invokeInput).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.InvokeFunction``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `InvokeFunction`: InvokeResult
+	fmt.Fprintf(os.Stdout, "Response from `FunctionsAPI.InvokeFunction`: %v\n", resp)
 }
 ```
 
@@ -250,25 +250,25 @@ Show function info
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/funlessdev/fl-client-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
-    moduleName := "moduleName_example" // string | The name of the module to retrieve
-    functionName := "functionName_example" // string | The name of the function
+	moduleName := "moduleName_example" // string | The name of the module to retrieve
+	functionName := "functionName_example" // string | The name of the function
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FunctionsAPI.ShowFunctionByName(context.Background(), moduleName, functionName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.ShowFunctionByName``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ShowFunctionByName`: SingleFunctionResult
-    fmt.Fprintf(os.Stdout, "Response from `FunctionsAPI.ShowFunctionByName`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FunctionsAPI.ShowFunctionByName(context.Background(), moduleName, functionName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.ShowFunctionByName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ShowFunctionByName`: SingleFunctionResult
+	fmt.Fprintf(os.Stdout, "Response from `FunctionsAPI.ShowFunctionByName`: %v\n", resp)
 }
 ```
 
@@ -323,28 +323,28 @@ Update function
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/funlessdev/fl-client-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/funlessdev/fl-client-sdk-go"
 )
 
 func main() {
-    moduleName := "moduleName_example" // string | The name of the module
-    functionName := "functionName_example" // string | The name of the function
-    name := "name_example" // string | Name of the function (optional)
-    code := os.NewFile(1234, "some_file") // *os.File | File with the code of the function (optional)
-    waitForWorkers := true // bool | Whether to wait for all workers to receive the code of the function. If false, the request returns as soon as the creation request terminates. (optional) (default to true)
-    events := []openapiclient.FunctionCreateUpdateEventsInner{*openapiclient.NewFunctionCreateUpdateEventsInner()} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
-    sinks := []openapiclient.FunctionCreateUpdateSinksInner{*openapiclient.NewFunctionCreateUpdateSinksInner()} // []FunctionCreateUpdateSinksInner | Data sinks that receive invocation's results (optional)
+	moduleName := "moduleName_example" // string | The name of the module
+	functionName := "functionName_example" // string | The name of the function
+	name := "name_example" // string | Name of the function (optional)
+	code := os.NewFile(1234, "some_file") // *os.File | File with the code of the function (optional)
+	waitForWorkers := true // bool | Whether to wait for all workers to receive the code of the function. If false, the request returns as soon as the creation request terminates. (optional) (default to true)
+	events := []openapiclient.FunctionCreateUpdateEventsInner{*openapiclient.NewFunctionCreateUpdateEventsInner()} // []FunctionCreateUpdateEventsInner | Events that can trigger the function (optional)
+	sinks := []openapiclient.FunctionCreateUpdateSinksInner{*openapiclient.NewFunctionCreateUpdateSinksInner()} // []FunctionCreateUpdateSinksInner | Data sinks that receive invocation's results (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.FunctionsAPI.UpdateFunction(context.Background(), moduleName, functionName).Name(name).Code(code).WaitForWorkers(waitForWorkers).Events(events).Sinks(sinks).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.UpdateFunction``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.FunctionsAPI.UpdateFunction(context.Background(), moduleName, functionName).Name(name).Code(code).WaitForWorkers(waitForWorkers).Events(events).Sinks(sinks).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.UpdateFunction``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 

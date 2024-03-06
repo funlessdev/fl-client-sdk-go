@@ -616,6 +616,27 @@ components:
           type: array
       type: object
     mixed_results:
+      example:
+        data:
+          sinks:
+          - message: message
+            status: success
+          - message: message
+            status: success
+          sinks_metadata:
+            total: 1
+            failed: 6
+            successful: 0
+          events_metadata:
+            total: 2
+            failed: 5
+            successful: 5
+          name: name
+          events:
+          - message: message
+            status: success
+          - message: message
+            status: success
       properties:
         data:
           $ref: '#/components/schemas/mixed_results_data'
@@ -640,6 +661,9 @@ components:
           $ref: '#/components/schemas/single_app_result_data'
       type: object
     error:
+      example:
+        errors:
+          detail: detail
       properties:
         errors:
           $ref: '#/components/schemas/error_errors'
@@ -701,6 +725,9 @@ components:
           type: object
       type: object
     mixed_results_data_events_inner:
+      example:
+        message: message
+        status: success
       properties:
         status:
           description: Whether the corresponding event was connected successfully
@@ -713,6 +740,9 @@ components:
           type: string
       type: object
     mixed_results_data_sinks_inner:
+      example:
+        message: message
+        status: success
       properties:
         status:
           description: Whether the corresponding sink was connected successfully
@@ -725,6 +755,10 @@ components:
           type: string
       type: object
     mixed_results_data_sinks_metadata:
+      example:
+        total: 1
+        failed: 6
+        successful: 0
       properties:
         successful:
           description: The amount of data sinks that was successfully connected
@@ -737,6 +771,10 @@ components:
           type: integer
       type: object
     mixed_results_data_events_metadata:
+      example:
+        total: 2
+        failed: 5
+        successful: 5
       properties:
         successful:
           description: The amount of events that was successfully connected
@@ -749,6 +787,26 @@ components:
           type: integer
       type: object
     mixed_results_data:
+      example:
+        sinks:
+        - message: message
+          status: success
+        - message: message
+          status: success
+        sinks_metadata:
+          total: 1
+          failed: 6
+          successful: 0
+        events_metadata:
+          total: 2
+          failed: 5
+          successful: 5
+        name: name
+        events:
+        - message: message
+          status: success
+        - message: message
+          status: success
       properties:
         name:
           description: The name of the function
@@ -779,6 +837,8 @@ components:
           type: string
       type: object
     error_errors:
+      example:
+        detail: detail
       properties:
         detail:
           type: string
